@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom"
-import s from './Navbar.module.css'
+import style from './Navbar.module.css'
 import SearchBar from '../SearchBar/SearchBar'
 
 const Navbar = () => {
@@ -10,8 +10,8 @@ const Navbar = () => {
     switch(pathname.split('/')[1]) {
         case 'create': {
             return (
-                <div className={s.navBox}>
-                    <nav className={s.nav}>
+                <div className={style.navBox}>
+                    <nav className={style.nav}>
                         <Link to={-1}>Back</Link>
                     </nav>
                     <Outlet />
@@ -21,8 +21,8 @@ const Navbar = () => {
 
         case 'details': {
             return (
-                <div className={s.navBox}>
-                    <nav className={s.nav}>
+                <div className={style.navBox}>
+                    <nav className={style.nav}>
                         <Link to={-1}>Back</Link>
                         <SearchBar />
                         <Link to='/create'>Create dog</Link>
@@ -34,9 +34,9 @@ const Navbar = () => {
 
         default: {
             return (
-                <div className={s.navBox}>
-                    <nav className={s.nav}>
-                        <div className={s.logo}>logo</div>
+                <div className={style.navBox}>
+                    <nav className={style.nav}>
+                        <div className={style.logo}>logo</div>
                         <SearchBar />
                         <Link to='/create'>Create dog</Link>
                     </nav>

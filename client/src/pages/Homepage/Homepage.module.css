@@ -1,0 +1,17 @@
+.main {
+    width: 100vw;
+    min-height: calc(100vh - var(--navbarHeight));
+    padding-top: 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardsContainer {
+    display: grid;
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}

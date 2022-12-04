@@ -1,7 +1,6 @@
 .navBox {
     width: 100vw;
-    height: 64px;
-    background-color: bisque;
+    height: var(--navbarHeight);
 }
 
 .nav {

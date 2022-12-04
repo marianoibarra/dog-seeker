@@ -41,7 +41,8 @@ const getDogs = async (name = null, onlyAPI) => {
                     id: dog.id,
                     name: dog.name,
                     temperament: dog.temperament,
-                    image: dog.image
+                    image: dog.image,
+                    weight: dog.weight
                 }}
             )
 }
