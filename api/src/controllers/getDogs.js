@@ -1,6 +1,6 @@
 const { API_KEY } = process.env
 const axios = require('axios');
-const { Dog } = require('../db')
+const { Dog, Temperament } = require('../db')
 const { Op } = require("sequelize");
 
 const getDogs = async (name = null, onlyAPI) => {
@@ -19,7 +19,19 @@ const getDogs = async (name = null, onlyAPI) => {
             image: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`
         }}))
     
-    const dogsFromDB = await Dog.findAll({where: name && {name: {[Op.substring]: name}}})
+    const dogsFromDB = await Dog.findAll({
+        where: 
+            name && {name: {[Op.substring]: name}},
+        include: [{
+            model: Temperament,
+            as: 'temperament',
+            attributes:['name'],
+            through: {
+              attributes: []
+            }
+        }]}).then(results => results.map(result => result.toJSON()))
+
+    dogsFromDB.forEach(dog => {dog.temperament = dog.temperament.map(t => t.name)})
 
     return onlyAPI
         ? dogsFromAPI

@@ -7,12 +7,17 @@ const getDogDetails = async (id) => {
 
     if(regex.test(id)) {
         console.log(id)
-        dogFromDB = await Dog.findByPk(id, {include: {
+        const dogFromDB = await Dog.findByPk(id, {include: {
             model: Temperament,
+            as: 'temperament',
+            attributes:['name'],
             through: {
               attributes: []
             }
-          }})
+          }}).then(result => result.toJSON())
+          
+        dogFromDB.temperament = dogFromDB.temperament.map(t => t.name)
+
         return dogFromDB;
     } else {
         const dogFromAPI = await getDogs(null, true).then(dogs => dogs.find(dog => dog.id == id))

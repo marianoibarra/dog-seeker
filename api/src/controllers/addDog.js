@@ -9,23 +9,27 @@ const addDog = async (dog) => {
     const valHeight = height && typeof height === 'string'
     const valWeight = weight && typeof weight === 'string'
     const valLifeSpan = !life_span || life_span && typeof life_span === 'string'
-    const valTemperament = Array.isArray(temperament)
+    const valTemperament = Array.isArray(temperament) && temperament.length > 0
 
-    if(valName && valHeight && valWeight && valLifeSpan && valTemperament) {
+    if(valName && valHeight && valWeight && valLifeSpan) {
 
         await getTemperaments()
 
-        const {id} = await Dog.create({ 
+        const newDog = await Dog.create({ 
             name,
             height,
             weight,
             life_span,
-            temperaments: temperament.map(t => {return {name: t}})
-            
-        },{
-            include: [ Temperament ]
         })
-        return id
+
+        if(valTemperament) {
+            for(let name of temperament) {
+                const temperamentFromDB = await Temperament.findOne({where: { name }})
+                newDog.addTemperament(temperamentFromDB)
+            }
+        }
+         
+        return 'todo ok'
     } else {
         throw new Error('Invalid values')
     }
