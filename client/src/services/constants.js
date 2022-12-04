@@ -1,0 +1,1 @@
+export const BE_LINK = 'https://dogs-app-backend.onrender.com'

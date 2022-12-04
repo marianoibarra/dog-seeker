@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage";
-import Homepage from "./components/Homepage/Homepage"
+import LandingPage from "./pages/LandingPage/LandingPage";
+import Homepage from "./pages/Homepage/Homepage"
 import Navbar from "./components/Navbar/Navbar"
-import CreateDog from "./components/CreateDog/CreateDog"
-import DetailsDog from "./components/DetailsDog/DetailsDog"
+import CreateDog from "./pages/CreateDog/CreateDog"
+import DetailsDog from "./pages/DetailsDog/DetailsDog"
 
 function Router() {
   return (
@@ -11,7 +11,6 @@ function Router() {
       <Routes>
         <Route index element={ <LandingPage /> } />
         <Route path='/' element={ <Navbar /> }>
-          <Route index element={ <Homepage /> } />
           <Route path='home' element={ <Homepage /> } />
           <Route path='create' element={ <CreateDog /> } />
           <Route path='details/:id' element={ <DetailsDog /> } />

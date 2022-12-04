@@ -1,0 +1,15 @@
+.navBox {
+    width: 100vw;
+    height: 64px;
+    background-color: bisque;
+}
+
+.nav {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+}
