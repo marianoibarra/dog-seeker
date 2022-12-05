@@ -20,6 +20,10 @@ const Homepage = () => {
     const nextRef = useRef()
 
     useEffect(() => {
+        setPageLength(Math.ceil(dogs.length / dogsPerPage))
+    }, [dogs])
+
+    useEffect(() => {
 
         if(dogs.length > 0 && pageLength > 1) {
 
@@ -88,7 +92,7 @@ const Homepage = () => {
             })
 
         }
-    }, [dogs, page])
+    }, [pageLength, page])
    
 
     useEffect(() => {
@@ -96,9 +100,7 @@ const Homepage = () => {
         dispatch(getTemperaments())
     }, [])
 
-    useEffect(() => {
-        setPageLength(Math.ceil(dogs.length / dogsPerPage))
-    }, [dogs])
+    
 
 
     return (
