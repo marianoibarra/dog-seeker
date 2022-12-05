@@ -1,26 +1,25 @@
 import React from 'react'
 import styles from './DogCard.module.css'
+import { Link } from 'react-router-dom'
 
 const DogCard = ({dog}) => {
-    console.log(dog)
   return (
-    <div className={styles.card}>
+    <Link to={`/details/${dog.id}`} className={styles.card}>
         <header className={styles.cardHeader}>
             <img className={styles.image} src={dog.image} alt={dog.name} />
         </header>
         <main className={styles.cardMain}>
             <div className={styles.nameCont}>
                 <h3 className={styles.dogName}>{dog.name}</h3>
-                <div className={styles.weight}>{dog.weight}</div>
             </div>
-            
             <div className={styles.temperamentsCont}>
+                <div className={styles.weight}>{`Height: \n${dog.weight} kg`}</div>
                 {dog.temperament && dog.temperament.map(t => (
                     <div className={styles.temperament}>{t}</div>
                 ))}
             </div>
         </main>
-    </div>
+    </Link>
   )
 }
 

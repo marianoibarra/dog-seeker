@@ -3,6 +3,7 @@
     --color-clay: #e07a5f;
     --color-blue: #3d405b;
     --color-yellow: #f3d3a0;
+    --color-yellow-hover: #f3d3a077;
     --color-green: #81b29a;
     --color-rose: #e3d4d0;
     --color-grey1: #fef9f1;
@@ -10,8 +11,20 @@
     --color-grey3: #f3ece6;
     --color-grey4: #e6ddcf; 
     --color-background: #fef9f1;
-    --navbarHeight: 64px
+    --navbarHeight: 64px;
+    --shadow: rgba(35, 31, 32, .02);
+    --shadow-hover: rgba(35, 31, 32, .1);
   }
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+    text-decoration: none;
+    color: inherit;
+}
 
 * {
     margin: 0;
