@@ -3,7 +3,12 @@
     height: var(--navbarHeight);
 }
 
+.logo {
+    width: 134px;
+}
+
 .nav {
+    padding: 0 24px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -11,4 +16,32 @@
     width: 100%;
     max-width: 1280px;
     height: 100%;
+}
+
+.searchbarCont {
+    flex-basis: 40%;
+    min-width: 360px;
+}
+
+.createBtn {
+    height: 42px;
+    width: 134px;
+    transition: filter 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    background-color: var(--color-green);
+    padding: 12px 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.createBtn:hover {
+    transition: filter 0.3s ease-in-out;
+    filter: brightness(110%);
+}
+
+.createBtn:active {
+    transform: scale(95%);
+    filter: brightness(95%);
 }

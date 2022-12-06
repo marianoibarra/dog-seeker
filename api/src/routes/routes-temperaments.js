@@ -5,7 +5,6 @@ const getTemperaments = require('../controllers/getTemperaments')
 router.get('/', async (req, res) => {
 
     try {
-
         let temperamentDB = await Temperament.findAll()
         if(temperamentDB.length === 0) getTemperaments().then(r => res.json(r));
         else res.json(temperamentDB)

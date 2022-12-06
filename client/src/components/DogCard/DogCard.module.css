@@ -50,7 +50,7 @@
 }
 
 .dogName {
-    color: #483531;
+    color: var(--color-primary-text);
     font-family: 'Nunito';
     font-weight: 700;
 }
@@ -76,6 +76,7 @@
 }
 
 .temperamentsCont {
+    color: var(--color-secondary-text);
     height: auto;
     max-height: 86px;
     width: 100%;
