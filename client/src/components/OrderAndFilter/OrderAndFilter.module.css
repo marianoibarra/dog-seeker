@@ -1,0 +1,242 @@
+@keyframes fadeIn {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10px);
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+
+.toggles {
+    position: relative;
+}
+
+.toggles span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: .5px;
+    color: var(--color-secondary-text)
+}
+
+.button {
+    width: 140px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 0;
+}
+
+.button span {
+    margin-right: 8px;
+}
+
+.open svg {
+    transform: rotate(-180deg);
+    transition: transform .2s linear;
+}
+
+.closed svg {
+    transform: rotate(0deg);
+    transition: transform .2s linear;
+}
+
+.orderDropdownClosed {
+    position: absolute;
+    left: -30px;
+    top: 2.5rem;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: visibility 0s linear 200ms, opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.orderDropdownOpen {
+    z-index: 10;
+    position: absolute;
+    left: -30px;
+    top: 2.5rem;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 1px 1px 20px 1px #7774;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.filterDropdownClosed {
+    position: absolute;
+    left: 20px;
+    top: 2.5rem;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: visibility 0s linear 200ms, opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.filterDropdownOpen {
+    z-index: 10;
+    position: absolute;
+    left: 20px;
+    top: 2.5rem;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 1px 1px 20px 1px #7774;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.orderDropdownBody {
+    width: 200px;
+    height: auto;
+    background-color: var(--color-grey1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.option {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-bottom: 1px solid #5552;
+}
+
+.option:hover span {
+    font-weight: 700;
+}
+
+.option:hover {
+    background-color: var(--color-grey3);
+}
+
+.option svg {
+    font-size: 18px;
+    color: var(--color-secondary-text);
+    margin-right: 8px;
+}
+
+.tempToggle svg {
+    font-size: 16px;
+    color: var(--color-secondary-text);
+    margin-right: 4px;
+}
+
+.filterDropdownBody {
+    width: 480px;
+    height: 440px;
+    background-color: var(--color-grey1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tempCont {
+    display: grid;
+    grid-gap: 0.2rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: min-content;
+    height: calc(100% - 120px);
+    width: calc(100% - 8px);
+    overflow-x: auto;
+    margin-left: 8px;
+    box-sizing: content-box;
+}
+
+.tempToggle {
+    background: none;
+    outline: none;
+    border: none;
+    text-align: left;
+    height: auto;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tempToggle:hover {
+    background-color: var(--color-grey3);
+}
+
+.tempToggle:active {
+    transform: scale(97%);
+}
+
+.toggleName {
+    pointer-events: none;
+    height: 100%;
+    line-height: 26px;
+    width: 84px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.checkbox {
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    flex-grow: 0;
+}
+
+.checkbox svg {
+    pointer-events: none;
+}
+
+.searchFilter {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: 32px;
+    border-radius: 16px;
+    padding-left: 12px;
+    margin: 12px auto;
+    background-color: var(--color-grey2);
+}
+
+.searchFilter input {
+    width: 100%;
+    text-decoration: none;
+    outline: none;
+    background: none;
+    border: none;
+
+}
+
+.nothing {
+    font-size: 0.9rem !important;
+    grid-column: 1 / 5;
+    grid-row: 20;
+    text-align: center;
+    padding-right: 12px;
+}

@@ -1,0 +1,37 @@
+.searchBar {
+    background-color: var(--color-grey3);
+    height: 44px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 42px;
+    padding: 0 14px 0 18px;
+}
+
+.searchInput {
+    width: 100%;
+    flex-grow: 1;
+    text-decoration: none;
+    outline: none;
+    background: none;
+    border: none;
+    color: var(--color-primary-text);
+    font-family: 'Nunito';
+    font-size: 1.1rem;
+    font-weight: 600;    
+    line-height: 42px;
+}
+
+.searchIcon {
+    color: var(--color-secondary-text);
+    font-size: 16px;
+    line-height: 16px;
+    opacity: .8;
+}
+
+.searchButton {
+    background: none;
+    border: none;
+    height: 32px;
+}
