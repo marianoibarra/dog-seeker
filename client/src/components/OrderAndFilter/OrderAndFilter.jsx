@@ -84,8 +84,14 @@ const OrderAndFilter = () => {
 
             <div className={filterIsOpen ? styles.filterDropdownOpen : styles.filterDropdownClosed}>
                 <div className={styles.filterDropdownBody}>
-                    <div className={styles.searchFilter}>
-                        <input type="text" name="tempFilter" id="inputTempFilter" onChange={e => setTempToSearch(e.target.value.toLowerCase())} value={tempToSearch} />
+                    <div className={styles.filterHeader}>
+                        <div className={styles.filterTitle}>
+                            Temperaments
+                            {tempFilter.length > 0 && <div>{tempFilter.length}</div>}
+                        </div>
+                        <div className={styles.searchFilter}>
+                            <input placeholder='Search...' type="text" name="tempFilter" id="inputTempFilter" onChange={e => setTempToSearch(e.target.value.toLowerCase())} value={tempToSearch} />
+                        </div>
                     </div>
                     <div className={styles.tempCont} >
                         {temperaments && temperaments.filter(t => t.name.toLowerCase().startsWith(tempToSearch)).length > 0 ?
