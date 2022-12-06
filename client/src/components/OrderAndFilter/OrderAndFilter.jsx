@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import styles from './OrderAndFilter.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faArrowDown19, faArrowDownAZ, faArrowUp91, faArrowUpZA, faCheckSquare } from "@fortawesome/free-solid-svg-icons"
-import {faSquare} from '@fortawesome/free-regular-svg-icons'
+import { faAngleDown, faArrowDown19, faArrowDownAZ, faArrowUp91, faArrowUpZA, faCheckSquare, faCircleCheck } from "@fortawesome/free-solid-svg-icons"
+import { faSquare, faCircle} from '@fortawesome/free-regular-svg-icons'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
@@ -13,6 +13,7 @@ const OrderAndFilter = () => {
     const [filterIsOpen, setFilterIsOpen] = useState(false)
     const [orderIsOpen, setOrderIsOpen] = useState(false)
     const [tempFilter, setTempFilter] = useState([])
+    const [originFilter, setOriginFilter] = useState(1)
     const orderWrapperRef = useRef()
     const filterWrapperRef = useRef()
 
@@ -22,6 +23,12 @@ const OrderAndFilter = () => {
             setTempFilter([...tempFilter, value])
         } else {
             setTempFilter(tempFilter.filter(t => t !== value))
+        }
+    }
+
+    const originToggleHandler = (value) => {
+        if(originFilter !== value) {
+            setOriginFilter(value)
         }
     }
 
@@ -108,8 +115,25 @@ const OrderAndFilter = () => {
                         <span className={styles.nothing}>No temperaments found :(</span>
                         }
                     </div>
-                    <div className={styles.originSelector}>
-
+                    <div className={styles.originFilterWrapper}>
+                        <div className={styles.filterTitle}>
+                            Origin
+                        </div>
+                        <div className={styles.originFilterBody}>
+                            {[
+                                {id: 1, name: 'All'},
+                                {id: 3, name: 'Created by API'},
+                                {id: 2, name: 'Created by Users'},
+                            ].map(origin => (
+                                <button className={styles.tempToggle} onClick={() => originToggleHandler(origin.id)}>
+                                <div className={styles.checkbox}>
+                                    <FontAwesomeIcon icon={originFilter === origin.id ? faCircleCheck : faCircle} size='lg' fixedWidth />
+                                </div>
+                                <div className={styles.toggleName}>{origin.name}</div>
+                            </button>
+                            ))
+                            }       
+                        </div>
                     </div>
                 </div>
             </div>        

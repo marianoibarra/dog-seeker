@@ -9,11 +9,13 @@ import {
 
 const initialState = {
     dogs: [],
+    dogsToDisplay: [],
     temperaments: [],
     dogsIsFetching: false,
     temperamentsIsFetching: false,
     dogsFetchError: false,
-    temperamentsFetchError: false
+    temperamentsFetchError: false,
+    
 }
 
 export default function reducer(state = initialState, action) {
@@ -29,6 +31,7 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 dogs: action.payload,
+                dogsToDisplay: action.payload,
                 dogsIsFetching: false
             }
         }

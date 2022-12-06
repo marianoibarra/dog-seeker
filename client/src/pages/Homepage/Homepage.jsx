@@ -10,7 +10,7 @@ import OrderAndFilter from "../../components/OrderAndFilter/OrderAndFilter"
 const Homepage = () => {
 
     const dispatch = useDispatch()
-    const dogs = useSelector(state => state.dogs)
+    const dogs = useSelector(state => state.dogsToDisplay)
     const temperaments = useSelector(state => state.temperaments)
     const dogsIsFetching = useSelector(state => state.dogsIsFetching)
     const [page, setPage] = useState(1)
