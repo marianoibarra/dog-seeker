@@ -17,7 +17,13 @@
     --shadow: rgba(35, 31, 32, .02);
     --shadow-hover: rgba(35, 31, 32, .1);
   }
-
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 
 a {
     margin:0;
