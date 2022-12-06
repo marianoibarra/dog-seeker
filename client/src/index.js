@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './routes.js';
+import Router from './rutas.js';
 import reportWebVitals from './utils/reportWebVitals';
 import './index.css';
 import store from './redux/store'
