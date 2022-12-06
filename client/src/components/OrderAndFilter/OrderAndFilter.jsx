@@ -3,19 +3,30 @@ import styles from './OrderAndFilter.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faArrowDown19, faArrowDownAZ, faArrowUp91, faArrowUpZA, faCheckSquare, faCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import { faSquare, faCircle} from '@fortawesome/free-regular-svg-icons'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import { originOp } from '../../redux/constants/index'
+import { orderOp } from '../../redux/constants/index'
+import {orderDogs, filterDogs} from '../../redux/actions/index'
 
 const OrderAndFilter = () => {
 
     const temperaments = useSelector(state => state.temperaments)
+    const order = useSelector(state => state.order)
+    const dispatch = useDispatch()
     const [tempToSearch, setTempToSearch] = useState('')
     const [filterIsOpen, setFilterIsOpen] = useState(false)
     const [orderIsOpen, setOrderIsOpen] = useState(false)
     const [tempFilter, setTempFilter] = useState([])
-    const [originFilter, setOriginFilter] = useState(1)
+    const [originFilter, setOriginFilter] = useState(originOp[0])
     const orderWrapperRef = useRef()
     const filterWrapperRef = useRef()
+
+    const orderHandler = (order) => {
+        dispatch(orderDogs(order))
+        setOrderIsOpen(false)
+    }
+
 
     const tempToggleHandler = (e) => {
         let value = e.target.children[1].innerText    
@@ -24,11 +35,12 @@ const OrderAndFilter = () => {
         } else {
             setTempFilter(tempFilter.filter(t => t !== value))
         }
+        setTempToSearch('')
     }
 
-    const originToggleHandler = (value) => {
-        if(originFilter !== value) {
-            setOriginFilter(value)
+    const originToggleHandler = (origin) => {
+        if(originFilter.id !== origin.id) {
+            setOriginFilter(origin)
         }
     }
 
@@ -40,6 +52,10 @@ const OrderAndFilter = () => {
             setOrderIsOpen(false)
         }
     }
+
+    useEffect(() => {
+        dispatch(filterDogs(tempFilter, originFilter))
+    }, [tempFilter, originFilter])
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -61,21 +77,21 @@ const OrderAndFilter = () => {
             
             <div className={orderIsOpen ? styles.orderDropdownOpen : styles.orderDropdownClosed}>
                 <div className={styles.orderDropdownBody}>
-                    <button onClick={() => setOrderIsOpen(false)} className={styles.option}>
+                    <button onClick={() => orderHandler(orderOp[0])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowDownAZ} size='lg' fixedWidth />
-                        <span>Name (A - Z)</span>
+                        <span style={orderOp[0].id == order ? {fontWeight: '800'} : {}}>{orderOp[0].name}</span>
                     </button>
-                    <button onClick={() => setOrderIsOpen(false)} className={styles.option}>
+                    <button onClick={() => orderHandler(orderOp[1])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowUpZA} size='lg' fixedWidth />
-                        <span>Name (Z - A)</span>
+                        <span style={orderOp[1].id == order ? {fontWeight: '800'} : {}}>{orderOp[1].name}</span>
                     </button>
-                    <button onClick={() => setOrderIsOpen(false)} className={styles.option}>
+                    <button onClick={() => orderHandler(orderOp[2])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowDown19} size='lg' fixedWidth />
-                        <span>Weight (Low to high)</span>
+                        <span style={orderOp[2].id == order ? {fontWeight: '800'} : {}}>{orderOp[2].name}</span>
                     </button>
-                    <button onClick={() => setOrderIsOpen(false)} className={styles.option}>
+                    <button onClick={() => orderHandler(orderOp[3])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowUp91} size='lg' fixedWidth />
-                        <span>Weight (High to low)</span>
+                        <span style={orderOp[3].id == order ? {fontWeight: '800'} : {}}>{orderOp[3].name}</span>
                     </button>
                 </div>
             </div>
@@ -120,14 +136,11 @@ const OrderAndFilter = () => {
                             Origin
                         </div>
                         <div className={styles.originFilterBody}>
-                            {[
-                                {id: 1, name: 'All'},
-                                {id: 3, name: 'Created by API'},
-                                {id: 2, name: 'Created by Users'},
-                            ].map(origin => (
-                                <button className={styles.tempToggle} onClick={() => originToggleHandler(origin.id)}>
+                            
+                            {originOp.map(origin => (
+                                <button className={styles.tempToggle} onClick={() => originToggleHandler(origin)}>
                                 <div className={styles.checkbox}>
-                                    <FontAwesomeIcon icon={originFilter === origin.id ? faCircleCheck : faCircle} size='lg' fixedWidth />
+                                    <FontAwesomeIcon icon={originFilter.id === origin.id ? faCircleCheck : faCircle} size='lg' fixedWidth />
                                 </div>
                                 <div className={styles.toggleName}>{origin.name}</div>
                             </button>

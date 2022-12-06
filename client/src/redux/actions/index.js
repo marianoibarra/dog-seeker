@@ -6,7 +6,9 @@ import {
     FETCH_DOGS_FAILED,
     FETCH_TEMPERAMENTS_START,
     FETCH_TEMPERAMENTS_SUCCESS,
-    FETCH_TEMPERAMENTS_FAILED
+    FETCH_TEMPERAMENTS_FAILED,
+    ORDER_DOGS,
+    FILTER_DOGS
  } from "../constants";
 
 const fetchStart = (type) => {
@@ -43,5 +45,20 @@ export const getTemperaments = () => {
         fetchTemperaments()
             .then(temperaments => dispatch(fetchSuccess(FETCH_TEMPERAMENTS_SUCCESS, temperaments)))
             .catch(e => dispatch(fetchFailed(FETCH_TEMPERAMENTS_FAILED)))
+    }
+}
+
+export const orderDogs = (payload) => {
+    return {
+        type: ORDER_DOGS,
+        payload
+    }
+}
+
+export const filterDogs = (temperament, origin) => {
+    return {
+        type: FILTER_DOGS,
+        temperament,
+        origin
     }
 }

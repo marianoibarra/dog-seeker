@@ -11,7 +11,6 @@ const Homepage = () => {
 
     const dispatch = useDispatch()
     const dogs = useSelector(state => state.dogsToDisplay)
-    const temperaments = useSelector(state => state.temperaments)
     const dogsIsFetching = useSelector(state => state.dogsIsFetching)
     const [page, setPage] = useState(1)
     const [pageLength, setPageLength] = useState(1)

@@ -4,7 +4,10 @@ import {
     FETCH_DOGS_FAILED,
     FETCH_TEMPERAMENTS_START,
     FETCH_TEMPERAMENTS_SUCCESS,
-    FETCH_TEMPERAMENTS_FAILED
+    FETCH_TEMPERAMENTS_FAILED,
+    orderOp,
+    ORDER_DOGS,
+    FILTER_DOGS
  } from "../constants";
 
 const initialState = {
@@ -15,6 +18,9 @@ const initialState = {
     temperamentsIsFetching: false,
     dogsFetchError: false,
     temperamentsFetchError: false,
+    order: 0,
+    temperamentFilter: [],
+    
     
 }
 
@@ -61,7 +67,22 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 temperamentsFetchError: true,
                 temperamentsIsFetching: false
-                
+            }
+        }
+        case ORDER_DOGS: {
+            return {
+                ...state,
+                dogsToDisplay: state.dogsToDisplay.slice().sort(action.payload.sort),
+                dogs: state.dogsToDisplay.slice().sort(action.payload.sort),
+                order: orderOp[action.payload.id].id
+            }
+        }
+        case FILTER_DOGS: {
+            console.log(action)
+            return {
+                ...state,
+                temperamentFilter: action.temperament,
+                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id)) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))})
             }
         }
         default: return state
