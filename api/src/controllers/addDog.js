@@ -3,7 +3,7 @@ const getTemperaments = require('./getTemperaments')
 
 const addDog = async (dog) => {
 
-    const {name, height, weight, life_span, temperament} = dog
+    const {name, height, weight, life_span, temperament, image} = dog
 
     const valName = name && typeof name === 'string'
     const valHeight = height && typeof height === 'string'
@@ -20,6 +20,7 @@ const addDog = async (dog) => {
             height,
             weight,
             life_span,
+            image
         })
 
         if(valTemperament) {

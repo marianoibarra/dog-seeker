@@ -10,7 +10,7 @@ const DogCard = ({dog}) => {
 
     return (
 
-        dog
+        false
 
         ?
         
@@ -38,16 +38,16 @@ const DogCard = ({dog}) => {
                 <div className={styles.imageLoading}><div className={styles.activity}></div></div>
             </header>
             <main className={styles.cardMain}>
-                <div className={styles.nameLoading}>
+                <div style={{width: `${Math.ceil(Math.random()*50+30)}%`}} className={styles.nameLoading}>
                 <div className={styles.activity}></div>
                 </div>
                 <div className={styles.temperamentsCont}>
                     <div className={styles.weightLoading}><div className={styles.activity}></div></div>
-
-                        <div className={styles.temperamentLoading}><div className={styles.activity}></div></div>
-                        <div className={styles.temperamentLoading}><div className={styles.activity}></div></div>
-                        <div className={styles.temperamentLoading}><div className={styles.activity}></div></div>
-                    
+                        {
+                            new Array(Math.ceil(Math.random()*4+2)).fill(' ').map((e, k) => 
+                            (<div key={k} style={{width: `${Math.ceil(Math.random()*50+50)}px`}} className={styles.temperamentLoading}><div className={styles.activity}></div></div>)
+                            )
+                        }                    
                 </div>
             </main>
         </div>

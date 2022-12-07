@@ -36,6 +36,8 @@
 }
 
 .dogName {
+    width: 80%;
+    line-height: 3.2rem;
     color: var(--color-primary-text);
     font-family: 'Nunito';
     font-weight: 700;
