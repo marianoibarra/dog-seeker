@@ -10,7 +10,7 @@ const DogCard = ({dog}) => {
 
     return (
 
-        false
+        !dogsIsFetching
 
         ?
         
