@@ -56,7 +56,7 @@ const OrderAndFilter = () => {
 
     useEffect(() => {
         dispatch(filterDogs(tempFilter, originFilter))
-        goToPageOne()
+        //goToPageOne()
     }, [tempFilter, originFilter])
 
     useEffect(() => {

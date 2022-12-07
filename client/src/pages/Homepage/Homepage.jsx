@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {getDogs, getTemperaments} from '../../redux/actions'
 import styles from './Homepage.module.css'
@@ -16,13 +16,11 @@ const Homepage = () => {
     const page = useSelector(state => state.page)
  
     useEffect(() => {
-        dispatch(getDogs())
-        dispatch(getTemperaments())
+        if(dogs.length === 0) {
+            dispatch(getDogs())
+            dispatch(getTemperaments())
+        }
     }, [])
-
-    useEffect(() => {
-        
-    }, [dogs])
 
 
     return (
@@ -31,9 +29,16 @@ const Homepage = () => {
                 <OrderAndFilter />
             </section>
             <section className={styles.cardsContainer}>
-                {dogs && dogs.slice(dogsPerPage * (page - 1), dogsPerPage * page).map((dog, key) => (
-                    <DogCard loading={dogsIsFetching} dog={dog} key={key} />
-                ))}
+                {
+                !dogsIsFetching
+                    ? 
+                    dogs.slice(dogsPerPage * (page - 1), dogsPerPage * page)
+                        .map((dog, key) => (
+                            <DogCard dog={dog} key={key} />
+                        ))
+                    :
+                    new Array(8).fill('').map((e, key) => <DogCard key={key} />)
+                }
             </section>
             <section className={styles.paginate}>
                 <Paginate />
