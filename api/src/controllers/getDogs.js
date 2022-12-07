@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 const getDogs = async (name = null, onlyAPI) => {
 
     const dogsFromAPI = await axios(`https://api.thedogapi.com/v1/breeds${name ? `/search?q=${name}&` : '?'}api_key=${API_KEY}`)
-        .then(r => r.data)
+        .then(response => response.data)
         .then(dogs => dogs.map(dog => {return {
             id: dog.id,
             name: dog.name,

@@ -1,0 +1,148 @@
+.main {
+    width: 100vw;
+    height: calc(100vh - var(--navbarHeight));
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.detailsWrapper {
+    display: flex;
+    height: 75%;
+    background-color: var(--color-grey2);
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 90%;
+    border-radius: 48px;
+    overflow: hidden;
+    margin-bottom: calc(var(--navbarHeight) / 2);
+}
+
+.image {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    /* position: absolute; top:0; left:0; width:250px; height:250px; */
+    /* mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) ); */
+}
+
+.dataWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.dogName {
+    color: var(--color-primary-text);
+    font-family: 'Nunito';
+    font-weight: 700;
+    font-size: 2.7rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.temperamentsWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 70%;
+    gap: 6px;
+    margin-top: 20px;
+    
+}
+
+.temperament {
+    background-color: var(--color-grey4);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dogStats {
+    font-weight: 500;
+    margin: 4px;
+}
+
+.imageLoading {
+    position: relative;
+    overflow: hidden;       
+    background-color: var(--color-grey4);
+    opacity: .5;
+    width: 100%;
+    height: 100%;
+}
+
+.dogNameLoading {
+    position: relative;
+    overflow: hidden;       
+    background-color: var(--color-grey4);
+    opacity: .5;
+    flex-grow: 0;
+    height: 40px;
+    width: 280px;
+    border-radius: 10px;
+    margin: 14px 0;
+}
+
+.dogStatsLoading {
+    position: relative;
+    overflow: hidden;       
+    background-color: var(--color-grey4);
+    opacity: .5;
+    height: 20px;
+    width: 180px;
+    flex-grow: 0;
+    margin: 4px;
+    border-radius: 5px;
+}
+
+.temperamentLoading {
+    position: relative;
+    overflow: hidden;       
+    background-color: var(--color-grey4);
+    opacity: .5;
+    width: 80px;
+    height: 20px;
+    border-radius: 6px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.activity{
+    opacity: .5;
+    position: absolute;
+    left: -45%;
+    height: 100%;
+    width: 45%;
+    background-image: linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+    background-image: -moz-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+    background-image: -webkit-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+    animation: loading 1s infinite;
+    z-index: 45;
+  }
+
+  @keyframes loading {
+    0%{
+      left: -45%;
+    }
+    100%{
+      left: 100%;
+    }
+  }
