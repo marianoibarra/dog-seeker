@@ -55,7 +55,7 @@ const CreateDog = () => {
                     </select>
                     <label htmlFor="life_span">Life span: </label>
                     <input type="text" name="life_span" id="life_span" />
-                    <input style={{display: 'none'}} type="text" name="image" id="image" value={imgLoaded && imgLoaded.url} />
+                    <input style={{display: 'none'}} type="text" name="image" id="image" value={imgLoaded && imgLoaded} />
                     <input type="file" accept="image/*" id="customFile" onChange={(e) => guardarArchivo(e)} />
                     <input type="submit" value='Create' />
                 </form>
