@@ -8,7 +8,9 @@ import {
     FETCH_TEMPERAMENTS_SUCCESS,
     FETCH_TEMPERAMENTS_FAILED,
     ORDER_DOGS,
-    FILTER_DOGS
+    FILTER_DOGS,
+    SET_PAGE,
+    SET_TOTAL_PAGE
  } from "../constants";
 
 const fetchStart = (type) => {
@@ -52,6 +54,19 @@ export const orderDogs = (payload) => {
     return {
         type: ORDER_DOGS,
         payload
+    }
+}
+
+export const setPage = (payload) => {
+    return {
+        type: SET_PAGE,
+        payload
+    }
+}
+
+export const setTotalPages = () => {
+    return {
+        type: SET_TOTAL_PAGE,
     }
 }
 

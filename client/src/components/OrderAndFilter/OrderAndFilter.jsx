@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { originOp } from '../../redux/constants/index'
 import { orderOp } from '../../redux/constants/index'
-import {orderDogs, filterDogs} from '../../redux/actions/index'
+import {orderDogs, filterDogs, setPage} from '../../redux/actions/index'
 
 const OrderAndFilter = () => {
 
@@ -22,11 +22,12 @@ const OrderAndFilter = () => {
     const orderWrapperRef = useRef()
     const filterWrapperRef = useRef()
 
+    const goToPageOne = () => dispatch(setPage(1))
+
     const orderHandler = (order) => {
         dispatch(orderDogs(order))
         setOrderIsOpen(false)
     }
-
 
     const tempToggleHandler = (e) => {
         let value = e.target.children[1].innerText    
@@ -55,6 +56,7 @@ const OrderAndFilter = () => {
 
     useEffect(() => {
         dispatch(filterDogs(tempFilter, originFilter))
+        goToPageOne()
     }, [tempFilter, originFilter])
 
     useEffect(() => {

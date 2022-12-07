@@ -6,6 +6,11 @@ export const FETCH_TEMPERAMENTS_SUCCESS = 'FETCH_TEMPERAMENTS_SUCCESS'
 export const FETCH_TEMPERAMENTS_FAILED = 'FETCH_TEMPERAMENTS_FAILED'
 export const ORDER_DOGS = 'ORDER_DOGS'
 export const FILTER_DOGS = 'FILTER_DOGS'
+export const SET_PAGE = 'SET_PAGE'
+export const SET_TOTAL_PAGE = 'SET_TOTAL_PAGE'
+
+
+export const dogsPerPage = 8
 
 const regex = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
 

@@ -7,7 +7,10 @@ import {
     FETCH_TEMPERAMENTS_FAILED,
     orderOp,
     ORDER_DOGS,
-    FILTER_DOGS
+    FILTER_DOGS,
+    SET_PAGE,
+    SET_TOTAL_PAGE,
+    dogsPerPage
  } from "../constants";
 
 const initialState = {
@@ -20,8 +23,8 @@ const initialState = {
     temperamentsFetchError: false,
     order: 0,
     temperamentFilter: [],
-    
-    
+    page: 1,
+    totalPages: 1    
 }
 
 export default function reducer(state = initialState, action) {
@@ -38,7 +41,8 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 dogs: action.payload,
                 dogsToDisplay: action.payload,
-                dogsIsFetching: false
+                dogsIsFetching: false,
+                totalPages: Math.ceil(action.payload.length / dogsPerPage)
             }
         }
         case FETCH_DOGS_FAILED: {
@@ -69,6 +73,21 @@ export default function reducer(state = initialState, action) {
                 temperamentsIsFetching: false
             }
         }
+
+        case SET_PAGE: {
+            return {
+                ...state,
+                page: action.payload
+            }
+        }
+
+        case SET_TOTAL_PAGE: {
+            return {
+                ...state,
+                totalPages: Math.ceil(state.dogsToDisplay.length / dogsPerPage)
+            }
+        }
+
         case ORDER_DOGS: {
             return {
                 ...state,

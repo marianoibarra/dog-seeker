@@ -5,6 +5,7 @@ import styles from './Homepage.module.css'
 import DogCard from "../../components/DogCard/DogCard"
 import Paginate from "../../components/Paginate/Paginate"
 import OrderAndFilter from "../../components/OrderAndFilter/OrderAndFilter"
+import { dogsPerPage } from '../../redux/constants/index'
 
 
 const Homepage = () => {
@@ -12,18 +13,16 @@ const Homepage = () => {
     const dispatch = useDispatch()
     const dogs = useSelector(state => state.dogsToDisplay)
     const dogsIsFetching = useSelector(state => state.dogsIsFetching)
-    const [page, setPage] = useState(1)
-    const [pageLength, setPageLength] = useState(1)
-    const dogsPerPage = 8
-
-    useEffect(() => {
-        setPageLength(Math.ceil(dogs.length / dogsPerPage))
-    }, [dogs])
-
+    const page = useSelector(state => state.page)
+ 
     useEffect(() => {
         dispatch(getDogs())
         dispatch(getTemperaments())
     }, [])
+
+    useEffect(() => {
+        
+    }, [dogs])
 
 
     return (
@@ -37,7 +36,7 @@ const Homepage = () => {
                 ))}
             </section>
             <section className={styles.paginate}>
-                <Paginate page={page} setPage={setPage} pageLength={pageLength} />
+                <Paginate />
             </section>
         </main>
     )

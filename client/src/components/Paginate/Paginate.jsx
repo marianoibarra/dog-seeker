@@ -1,19 +1,32 @@
 import React, {useEffect, useRef} from 'react'
 import styles from './Paginate.module.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setPage as dispatchPage, setTotalPages as dispatchSetTotalPage } from '../../redux/actions'
 
-const Paginate = ({page, setPage, pageLength}) => {
+const Paginate = () => {
+
+const dispatch = useDispatch()
+const page = useSelector(state => state.page)
+const totalPages = useSelector(state => state.totalPages)
+const dogs = useSelector(state => state.dogs)
 
 const numbersRef = useRef([])
 const prevRef = useRef()
 const nextRef = useRef()
-const dogs = useSelector(state => state.dogs)
+
+const setPage = (page) => dispatch(dispatchPage(page))
+const setTotalPage = (page) => dispatch(dispatchSetTotalPage(page))
+
+useEffect(() => {
+    setTotalPage()
+}, [dogs])
+
 
 useEffect(() => {
 
-    if(dogs.length > 0 && pageLength > 1) {
+    if(dogs.length > 0 && totalPages > 1) {
 
-        if(pageLength > 7) {
+        if(totalPages > 7) {
             
             numbersRef.current.forEach(ref => {
                 ref.style.display = 'inline'
@@ -27,30 +40,30 @@ useEffect(() => {
                 numbersRef.current[1].innerHTML = 2
             }
 
-            if(page <= pageLength - 4) {
+            if(page <= totalPages - 4) {
                 numbersRef.current[5].className = styles.dots
                 numbersRef.current[5].innerHTML = '•••'
             } else {
                 numbersRef.current[5].className = styles.number
-                numbersRef.current[5].innerHTML = pageLength - 1
+                numbersRef.current[5].innerHTML = totalPages - 1
             }
 
-            if(page >= 5 && page <= pageLength - 4) {
+            if(page >= 5 && page <= totalPages - 4) {
                 numbersRef.current[2].innerHTML = page - 1
                 numbersRef.current[3].innerHTML = page
                 numbersRef.current[4].innerHTML = page + 1
             } else if(page >= 5) {
-                numbersRef.current[2].innerHTML = pageLength - 4
-                numbersRef.current[3].innerHTML = pageLength - 3
-                numbersRef.current[4].innerHTML = pageLength - 2
-            } else if(page <= pageLength - 4){
+                numbersRef.current[2].innerHTML = totalPages - 4
+                numbersRef.current[3].innerHTML = totalPages - 3
+                numbersRef.current[4].innerHTML = totalPages - 2
+            } else if(page <= totalPages - 4){
                 numbersRef.current[2].innerHTML = 3
                 numbersRef.current[3].innerHTML = 4
                 numbersRef.current[4].innerHTML = 5
             } 
-        } else if(pageLength > 0) {
+        } else if(totalPages > 0) {
             numbersRef.current.forEach(ref => {
-                if(ref.innerHTML > pageLength) ref.style.display = 'none';
+                if(ref.innerHTML > totalPages) ref.style.display = 'none';
                 else ref.style.display = 'inline';
             })
         }
@@ -61,7 +74,7 @@ useEffect(() => {
             prevRef.current.className = styles.navbtn
         }
 
-        if(page == pageLength) {
+        if(page == totalPages) {
             nextRef.current.className = styles.navbtnDisable
         } else {
             nextRef.current.className = styles.navbtn
@@ -78,10 +91,10 @@ useEffect(() => {
         })
 
     }
-}, [pageLength, page])
+}, [totalPages, page])
 
     return (
-        pageLength > 1
+        totalPages > 1
             ? 
                     <ul className={styles.list}>
                         <li key={0} ref={prevRef} className={styles.navbtn} onClick={() => page !== 1 && setPage(Number(page - 1))}>prev</li>
@@ -91,8 +104,8 @@ useEffect(() => {
                         <li key={4} ref={el => numbersRef.current[3] = el} onClick={(e) => e.target.innerHTML !== '•••' && setPage(Number(e.target.innerHTML))}>4</li>
                         <li key={5} ref={el => numbersRef.current[4] = el} onClick={(e) => e.target.innerHTML !== '•••' && setPage(Number(e.target.innerHTML))}>5</li>
                         <li key={6} ref={el => numbersRef.current[5] = el} onClick={(e) => e.target.innerHTML !== '•••' && setPage(Number(e.target.innerHTML))}>6</li>
-                        <li key={7} ref={el => numbersRef.current[6] = el} onClick={(e) => e.target.innerHTML !== '•••' && setPage(Number(e.target.innerHTML))}>{pageLength > 7 ? pageLength : 7}</li>
-                        <li key={8} ref={nextRef} className={styles.navbtn} onClick={() => page !== pageLength && setPage(Number(page + 1))}>next</li>
+                        <li key={7} ref={el => numbersRef.current[6] = el} onClick={(e) => e.target.innerHTML !== '•••' && setPage(Number(e.target.innerHTML))}>{totalPages > 7 ? totalPages : 7}</li>
+                        <li key={8} ref={nextRef} className={styles.navbtn} onClick={() => page !== totalPages && setPage(Number(page + 1))}>next</li>
                     </ul>
             :
                     <ul className={styles.list}>
