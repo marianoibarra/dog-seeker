@@ -6,11 +6,13 @@ import {
     FETCH_TEMPERAMENTS_SUCCESS,
     FETCH_TEMPERAMENTS_FAILED,
     orderOp,
+    originOp,
     ORDER_DOGS,
     FILTER_DOGS,
     SET_PAGE,
     SET_TOTAL_PAGE,
-    dogsPerPage
+    dogsPerPage,
+    NEW_DOG
  } from "../constants";
 
 const initialState = {
@@ -22,12 +24,17 @@ const initialState = {
     dogsFetchError: false,
     temperamentsFetchError: false,
     order: 0,
-    temperamentFilter: [],
+    filterByTemperament: [],
+    filterByOrigin: originOp[0],
     page: 1,
     totalPages: 1    
 }
 
 export default function reducer(state = initialState, action) {
+
+    action.temperament === undefined && (action.temperament = state.filterByTemperament)
+    action.origin === undefined && (action.origin = state.filterByOrigin)
+
     switch(action.type) {
         case FETCH_DOGS_START: {
             return {
@@ -73,6 +80,13 @@ export default function reducer(state = initialState, action) {
                 temperamentsIsFetching: false
             }
         }
+        case NEW_DOG: {
+            return {
+                ...state,
+                dogs: state.dogs.push(action.payload),
+                dogsToDisplay: state.dogsToDisplay.push(action.payload)
+            }
+        }
 
         case SET_PAGE: {
             return {
@@ -82,9 +96,11 @@ export default function reducer(state = initialState, action) {
         }
 
         case SET_TOTAL_PAGE: {
+            const newTotalPages = Math.ceil(state.dogsToDisplay.length / dogsPerPage)
             return {
                 ...state,
-                totalPages: Math.ceil(state.dogsToDisplay.length / dogsPerPage)
+                totalPages: newTotalPages,
+                page: newTotalPages > 0 && state.page > newTotalPages ? newTotalPages : state.page
             }
         }
 
@@ -97,11 +113,14 @@ export default function reducer(state = initialState, action) {
             }
         }
         case FILTER_DOGS: {
-            console.log(action)
+            
             return {
                 ...state,
-                temperamentFilter: action.temperament,
-                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id)) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))})
+                filterByTemperament: action.temperament,
+                origin: action.origin,
+                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id)) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
+                page: action.temperament.length > 0 ? 1 : state.page
+                
             }
         }
         default: return state

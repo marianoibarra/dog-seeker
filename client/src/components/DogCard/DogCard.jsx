@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const DogCard = ({dog}) => {
     
-    const temperamentFilter = useSelector(state => state.temperamentFilter)
+    const filterByTemperament = useSelector(state => state.filterByTemperament)
     const dogsIsFetching = useSelector(state => state.dogsIsFetching)
 
     return (
@@ -25,7 +25,7 @@ const DogCard = ({dog}) => {
                 <div className={styles.temperamentsCont}>
                     <div className={styles.weight}>{`Weight: \n${dog.weight} kg`}</div>
                     {dog.temperament && dog.temperament.map(t => (
-                        <div style={temperamentFilter.includes(t) ? {fontWeight:'900'} : {}} className={styles.temperament}>{t}</div>
+                        <div style={filterByTemperament.includes(t) ? {fontWeight:'900'} : {}} className={styles.temperament}>{t}</div>
                     ))}
                 </div>
             </main>

@@ -5,7 +5,6 @@ import SearchBar from '../SearchBar/SearchBar'
 const Navbar = () => {
 
     let {pathname} = useLocation()
-    console.log(pathname.split('/')[1])
 
     switch(pathname.split('/')[1]) {
         case 'create': {

@@ -1,17 +1,96 @@
-.imgWrapper {
-    width: 300px;
-    height: 200px;
+.main {
+    width: 100vw;
+    height: calc(100vh - var(--navbarHeight));
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.imgWrapper img {
+.imageWrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.imgPlaceholder {
+.formContainer {
+    height: 75%;
+    background-color: var(--color-grey2);
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 90%;
+    border-radius: 48px;
+    overflow: hidden;
+    margin-bottom: calc(var(--navbarHeight) / 2);
+}
+
+.formContainer form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.imageWrapper {
     width: 100%;
     height: 100%;
     background-color: var(--color-grey4);
+}
 
+.dataWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.name {
+    background: none;
+    border: none;
+    outline: none;
+    width: 80%;
+    line-height: 3.2rem;
+    color: var(--color-primary-text);
+    font-family: 'Nunito';
+    font-weight: 700;
+    font-size: 2.7rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.name::placeholder {
+    color: var(--color-primary-text);
+    opacity: .6;
+}
+
+.submit {
+    background-color: var(--color-green);
+    border: none;
+    border-radius: 12px;
+    height: 42px;
+    width: 50%;
+    padding: 12px 14px;
+    color: white;
+    font-weight: 500;
+    transition: filter 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.submit:hover {
+    transition: filter 0.3s ease-in-out;
+    filter: brightness(110%);
+}
+
+.submit:active {
+    transform: scale(95%);
+    filter: brightness(95%);
+}
+
+.temperamentsWrapper {
+    height: 25%;
+    overflow: hidden;
+    margin-bottom: 20px;
 }

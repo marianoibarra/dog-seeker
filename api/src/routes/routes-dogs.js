@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 
     const dog = req.body
     addDog(dog)
-        .then(r => res.send(r))
+        .then(r => res.json(r))
         .catch (error => res.status(501).send(error.message))
 
 })

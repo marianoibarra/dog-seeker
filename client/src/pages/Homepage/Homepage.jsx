@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {getDogs, getTemperaments} from '../../redux/actions'
+import {getDogs, getTemperaments, setTotalPages} from '../../redux/actions'
 import styles from './Homepage.module.css'
 import DogCard from "../../components/DogCard/DogCard"
 import Paginate from "../../components/Paginate/Paginate"
@@ -21,6 +21,10 @@ const Homepage = () => {
             dispatch(getTemperaments())
         }
     }, [])
+
+    useEffect(() => {
+        dispatch(setTotalPages())
+    }, [dogs])
 
 
     return (

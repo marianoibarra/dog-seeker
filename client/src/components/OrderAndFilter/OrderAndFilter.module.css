@@ -273,11 +273,11 @@
     font-weight: 500;
 }
 
-.originFilterWrapper {
+.filterByOriginWrapper {
     padding: 16px;
 }
 
-.originFilterBody {
+.filterByOriginBody {
     margin-top: 12px;
     display: flex;
     justify-content: space-between;

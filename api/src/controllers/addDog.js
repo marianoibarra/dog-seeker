@@ -30,7 +30,7 @@ const addDog = async (dog) => {
             }
         }
          
-        return 'todo ok'
+        return newDog
     } else {
         throw new Error('Invalid values')
     }

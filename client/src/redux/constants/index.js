@@ -8,6 +8,7 @@ export const ORDER_DOGS = 'ORDER_DOGS'
 export const FILTER_DOGS = 'FILTER_DOGS'
 export const SET_PAGE = 'SET_PAGE'
 export const SET_TOTAL_PAGE = 'SET_TOTAL_PAGE'
+export const NEW_DOG = 'NEW_DOG'
 
 
 export const dogsPerPage = 8

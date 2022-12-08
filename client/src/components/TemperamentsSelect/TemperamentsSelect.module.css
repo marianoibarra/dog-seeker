@@ -1,0 +1,135 @@
+.tempCont {
+    display: grid;
+    grid-gap: 0.2rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: min-content;
+    height: 200px;
+    width: calc(100% - 8px);
+    padding-right: 8px;
+    overflow-x: auto;
+    box-sizing: content-box;
+    margin-bottom: 4px;
+}
+
+.tempToggle {
+    background: none;
+    outline: none;
+    border: none;
+    text-align: left;
+    height: auto;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tempToggle:hover {
+    background-color: var(--color-grey3);
+}
+
+.tempToggle:active {
+    transform: scale(97%);
+}
+
+.toggleName {
+    pointer-events: none;
+    height: 100%;
+    line-height: 26px;
+    width: 62px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.checkbox {
+    pointer-events: none;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 100%;
+    flex-grow: 1;
+    justify-self: flex-end;
+}
+
+.checkbox svg {
+    pointer-events: none;
+}
+
+.filterHeader {
+    height: 56px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+
+}
+
+.filterTitle {
+    font-weight: 600;
+}
+
+
+.searchFilter {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    width: 40%;
+    height: 28px;
+    border-radius: 16px;
+    padding-left: 12px;
+    background-color: var(--color-grey2);
+}
+
+.searchFilter2 {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    width: 40%;
+    height: 28px;
+    border-radius: 16px;
+    padding-left: 12px;
+    background-color: var(--color-grey4);
+    opacity: .5;
+}
+
+.searchFilter2 input::placeholder {
+    color: var(--color-secondary-text) !important
+}
+
+
+.searchFilterInput {
+    width: 100%;
+    text-decoration: none;
+    outline: none;
+    background: none;
+    border: none;
+
+}
+
+.nothing {
+    font-size: 0.9rem !important;
+    grid-column: 1 / 5;
+    grid-row: 20;
+    text-align: center;
+    padding-right: 12px;
+}
+
+.filterTitle div {
+    font-family: sans-serif;
+    margin-left: 8px;
+    display: inline-block;
+    background-color: var(--color-secondary-text);
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    color: var(--color-grey1);
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 500;
+}
