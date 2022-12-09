@@ -42,7 +42,13 @@ const getDogs = async (name = null, onlyAPI) => {
                     image: dog.image,
                     weight: dog.weight
                 }}
-            ).sort((a,b) => a.name - b.name)
+            ).sort(function(a, b) {
+                let nameA = a.name.toLowerCase()
+                let nameB = b.name.toLowerCase()
+                if(nameA > nameB) return 1
+                if(nameA < nameB) return -1
+                return 0
+            })
 }
 
 module.exports = getDogs
