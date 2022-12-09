@@ -30,7 +30,7 @@ const addDog = async (dog) => {
             }
         }
         
-        const newDogFromDB = await findOne({
+        const newDogFromDB = await Dog.findOne({
         where: { id: newDog.id }, 
         include: [{
             model: Temperament,
