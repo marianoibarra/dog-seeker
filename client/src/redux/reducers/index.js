@@ -81,10 +81,11 @@ export default function reducer(state = initialState, action) {
             }
         }
         case NEW_DOG: {
+            console.log(action.payload)
             return {
                 ...state,
-                dogs: state.dogs.push(action.payload),
-                dogsToDisplay: state.dogsToDisplay.push(action.payload)
+                dogs: [...state.dogs, action.payload],
+                dogsToDisplay: [...state.dogsToDisplay, action.payload]
             }
         }
 

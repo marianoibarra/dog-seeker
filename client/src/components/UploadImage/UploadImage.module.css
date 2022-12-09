@@ -1,0 +1,97 @@
+.imageWrapper {
+    background-color: var(--color-grey4);
+    position: relative;
+    width: 100%;
+    transition: filter .3s ease-in-out, border .3s ease-in-out;
+    border: 2px dashed transparent;
+    border-radius: 48px 0 0 48px;
+}
+
+.imageWrapperOnDrag {
+    background-color: var(--color-grey4);
+    filter: brightness(105%);
+    position: relative;
+    width: 100%;
+    transition: filter .2s ease-in-out, border .2s ease-in-out;
+    border: 2px dashed #0003;
+    border-radius: 48px 0 0 48px;
+}
+
+
+.imgUpload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;    
+}
+
+
+
+.uploadButton {
+    border: none;
+    outline: none;
+    background-color: var(--color-yellow);
+    padding: 4px 6px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    opacity: .9;
+    cursor: pointer;
+
+}
+
+.labelImg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.dragImgElement {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.imgPreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imgPreviewFetching {
+    filter: blur(12px);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imgFetchingWrapper {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    
+
+}
+
+.uploadMsg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px) brightness(85%);
+    font-size: 1.5rem;
+    color: white;
+}
