@@ -26,11 +26,24 @@ const addDog = async (dog) => {
         if(valTemperament) {
             for(let name of temperament) {
                 const temperamentFromDB = await Temperament.findOne({where: { name }})
-                newDog.addTemperament(temperamentFromDB)
+                await newDog.addTemperament(temperamentFromDB)
             }
         }
-         
-        return newDog
+        
+        const newDogFromDB = await findOne({
+        where: { id: newDog.id }, 
+        include: [{
+            model: Temperament,
+            as: 'temperament',
+            attributes:['name'],
+            through: {
+              attributes: []
+            }
+        }]}).then(results => results.map(result => result.toJSON()))
+
+        dogsFromDB.forEach(dog => {dog.temperament = dog.temperament.map(t => t.name)})
+
+        return newDogFromDB
     } else {
         throw new Error('Invalid values')
     }
