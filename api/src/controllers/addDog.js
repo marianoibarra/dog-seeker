@@ -39,9 +39,9 @@ const addDog = async (dog) => {
             through: {
               attributes: []
             }
-        }]}).then(results => results.map(result => result.toJSON()))
+        }]}).then(results => results.toJSON())
 
-        dogsFromDB.forEach(dog => {dog.temperament = dog.temperament.map(t => t.name)})
+        newDogFromDB.temperament = newDogFromDB.temperament.map(t => t.name)
 
         return newDogFromDB
     } else {
