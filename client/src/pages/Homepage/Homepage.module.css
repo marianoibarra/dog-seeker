@@ -16,11 +16,16 @@
     gap: 24px;
 }
 
+.cardsContainer::nth-row(2) {
+    animation: paginateIn 2s ease-in-out;
+}
+
 .paginate {
     width: 100%;
     height: 64px;
     display: flex;
     justify-content: center;
+    animation: delay .2s, paginateIn .8s .2s ease-in-out;
 }
 
 .filters {
@@ -28,4 +33,22 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+
+@keyframes paginateIn {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes delay {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(100%);
+    }
 }

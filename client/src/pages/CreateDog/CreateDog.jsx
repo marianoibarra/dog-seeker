@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState, useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import RangeSlider from '../../components/RangeSlider/RangeSlider'
 import TemperamentsSelect from '../../components/TemperamentsSelect/TemperamentsSelect'
 import UploadImage from '../../components/UploadImage/UploadImage'
 import { getTemperaments, newDog, orderDogs } from '../../redux/actions'
@@ -14,17 +15,29 @@ const CreateDog = () => {
     const order = useSelector(state => state.order)
     const dispatch = useDispatch()
 
-    const [temperamentsInput, setTemperamentsInput] = useState([])
-    const [imageLink, setImageLink] = useState(null)
+    const [imgIsFetching, setImgIsFetching] = useState(false)
+    const [lifeSpanVisible, setLifeSpanVisible] = useState(false)
+    const [input, setInput] = useState({
+        name: '',
+        height: undefined,
+        weight: undefined,
+        life_span: undefined,
+        image: null,
+        temperament: []
+    })
 
     const refSelect = useRef()
+
+    useEffect(() => {
+        temperaments.length === 0 && dispatch(getTemperaments())
+    }, [])
 
     function handleSubmit(e) {
         e.preventDefault();
         axios({
             method: 'POST',
             url: `${BE_LINK}/dogs`,
-            data: {...input, image: imageLink, temperament: temperamentsInput}
+            data: input
         }).then(res => {
             console.log(res.data)
             dispatch(newDog(res.data))
@@ -32,14 +45,6 @@ const CreateDog = () => {
         })
     }
 
-    const [input, setInput] = useState({
-        name: '',
-        height: 0,
-        weight: 0,
-        life_span: 0,
-    })
-
-    
     const handleInputChange = (e) => {
         e.preventDefault()
         setInput({
@@ -49,27 +54,37 @@ const CreateDog = () => {
     }
 
     useEffect(() => {
-        temperaments.length === 0 && dispatch(getTemperaments())
-    }, [])
-
+        console.log(input)
+    }, [input])
 
     return (
         <main className={styles.main}>
             <div className={styles.formContainer}>
                 <form onSubmit={handleSubmit} action={`${BE_LINK}/dogs`} method="post">
-                    <UploadImage setImageLink={setImageLink} />
+                    <UploadImage input={input} setInput={setInput} imgIsFetching={imgIsFetching} setImgIsFetching={setImgIsFetching} />
                     <div className={styles.dataWrapper}>
-                        <input value={input.name} onChange={handleInputChange} autoFocus={true} autoComplete='none' placeholder='Name...' type="text" name="name" id='name' className={styles.name} />
-                        <label htmlFor="height">Height: </label>
-                        <input value={input.height} onChange={handleInputChange} type="text" name="height" id="height" />
-                        <label htmlFor="weight">Weight: </label>
-                        <input value={input.weight} onChange={handleInputChange} type="text" name="weight" id="weight" />
-                        <label htmlFor="life_span">Life span: </label>
-                        <input value={input.life_span} onChange={handleInputChange} type="text" name="life_span" id="life_span" />
+                        <input
+                            id='name'
+                            className={styles.name}
+                            type="text"
+                            name="name"
+                            value={input.name}
+                            placeholder='Name...'
+                            autoFocus={true}
+                            autoComplete='none'
+                            onChange={handleInputChange}
+                        />
+                        <RangeSlider key={'height'} input={input} setInput={setInput} name={'height'} label={'Height'} min={1} max={100} gap={1} um={'cm'} />
+                        <RangeSlider key={'weight'} input={input} setInput={setInput} name={'weight'} label={'Weight'} min={1} max={100} gap={1} um={'kg'} />
+                        {
+                            lifeSpanVisible 
+                                ?   <RangeSlider option={setLifeSpanVisible} key={'life_span'} input={input} setInput={setInput} name={'life_span'} label={'Life span'} min={1} max={30} gap={1} um={'years'} />
+                                :   <button className={styles.addLifespanBtn} type='button' onClick={() => setLifeSpanVisible(true)} >Add life span</button>
+                        }
                         <div className={styles.temperamentsWrapper}>
-                            <TemperamentsSelect refSelect={refSelect} temperamentsOfNewDog={temperamentsInput} setTemperamentsOfNewDog={setTemperamentsInput} />
+                            <TemperamentsSelect refSelect={refSelect} input={input} setInput={setInput} />
                         </div>
-                        <input className={styles.submit} type="submit" value='Create' />
+                        <input disabled={imgIsFetching} className={styles.submit} type="submit" value='Create' />
                     </div>                    
                 </form>
             </div>

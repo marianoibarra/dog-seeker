@@ -1,11 +1,10 @@
 import React, {useState, useRef} from 'react'
 import styles from './UploadImage.module.css'
 
-function UploadImage({setImageLink}) {
+function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
 
     const [dragActive, setDragActive] = useState(false);
     const [preview, setPreview] = useState(undefined)
-    const [imgIsFetching, setImgIsFetching] = useState(false)
     const refInputImg = useRef()
 
     
@@ -39,7 +38,10 @@ function UploadImage({setImageLink}) {
         fetch('https://script.google.com/macros/s/AKfycbyWX3EdWONKc_LefdFUP2aGTRx82xEBE0kiaCMb-Tmos8kUHuNs1vcpzKioYpXOQuDV/exec', //your AppsScript URL
             { method: "POST", body: JSON.stringify(dataSend)})
             .then(res => res.json()).then(res => {
-                setImageLink(res.url)
+                setInput({
+                    ...input,
+                    image: res.url
+                })
                 setImgIsFetching(false)
             }).catch(e => console.log(e))
         }
@@ -52,14 +54,27 @@ function UploadImage({setImageLink}) {
         {
             !preview
                 ?   <div className={styles.imgUpload}>
-                        <input hidden ref={refInputImg} type="file" accept="image/*" id="imgInput" onChange={(e) => handleFiles(e.target.files[0])} />
+                        <input
+                            hidden
+                            id="imgInput"
+                            type="file"
+                            accept="image/*"
+                            ref={refInputImg}
+                            onChange={(e) => handleFiles(e.target.files[0])}
+                        />
                         <label htmlFor="imgInput">
                             {
                                 !dragActive
                                     ?   <div className={styles.labelImg}>
                                             <p>Drag and drop a photo here</p>
                                             <p>or</p>
-                                            <button type='button' onClick={() => refInputImg.current.click()} className={styles.uploadButton}>Upload a photo</button>
+                                            <button
+                                                type='button'
+                                                className={styles.uploadButton}
+                                                onClick={() => refInputImg.current.click()}
+                                            >
+                                                Upload a photo
+                                            </button>
                                         </div>
                                     :   <div className={styles.dropHere}>
                                             Drop your photo here
@@ -71,7 +86,6 @@ function UploadImage({setImageLink}) {
                 :   imgIsFetching 
                         ?   <div style={{backgroundImage: `url(${preview})`}} className={styles.imgFetchingWrapper}>
                                 <div className={styles.uploadMsg}>Uploading photo..</div>
-                                {/* <img className={styles.imgPreviewFetching} src={preview} /> */}
                             </div>
                         : <img className={styles.imgPreview} src={preview} />
         }

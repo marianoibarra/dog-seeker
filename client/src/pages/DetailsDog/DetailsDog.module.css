@@ -5,6 +5,19 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    animation: fadeIn .4s ease-in-out;
+
+}
+
+@keyframes fadeIn {
+    from {
+        transform: translateY(40%);
+        opacity: 0.2;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .detailsWrapper {
@@ -23,8 +36,6 @@
     width: 50%;
     height: 100%;
     object-fit: cover;
-    /* position: absolute; top:0; left:0; width:250px; height:250px; */
-    /* mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) ); */
 }
 
 .dataWrapper {

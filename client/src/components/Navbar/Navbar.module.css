@@ -16,6 +16,7 @@
     width: 100%;
     max-width: 1280px;
     height: 100%;
+    animation: navIn 0.8s ease-in-out;
 }
 
 .searchbarCont {
@@ -44,4 +45,13 @@
 .createBtn:active {
     transform: scale(95%);
     filter: brightness(95%);
+}
+
+@keyframes navIn {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
