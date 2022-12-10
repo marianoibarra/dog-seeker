@@ -39,9 +39,7 @@ const CreateDog = () => {
             url: `${BE_LINK}/dogs`,
             data: input
         }).then(res => {
-            console.log(res.data)
             dispatch(newDog(res.data))
-            dispatch(orderDogs(order))
         })
     }
 
@@ -52,10 +50,6 @@ const CreateDog = () => {
             [e.target.name]: e.target.value
         })
     }
-
-    useEffect(() => {
-        console.log(input)
-    }, [input])
 
     return (
         <main className={styles.main}>

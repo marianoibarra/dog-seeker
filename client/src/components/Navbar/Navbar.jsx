@@ -6,7 +6,6 @@ const Navbar = () => {
   let { pathname } = useLocation();
 
   const positionHandle = (e) => {
-    console.log(e)
     document.documentElement.style.setProperty('--pageX-details', `${e.pageX}px`)
     document.documentElement.style.setProperty('--pageY-details', `${e.pageY}px`)
 }

@@ -49,11 +49,11 @@ const sortWeightDesc = function(a, b) {
     }
 
 const filterOriginAPI = (id) => {
-    return regex.test(id)
+    return !regex.test(id)
 }
 
 const filterOriginUsers = (id) => {
-    return !regex.test(id)
+    return regex.test(id)
 }
 
 

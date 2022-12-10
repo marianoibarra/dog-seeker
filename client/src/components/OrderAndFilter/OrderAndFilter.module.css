@@ -140,11 +140,6 @@
     margin-right: 8px;
 }
 
-.tempToggle svg {
-    font-size: 16px;
-    color: var(--color-secondary-text);
-    margin-right: 4px;
-}
 
 .filterDropdownBody {
     width: 480px;
@@ -188,11 +183,46 @@
     transform: scale(97%);
 }
 
+.tempToggle svg {
+    font-size: 16px;
+    color: var(--color-secondary-text);
+    margin-right: 4px;
+}
+
+.originToggle {
+    padding-right: 6px;
+    background: none;
+    outline: none;
+    border: none;
+    text-align: left;
+    height: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.originToggle:hover {
+    background-color: var(--color-grey3);
+}
+
+.originToggle:active {
+    transform: scale(97%);
+}
+
+.originToggle svg {
+    font-size: 16px;
+    color: var(--color-secondary-text);
+    margin-right: 4px;
+
+}
+
 .toggleName {
     pointer-events: none;
     height: 100%;
     line-height: 26px;
-    width: 62px;
+    width: auto;
     font-size: 0.75rem;
     font-weight: 500;
     text-overflow: ellipsis;

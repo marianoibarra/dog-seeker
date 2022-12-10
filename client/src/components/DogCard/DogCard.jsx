@@ -11,7 +11,6 @@ const DogCard = ({dog}) => {
     const dogsIsFetching = useSelector(state => state.dogsIsFetching)
 
     const positionHandle = (e) => {
-        console.log(e)
         document.documentElement.style.setProperty('--pageX-details', `${e.pageX}px`)
         document.documentElement.style.setProperty('--pageY-details', `${e.pageY}px`)
     }
@@ -22,7 +21,7 @@ const DogCard = ({dog}) => {
         setRefresh(true)
         setTimeout(() => {
             setRefresh(false)
-        }, 250);
+        }, 400);
     }, [dog])
 
     return (

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import styles from './OrderAndFilter.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faArrowDown19, faArrowDownAZ, faArrowUp91, faArrowUpZA, faCheckSquare, faCircleCheck } from "@fortawesome/free-solid-svg-icons"
+import { faAngleDown, faArrowDown19, faArrowDownAZ, faArrowUp91, faArrowUpZA, faCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import { faCircle} from '@fortawesome/free-regular-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -28,6 +28,7 @@ const OrderAndFilter = () => {
     const originToggleHandler = (origin) => {
         if(filterByOrigin.id !== origin.id) {
             setfilterByOrigin(origin)
+            dispatch(filterDogs(undefined, origin))
         }
     }
 
@@ -62,19 +63,19 @@ const OrderAndFilter = () => {
                 <div className={styles.orderDropdownBody}>
                     <button onClick={() => orderHandler(orderOp[0])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowDownAZ} size='lg' fixedWidth />
-                        <span style={orderOp[0].id == order ? {fontWeight: '800'} : {}}>{orderOp[0].name}</span>
+                        <span style={orderOp[0].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[0].name}</span>
                     </button>
                     <button onClick={() => orderHandler(orderOp[1])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowUpZA} size='lg' fixedWidth />
-                        <span style={orderOp[1].id == order ? {fontWeight: '800'} : {}}>{orderOp[1].name}</span>
+                        <span style={orderOp[1].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[1].name}</span>
                     </button>
                     <button onClick={() => orderHandler(orderOp[2])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowDown19} size='lg' fixedWidth />
-                        <span style={orderOp[2].id == order ? {fontWeight: '800'} : {}}>{orderOp[2].name}</span>
+                        <span style={orderOp[2].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[2].name}</span>
                     </button>
                     <button onClick={() => orderHandler(orderOp[3])} className={styles.option}>
                         <FontAwesomeIcon icon={faArrowUp91} size='lg' fixedWidth />
-                        <span style={orderOp[3].id == order ? {fontWeight: '800'} : {}}>{orderOp[3].name}</span>
+                        <span style={orderOp[3].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[3].name}</span>
                     </button>
                 </div>
             </div>
@@ -96,14 +97,13 @@ const OrderAndFilter = () => {
                             Origin
                         </div>
                         <div className={styles.filterByOriginBody}>
-                            
                             {originOp.map(origin => (
-                                <button className={styles.tempToggle} onClick={() => originToggleHandler(origin)}>
-                                <div className={styles.checkbox}>
-                                    <FontAwesomeIcon icon={filterByOrigin.id === origin.id ? faCircleCheck : faCircle} size='lg' fixedWidth />
-                                </div>
-                                <div className={styles.toggleName}>{origin.name}</div>
-                            </button>
+                                <button className={styles.originToggle} onClick={() => originToggleHandler(origin)}>
+                                    <div className={styles.checkbox}>
+                                        <FontAwesomeIcon icon={filterByOrigin.id === origin.id ? faCircleCheck : faCircle} size='lg' fixedWidth />
+                                    </div>
+                                    <div className={styles.toggleName}>{origin.name}</div>
+                                </button>
                             ))
                             }       
                         </div>

@@ -23,7 +23,7 @@ const initialState = {
     temperamentsIsFetching: false,
     dogsFetchError: false,
     temperamentsFetchError: false,
-    order: 0,
+    order: orderOp[0],
     filterByTemperament: [],
     filterByOrigin: originOp[0],
     page: 1,
@@ -81,11 +81,10 @@ export default function reducer(state = initialState, action) {
             }
         }
         case NEW_DOG: {
-            console.log(action.payload)
             return {
                 ...state,
-                dogs: [...state.dogs, action.payload],
-                dogsToDisplay: [...state.dogsToDisplay, action.payload]
+                dogs: [...state.dogs, action.payload].sort(state.order.sort),
+                dogsToDisplay: [...state.dogsToDisplay, action.payload].sort(state.order.sort)
             }
         }
 
@@ -110,7 +109,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 dogsToDisplay: state.dogsToDisplay.slice().sort(action.payload.sort),
                 dogs: state.dogsToDisplay.slice().sort(action.payload.sort),
-                order: orderOp[action.payload.id].id
+                order: orderOp[action.payload.id]
             }
         }
         case FILTER_DOGS: {
@@ -118,7 +117,7 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 filterByTemperament: action.temperament,
-                origin: action.origin,
+                filterByOrigin: action.origin,
                 dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id)) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
                 page: action.temperament.length > 0 ? 1 : state.page
                 
