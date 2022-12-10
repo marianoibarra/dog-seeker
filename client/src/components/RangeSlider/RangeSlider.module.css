@@ -40,6 +40,19 @@
     line-height: 18px;
     border-radius: 50%;
     color: var(--color-secondary-text);
+    transition: filter .2s ease-in-out, transform .2s ease-in-out;
+}
+
+.closeBtn:hover {
+    filter: brightness(102%);
+    transition: filter .2s ease-in-out;
+}
+
+.closeBtn:active {
+    filter: brightness(95%);
+    transform: scale(85%);
+    transform-origin: center center;
+    transition: filter .3s ease-in-out;
 }
 
 .slider {

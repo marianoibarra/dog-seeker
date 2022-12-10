@@ -1,3 +1,11 @@
+@keyframes colorIn {
+    from {
+        background-color: var(--color-green);
+    } to {
+        background-color: var(--color-grey4);
+    }
+}
+
 .imageWrapper {
     background-color: var(--color-grey4);
     position: relative;
@@ -6,6 +14,7 @@
     border: 2px dashed transparent;
     border-radius: 48px 0 0 48px;
     overflow: hidden;
+    animation: colorIn 150ms linear;
 }
 
 .imageWrapperOnDrag {
@@ -38,6 +47,19 @@
     font-weight: 600;
     opacity: .9;
     cursor: pointer;
+    transition: filter .2s ease-in-out, transform .2s ease-in-out;
+}
+
+.uploadButton:hover {
+    filter: brightness(103%);
+    transition: filter .2s ease-in-out;
+}
+
+.uploadButton:active {
+    filter: brightness(95%);
+    transform: scale(95%);
+    transform-origin: center center;
+    transition: filter .1s ease-in-out;
 }
 
 .labelImg {

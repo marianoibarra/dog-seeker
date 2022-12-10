@@ -8,13 +8,19 @@ const DogCard = ({dog}) => {
     const filterByTemperament = useSelector(state => state.filterByTemperament)
     const dogsIsFetching = useSelector(state => state.dogsIsFetching)
 
+    const positionHandle = (e) => {
+        console.log(e)
+        document.documentElement.style.setProperty('--pageX-details', `${e.pageX}px`)
+        document.documentElement.style.setProperty('--pageY-details', `${e.pageY}px`)
+    }
+
     return (
 
         !dogsIsFetching
 
         ?
         
-        <Link to={`/details/${dog.id}`} className={styles.card}>
+        <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
             <header className={styles.cardHeader}>
                 <img className={styles.image} src={dog.image} alt={dog.name} />
             </header>

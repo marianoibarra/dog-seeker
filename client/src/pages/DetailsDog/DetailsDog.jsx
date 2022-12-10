@@ -21,14 +21,16 @@ useEffect(() => {
         ?   (
             <main className={styles.main}>
                 <div className={styles.detailsWrapper}>
-                    <img className={styles.image} src={details.image} alt={details.name} />
-                    <div className={styles.dataWrapper}>
-                        <h2 className={styles.dogName}>{details.name}</h2>
-                        <div className={styles.dogStats}>{`Height: ${details.height} cm`}</div>
-                        <div className={styles.dogStats}>{`Weight: ${details.weight} kg`}</div>
-                        <div className={styles.dogStats}>{`Life span: ${details.life_span}`}</div>
-                        <div className={styles.temperamentsWrapper}>
-                            {details.temperament.map(temperament => (<div className={styles.temperament}>{temperament}</div>))}
+                    <div className={styles.detailsBody}>
+                        <img className={styles.image} src={details.image} alt={details.name} />
+                        <div className={styles.dataWrapper}>
+                            <h2 className={styles.dogName}>{details.name}</h2>
+                            <div className={styles.dogStats}>{`Height: ${details.height} cm`}</div>
+                            <div className={styles.dogStats}>{`Weight: ${details.weight} kg`}</div>
+                            <div className={styles.dogStats}>{`Life span: ${details.life_span}`}</div>
+                            <div className={styles.temperamentsWrapper}>
+                                {details.temperament.map(temperament => (<div className={styles.temperament}>{temperament}</div>))}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,16 +39,18 @@ useEffect(() => {
         :   (
             <main className={styles.main}>
                 <div className={styles.detailsWrapper}>
-                    <div className={styles.imageLoading}><div className={styles.activity}></div></div>
-                    <div className={styles.dataWrapper}>
-                        <h2  style={{width: `${285 + arrayRandom[0]}px`}} className={styles.dogNameLoading}><div className={styles.activity}></div></h2>
-                        <div style={{width: `${175 + arrayRandom[1]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
-                        <div style={{width: `${175 + arrayRandom[2]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
-                        <div style={{width: `${175 + arrayRandom[3]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
-                        <div className={styles.temperamentsWrapper}>
-                            {
-                                arrayRandom.map(e => (<div className={styles.temperamentLoading}><div className={styles.activity}></div></div>))
-                            }
+                    <div className={styles.detailsBody}>
+                        <div className={styles.imageLoading}><div className={styles.activity}></div></div>
+                        <div className={styles.dataWrapper}>
+                            <h2  style={{width: `${285 + arrayRandom[0]}px`}} className={styles.dogNameLoading}><div className={styles.activity}></div></h2>
+                            <div style={{width: `${175 + arrayRandom[1]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
+                            <div style={{width: `${175 + arrayRandom[2]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
+                            <div style={{width: `${175 + arrayRandom[3]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
+                            <div className={styles.temperamentsWrapper}>
+                                {
+                                    arrayRandom.map(e => (<div className={styles.temperamentLoading}><div className={styles.activity}></div></div>))
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

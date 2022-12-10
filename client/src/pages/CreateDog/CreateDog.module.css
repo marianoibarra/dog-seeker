@@ -5,16 +5,42 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    animation: fadeIn .8s ease-in-out;
 }
 
-@keyframes fadeIn {
+@keyframes moveIn {
     from {
-        transform: translateY(30%);
-        opacity: 0;
+        left: var(--pageX-details);
+        top: var(--pageY-details);
     }
     to {
-        transform: translateY(0);
+        left: 50vw;
+        top: 50vh;
+    }
+}
+
+@keyframes colorIn {
+    from {
+        background-color: var(--color-green);
+    }
+    to {
+        background-color: var(--color-grey2);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(10%, 5%);
+        border-radius: 100px ;
+    }
+    to {
+        transform: scale(100%, 100%);
+    }
+}
+
+@keyframes formIn {
+    from {
+        opacity: 0;
+    } to {
         opacity: 1;
     }
 }
@@ -25,22 +51,36 @@
     object-fit: cover;
 }
 
-.formContainer {
+.createWrapper {
     height: 75%;
-    background-color: var(--color-grey2);
-    margin: 0 auto;
-    max-width: 1024px;
     width: 90%;
-    border-radius: 48px;
-    overflow: hidden;
+    margin: 0 auto;
     margin-bottom: calc(var(--navbarHeight) / 2);
+    max-width: 1024px;
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    transform-origin: 0 0;
+    animation: moveIn 300ms ease-in;
+}
+
+.formContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: var(--color-grey2);
+    transform-origin: center center;
+    border-radius: 48px;
+    animation: scaleIn 300ms ease-in, colorIn 150ms linear;
+    overflow: hidden;
 }
 
 .formContainer form {
     display: flex;
     width: 100%;
     height: 100%;
-    
+    animation: formIn 300ms ease-in
 }
 
 .dataWrapper {
@@ -128,4 +168,17 @@
     opacity: .8;
     cursor: pointer;
     margin-top: 10px;
+    transition: filter .2s ease-in-out, transform .2s ease-in-out;
+}
+
+.addLifespanBtn:hover {
+    filter: brightness(105%);
+    transition: filter .2s ease-in-out;
+}
+
+.addLifespanBtn:active {
+    filter: brightness(95%);
+    transform: scale(95%);
+    transform-origin: center center;
+    transition: filter .1s ease-in-out;
 }

@@ -1,55 +1,61 @@
-import { Link, Outlet, useLocation } from "react-router-dom"
-import styles from './Navbar.module.css'
-import SearchBar from '../SearchBar/SearchBar'
+import { Link, Outlet, useLocation } from "react-router-dom";
+import styles from "./Navbar.module.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Navbar = () => {
+  let { pathname } = useLocation();
 
-    let {pathname} = useLocation()
-
-    switch(pathname.split('/')[1]) {
-        case 'create': {
-            return (
-                <div className={styles.navBox}>
-                    <nav className={styles.nav}>
-                        <Link to={-1}>Back</Link>
-                    </nav>
-                    <Outlet />
-                </div>
-            )
-        }
-
-        case 'details': {
-            return (
-                <div className={styles.navBox}>
-                    <nav className={styles.nav}>
-                        <Link to={-1}>Back</Link>
-                        <Link className={styles.createBtn} to='/create'>
-                            Create breed
-                        </Link>
-                    </nav>
-                    <Outlet />
-                </div>
-            )            
-        }
-
-        default: {
-            return (
-                <div className={styles.navBox}>
-                    <nav className={styles.nav}>
-                        <div className={styles.logo}>logo</div>
-                        <div className={styles.searchbarCont}>
-                           <SearchBar />
-                        </div>
-                        <Link className={styles.createBtn} to='/create'>
-                            Create breed
-                        </Link>
-                    </nav>
-                    <Outlet />
-                </div>
-            )
-        }
-    }
-    
+  const positionHandle = (e) => {
+    console.log(e)
+    document.documentElement.style.setProperty('--pageX-details', `${e.pageX}px`)
+    document.documentElement.style.setProperty('--pageY-details', `${e.pageY}px`)
 }
 
-export default Navbar
+  switch (pathname.split("/")[1]) {
+    case "create": {
+      return (
+        <div className={styles.navBox}>
+          <nav className={styles.nav}>
+            <Link to={-1}>Back</Link>
+          </nav>
+          <Outlet />
+        </div>
+      );
+    }
+
+    case "details": {
+      return (
+        <>
+          <div className={styles.navBox}>
+            <nav className={styles.nav}>
+              <Link to={-1}>Back</Link>
+              <Link onClick={positionHandle} className={styles.createBtn} to="/create">
+                Create breed
+              </Link>
+            </nav>
+          </div>
+          <Outlet />
+        </>
+      );
+    }
+
+    default: {
+      return (
+        <div className={styles.navBox}>
+          <nav className={styles.nav}>
+            <div className={styles.logo}>logo</div>
+            <div className={styles.searchbarCont}>
+              <SearchBar />
+            </div>
+            <Link onClick={positionHandle} className={styles.createBtn} to="/create">
+              Create breed
+            </Link>
+          </nav>
+          <Outlet />
+        </div>
+      );
+    }
+  }
+};
+
+export default Navbar;
