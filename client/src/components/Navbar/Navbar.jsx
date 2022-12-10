@@ -16,7 +16,7 @@ const Navbar = () => {
       return (
         <div className={styles.navBox}>
           <nav className={styles.nav}>
-            <Link to={-1}>Back</Link>
+            <Link to='/home'>Back</Link>
           </nav>
           <Outlet />
         </div>
@@ -28,7 +28,7 @@ const Navbar = () => {
         <>
           <div className={styles.navBox}>
             <nav className={styles.nav}>
-              <Link to={-1}>Back</Link>
+              <Link to='/home'>Back</Link>
               <Link onClick={positionHandle} className={styles.createBtn} to="/create">
                 Create breed
               </Link>
