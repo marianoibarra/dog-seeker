@@ -6,6 +6,7 @@ import styles from './DetailsDog.module.css'
 const DetailsDog = () => {
 
 const [details, setDetails] = useState()
+const [fullsize, setFullsize] = useState()
 const { id } = useParams()
 const random = Math.floor(Math.random() * 5 + 3)
 const arrayRandom = new Array(random).fill('').map(e => e = Math.floor(Math.random() * 30))
@@ -16,20 +17,24 @@ useEffect(() => {
         .catch(e => console.log(e))
 }, [])
 
+const imageFullSizeHandler = () => {
+
+}
+
     return (
         details 
         ?   (
             <main className={styles.main}>
                 <div className={styles.detailsWrapper}>
                     <div className={styles.detailsBody}>
-                        <img className={styles.image} src={details.image} alt={details.name} />
+                        <img onClick={() => setFullsize(!fullsize)} className={fullsize ? styles.imageFullsize : styles.image} src={details.image} alt={details.name} />
                         <div className={styles.dataWrapper}>
-                            <h2 className={styles.dogName}>{details.name}</h2>
-                            <div className={styles.dogStats}>{`Height: ${details.height} cm`}</div>
-                            <div className={styles.dogStats}>{`Weight: ${details.weight} kg`}</div>
-                            <div className={styles.dogStats}>{`Life span: ${details.life_span}`}</div>
+                            <h2 className={`${styles.dogName} ${fullsize ? styles.fullsize : ''}`}>{details.name}</h2>
+                            <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Height: ${details.height} cm`}</div>
+                            <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Weight: ${details.weight} kg`}</div>
+                            <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Life span: ${details.life_span}`}</div>
                             <div className={styles.temperamentsWrapper}>
-                                {details.temperament.map(temperament => (<div className={styles.temperament}>{temperament}</div>))}
+                                {details.temperament.map(temperament => (<div className={`${styles.temperament} ${fullsize ? styles.tfullsize : ''}`}>{temperament}</div>))}
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ import styles from './Paginate.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPage as dispatchPage, setTotalPages as dispatchSetTotalPage } from '../../redux/actions'
 
+
 const Paginate = () => {
 
 const dispatch = useDispatch()
