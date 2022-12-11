@@ -21,7 +21,6 @@
     }
 }
 
-
 .toggles {
     position: relative;
 }
@@ -34,30 +33,33 @@
 }
 
 .button {
+    display: flex;
+    align-items: center;
     width: 140px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 12px 0;
+    gap: 9px;
 }
 
-.button span {
-    margin-right: 8px;
+.orderName {
+    margin-left: 8px;
 }
 
-.open svg {
+.open > svg {
     transform: rotate(-180deg);
     transition: transform .2s linear;
 }
 
-.closed svg {
+.closed > svg {
     transform: rotate(0deg);
     transition: transform .2s linear;
 }
 
 .orderDropdownClosed {
     position: absolute;
-    left: -30px;
+    left: -25%;
     top: 2.5rem;
     z-index: 10;
     visibility: hidden;
@@ -69,7 +71,7 @@
 .orderDropdownOpen {
     z-index: 10;
     position: absolute;
-    left: -30px;
+    left: -25%;
     top: 2.5rem;
     width: auto;
     height: auto;
@@ -82,7 +84,7 @@
 
 .filterDropdownClosed {
     position: absolute;
-    left: 20px;
+    left: 0px;
     top: 2.5rem;
     z-index: 10;
     visibility: hidden;
@@ -94,7 +96,7 @@
 .filterDropdownOpen {
     z-index: 10;
     position: absolute;
-    left: 20px;
+    left: 0px;
     top: 2.5rem;
     width: auto;
     height: auto;
@@ -134,10 +136,10 @@
     background-color: var(--color-grey3);
 }
 
-.option svg {
+.option svg, .orderIcon svg {
     font-size: 18px;
     color: var(--color-secondary-text);
-    margin-right: 8px;
+    
 }
 
 
@@ -312,4 +314,18 @@
     display: flex;
     justify-content: space-between;
     gap: 24px
+}
+
+.filterCount {
+    font-family: sans-serif;
+    background-color: var(--color-secondary-text);
+    width: 16px;
+    height: 16px;
+    font-size: 0.7rem;
+    line-height: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-grey1);
+    border-radius: 50%;
+    margin: 0 2px 0 2px;
 }
