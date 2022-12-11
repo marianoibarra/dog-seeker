@@ -1,7 +1,7 @@
 import styles from './SearchBar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMagnifyingGlass, faXmark} from "@fortawesome/free-solid-svg-icons"
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { filterDogs } from '../../redux/actions'
 import { useEffect } from 'react'

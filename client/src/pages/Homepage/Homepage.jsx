@@ -6,6 +6,8 @@ import DogCard from "../../components/DogCard/DogCard"
 import Paginate from "../../components/Paginate/Paginate"
 import OrderAndFilter from "../../components/OrderAndFilter/OrderAndFilter"
 import { dogsPerPage } from '../../redux/constants/index'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeartBroken } from "@fortawesome/free-solid-svg-icons"
 
 
 const Homepage = () => {
@@ -33,15 +35,18 @@ const Homepage = () => {
                 <OrderAndFilter />
             </section>
             <section className={styles.cardsContainer}>
-                {
-                !dogsIsFetching
-                    ? 
-                    dogs.slice(dogsPerPage * (page - 1), dogsPerPage * page)
-                        .map((dog, key) => (
-                            <DogCard dog={dog} key={key} />
-                        ))
-                    :
-                    new Array(8).fill('').map((e, key) => <DogCard key={key} />)
+                {!dogsIsFetching
+                    ?   dogs.length > 0
+                            ?   dogs.slice(dogsPerPage * (page - 1), dogsPerPage * page)
+                                    .map((dog, key) => (
+                                        <DogCard dog={dog} key={key} />
+                                    ))
+                            :   <div className={styles.notFoundWrapper}>
+                                    <FontAwesomeIcon icon={faHeartBroken} size='6x' />
+                                    <h4>No results found</h4>
+                                    <p>Please try with anothers keywords or filters</p>
+                                </div>
+                    : new Array(8).fill('').map((e, key) => <DogCard key={key} />)
                 }
             </section>
             <section className={styles.paginate}>

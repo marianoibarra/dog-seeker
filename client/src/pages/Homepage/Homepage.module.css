@@ -35,6 +35,23 @@
     gap: 30px;
 }
 
+.notFoundWrapper {
+    grid-column: 1 / 5;
+    justify-self: center;
+    text-align: center;
+    color: var(--color-secondary-text);
+}
+
+.notFoundWrapper h4 {
+    font-size: 2rem;
+    font-family: 'Nunito';
+    margin: 8px 0;
+}
+
+.notFoundWrapper p {
+    font-weight: 400;
+}
+
 @keyframes paginateIn {
     from {
         transform: translateY(100%);
