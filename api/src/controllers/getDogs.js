@@ -12,7 +12,7 @@ const getDogs = async (name = null, onlyAPI) => {
             name: dog.name,
             weight: dog.weight.metric,
             height: dog.height.metric,
-            temperament: dog.temperament ? dog.temperament.split(', ').flat() : undefined,
+            temperament: dog.temperament ? dog.temperament.split(', ').flat().sort() : undefined,
             life_span: dog.life_span,
             image: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`
         }}))
