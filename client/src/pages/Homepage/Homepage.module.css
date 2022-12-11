@@ -1,31 +1,16 @@
 .main {
     width: 100vw;
-    min-height: calc(100vh - var(--navbarHeight));
+    height: 100dvh;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-}
-
-.cardsContainer {
-    display: grid;
-    width: 90%;
-    max-width: 1280px;
-    margin: 0 auto;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
-}
-
-.paginate {
-    width: 100%;
-    height: 64px;
-    display: flex;
-    justify-content: center;
-    animation: delay .2s, paginateIn .8s .2s ease-in-out;
+    position: relative;
+    padding-top: var(--navbarHeight);
 }
 
 .filters {
-    height: 44px;
+    height: 50px;
     display: flex;
     width: 100%;
     max-width: 1280px;
@@ -33,6 +18,30 @@
     justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+.cardsContainer {
+    display: grid;
+    width: 100%;
+    padding: 0 24px;
+    height: calc(100% - 130px);
+    overflow-y: auto;
+    max-width: 1280px;
+    margin: 0 auto;
+    align-content: start;
+    overflow-y: auto;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-auto-rows: minmax(300px, 1fr);
+    gap: 16px 24px;
+}
+
+.paginate {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: delay .2s, paginateIn .8s .2s ease-in-out;
 }
 
 .notFoundWrapper {
@@ -68,4 +77,51 @@
     to {
         transform: translateY(100%);
     }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .paginate {
+        position: absolute;
+        bottom: 0px;
+    }
+    .cardsContainer {
+        height: calc(100% - 42px);
+        padding-bottom: 60px;
+    }
+
+    .filters {
+        height: 42px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .filters {
+        gap: 15px;
+    }
+
+    .cardsContainer {
+        gap: 12px;
+        grid-auto-rows: minmax(380px, 1fr);
+        padding-left: 8px;
+        padding-right: 0px;
+    }
+
+    .paginate {
+        height: 74px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .paginate {
+        height: 60px;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
 }

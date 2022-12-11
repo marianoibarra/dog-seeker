@@ -144,9 +144,10 @@
 
     .imageWrapper {
         border-radius: 50%;
-        width: 70vw;
-        height: 70vw;
-        margin: 36px auto;
+        width: 50vw;
+        height: 50vw;
+        margin: 18px auto;
+        flex-grow: 1;
     }
     
     .imageWrapperOnDrag {
@@ -164,6 +165,7 @@
         border-radius: 50%;
         width: 50vw;
         height: 50vw;
+        padding: 12px;
         background-color: transparent;
         font-size: 1.2rem;
     }

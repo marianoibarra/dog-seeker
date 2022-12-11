@@ -71,6 +71,7 @@ const CreateDog = () => {
                                     autoComplete='none'
                                     onChange={handleInputChange}
                                 />
+                                
                                 <div className={styles.statsWrapper}>
                                     <div className={styles.rangeWrapper}>
                                         <RangeSlider key={'height'} input={input} setInput={setInput} name={'height'} label={'Height'} min={1} max={100} gap={1} um={'cm'} />

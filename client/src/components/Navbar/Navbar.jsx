@@ -42,7 +42,7 @@ const Navbar = () => {
 
     default: {
       return (
-        <div className={styles.navBox}>
+        <><div className={styles.navBox}>
           <nav className={styles.nav}>
             <div className={styles.logo}>logo</div>
             <div className={styles.searchbarCont}>
@@ -52,8 +52,8 @@ const Navbar = () => {
               Create breed
             </Link>
           </nav>
-          <Outlet />
         </div>
+          <Outlet /></>
       );
     }
   }

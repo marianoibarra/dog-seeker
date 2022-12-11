@@ -34,12 +34,13 @@
 
 .button {
     display: flex;
+    justify-content: center;
     align-items: center;
     width: 140px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 12px 0;
+    height: 36px;
     gap: 9px;
 }
 
@@ -87,6 +88,7 @@
     left: 0px;
     top: 2.5rem;
     z-index: 10;
+    width: 480px;
     visibility: hidden;
     opacity: 0;
     transform: translateY(-5px);
@@ -98,7 +100,7 @@
     position: absolute;
     left: 0px;
     top: 2.5rem;
-    width: auto;
+    width: 480px;
     height: auto;
     border-radius: 12px;
     box-shadow: 1px 1px 20px 1px #7774;
@@ -144,12 +146,16 @@
 
 
 .filterDropdownBody {
-    width: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
     height: 350px;
     padding-left: 16px ;
     background-color: var(--color-grey1);
     border-radius: 12px;
     overflow: hidden;
+    padding-bottom: 8px;
 }
 
 .tempCont {
@@ -232,6 +238,7 @@
     overflow-x: hidden;
     white-space: nowrap;
     flex-grow: 1;
+    color: var(--color-secondary-text) !important;
 }
 
 .checkbox {
@@ -318,9 +325,10 @@
 
 .filterByOriginBody {
     padding: 12px 16px 0 0;
+    height: auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 24px
 }
 
 .filterCount {
@@ -335,4 +343,104 @@
     color: var(--color-grey1);
     border-radius: 50%;
     margin: 0 2px 0 2px;
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .toggles {
+        position: unset;
+    }
+
+    .toggles span {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: .3px;
+    }
+
+    .filterDropdownOpen {
+        width: max-content;
+        max-width: 90%;
+        left: 50vw;
+        transform: translateX(-50%) translateY(0px);
+        top: calc(var(--navbarHeight) + 48px);
+    }
+
+    .filterDropdownClosed  {
+        width: max-content;
+        max-width: 90%;
+        left: 50vw;
+        transform: translateX(-50%) translateY(-10px);
+        top: calc(var(--navbarHeight) + 48px);
+    }
+
+    .orderDropdownOpen {
+        left: 50vw;
+        transform: translateX(-92%) translateY(0px);
+        top: calc(var(--navbarHeight) + 48px);
+    }
+
+    .orderDropdownClosed {
+        left: 50vw;
+        transform: translateX(-92%) translateY(-10px);
+        top: calc(var(--navbarHeight) + 48px);
+    }
+
+    .filterByOriginBody {
+        justify-content: space-around;
+    }
+
+    .button {
+        height: 32px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .toggles span {
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: .3px;
+    }
+
+    .button {
+        height: 28px;
+    }
+
+    .filterIcon svg, .option svg, .orderIcon svg {
+        font-size: 14px;
+    }
+
+    .orderDropdownOpen {
+        transform: translateX(-75%) translateY(0px);
+    }
+
+    .orderDropdownClosed {
+        transform: translateX(-75%) translateY(-10px);
+    }    
+
+    .toggleName {
+        margin-left: 4px;
+        font-size: 0.7rem;
+    }
+
+    .checkbox svg {
+        font-size: 16px;
+    }
+
+    .originToggle {
+        justify-content: flex-start;
+    }
+
+    .filterTitle {
+        margin-top: 4px;
+        font-size: 0.9rem;
+    }
+    
+}
+
+@media screen and (max-width: 300px) {
+    .filterByOriginBody {
+        justify-content: flex-start;
+    }
 }

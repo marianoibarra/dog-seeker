@@ -19,6 +19,16 @@
     --pageX-details: 50vw;
     --pageY-details: 50vh;
   }
+
+  @media screen and (max-width: 600px) {
+
+    :root {
+      --navbarHeight: 56px;
+    }
+    
+  }
+
+
 input,
 textarea,
 button,
@@ -93,3 +103,24 @@ body::after {
     border: 2px solid var(--color-grey2);
   }
   
+  @media screen and (max-width: 605px) {
+
+    *::-webkit-scrollbar-track {
+      background: var(--color-background);
+    }
+    
+    *::-webkit-scrollbar-thumb {
+
+      border: 3px solid var(--color-background);
+    }
+    
+    *::-webkit-scrollbar-thumb:hover {
+      border: 3px solid var(--color-background);
+    }
+    
+    *::-webkit-scrollbar-thumb:active {
+      border: 2px solid var(--color-background);
+    }
+    
+
+  }

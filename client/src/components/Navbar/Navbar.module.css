@@ -1,6 +1,10 @@
 .navBox {
     width: 100vw;
     height: var(--navbarHeight);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    box-shadow: 2px 2px 20px #0000000d;
 }
 
 .logo {
@@ -59,7 +63,7 @@
 @media screen and (max-width: 600px) {
 
     .navBox {
-        background-color: var(--color-grey2);
+        background-color: var(--color-background);
 
     }
 

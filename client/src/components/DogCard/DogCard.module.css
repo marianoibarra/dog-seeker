@@ -1,6 +1,6 @@
 .card {
     width: 100%;
-    height: 360px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,7 +21,7 @@
 
 .cardHeader {
     width: 100%;
-    height: 63%;
+    height: 60%;
     overflow: hidden;
 }
 
@@ -153,4 +153,17 @@
     100%{
       left: 100%;
     }
+  }
+
+  @media screen and (max-width: 605px) { 
+
+    .cardHeader {
+        height: 66%;
+    }
+    
+    
+    .cardMain {
+        height: 30%;
+    }
+
   }

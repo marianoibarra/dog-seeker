@@ -46,6 +46,7 @@
     overflow-x: hidden;
     white-space: nowrap;
     flex-grow: 2;
+    color: var(--color-secondary-text) !important;
 }
 
 .checkbox {
@@ -138,4 +139,39 @@
     color: var(--color-grey1);
     border-radius: 50%;
     margin: 0 2px 0 2px;
+}
+
+@media screen and (max-width: 480px) {
+    .toggleName {
+        margin-left: 4px;
+        font-size: 0.7rem;
+    }
+
+    .checkbox svg {
+        font-size: 16px;
+    }
+
+    .tempToggle {
+        justify-content: flex-start;
+    }
+
+    .filterTitle {
+        margin-top: 4px;
+        font-size: 0.9rem;
+    }
+
+    .searchFilter, .searchFilter2 {
+        width: 50%;
+        height: 24px;
+    }
+
+    .searchFilter input, .searchFilter2 input {
+        font-size: 0.75rem;
+    }
+
+    .searchFilter input::placeholder,
+    .searchFilter2 input::placeholder {
+        font-size: 0.75rem;
+    }
+    
 }

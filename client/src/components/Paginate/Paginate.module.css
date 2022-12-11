@@ -59,5 +59,28 @@
     cursor: default !important;
 }
 
+@media screen and (max-width: 1024px) {
+    .list {
+        background-color: #f3ece6aa;
+        backdrop-filter: blur(16px);
+    }
+    
+}
 
+@media screen and (max-width: 768px) {
+    .list {
+        transform: scale(92.5%);
+        gap: 6px;
+    }
+    
+}
+
+
+@media screen and (max-width: 480px) {
+    .list {
+        transform: scale(85%);
+        gap: 3px;
+    }
+    
+}
 
