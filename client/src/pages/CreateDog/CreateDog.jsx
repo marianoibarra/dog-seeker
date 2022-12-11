@@ -56,30 +56,37 @@ const CreateDog = () => {
             <div className={styles.createWrapper}>
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit} action={`${BE_LINK}/dogs`} method="post">
-                        <UploadImage input={input} setInput={setInput} imgIsFetching={imgIsFetching} setImgIsFetching={setImgIsFetching} />
+                        <div className={styles.uploadImgWrapper}>
+                            <UploadImage input={input} setInput={setInput} imgIsFetching={imgIsFetching} setImgIsFetching={setImgIsFetching} />
+                        </div>
                         <div className={styles.dataWrapper}>
-                            <input
-                                id='name'
-                                className={styles.name}
-                                type="text"
-                                name="name"
-                                value={input.name}
-                                placeholder='Name...'
-                                autoFocus={true}
-                                autoComplete='none'
-                                onChange={handleInputChange}
-                            />
-                            <RangeSlider key={'height'} input={input} setInput={setInput} name={'height'} label={'Height'} min={1} max={100} gap={1} um={'cm'} />
-                            <RangeSlider key={'weight'} input={input} setInput={setInput} name={'weight'} label={'Weight'} min={1} max={100} gap={1} um={'kg'} />
-                            {
-                                lifeSpanVisible 
-                                    ?   <RangeSlider option={setLifeSpanVisible} key={'life_span'} input={input} setInput={setInput} name={'life_span'} label={'Life span'} min={1} max={30} gap={1} um={'years'} />
-                                    :   <button className={styles.addLifespanBtn} type='button' onClick={() => setLifeSpanVisible(true)} >Add life span</button>
-                            }
-                            <div className={styles.temperamentsWrapper}>
-                                <TemperamentsSelect refSelect={refSelect} input={input} setInput={setInput} />
-                            </div>
-                            <input disabled={imgIsFetching} className={styles.submit} type="submit" value='Create' />
+                                <input
+                                    id='name'
+                                    className={styles.name}
+                                    type="text"
+                                    name="name"
+                                    value={input.name}
+                                    placeholder='Name...'
+                                    autoFocus={true}
+                                    autoComplete='none'
+                                    onChange={handleInputChange}
+                                />
+                                <div className={styles.statsWrapper}>
+                                    <div className={styles.rangeWrapper}>
+                                        <RangeSlider key={'height'} input={input} setInput={setInput} name={'height'} label={'Height'} min={1} max={100} gap={1} um={'cm'} />
+                                        <RangeSlider key={'weight'} input={input} setInput={setInput} name={'weight'} label={'Weight'} min={1} max={100} gap={1} um={'kg'} />
+                                        {
+                                            lifeSpanVisible 
+                                                ?   <RangeSlider option={setLifeSpanVisible} key={'life_span'} input={input} setInput={setInput} name={'life_span'} label={'Life span'} min={1} max={30} gap={1} um={'years'} />
+                                                :   <button className={styles.addLifespanBtn} type='button' onClick={() => setLifeSpanVisible(true)} >Add life span</button>
+                                        }
+                                    </div>
+                                    <div className={styles.temperamentsWrapper}>
+                                        <TemperamentsSelect refSelect={refSelect} input={input} setInput={setInput} />
+                                    </div>
+                                </div>    
+                                <input disabled={imgIsFetching} className={styles.submit} type="submit" value='Create' />
+
                         </div>                    
                     </form>
                 </div>

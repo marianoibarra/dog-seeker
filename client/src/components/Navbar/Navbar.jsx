@@ -13,12 +13,14 @@ const Navbar = () => {
   switch (pathname.split("/")[1]) {
     case "create": {
       return (
-        <div className={styles.navBox}>
-          <nav className={styles.nav}>
-            <Link to='/home'>Back</Link>
-          </nav>
+        <>
+          <div className={styles.navBox}>
+            <nav className={styles.nav}>
+              <Link to='/home'>Back</Link>
+            </nav>
+          </div>
           <Outlet />
-        </div>
+        </>
       );
     }
 

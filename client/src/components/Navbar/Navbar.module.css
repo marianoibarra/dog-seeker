@@ -55,3 +55,12 @@
         transform: translateY(0);
     }
 }
+
+@media screen and (max-width: 600px) {
+
+    .navBox {
+        background-color: var(--color-grey2);
+
+    }
+
+}

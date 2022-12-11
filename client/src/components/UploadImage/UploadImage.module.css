@@ -9,7 +9,8 @@
 .imageWrapper {
     background-color: var(--color-grey4);
     position: relative;
-    width: 50%;
+    width: 100%;
+    height: 100%;
     transition: filter .3s ease-in-out, border .3s ease-in-out;
     border: 2px dashed transparent;
     border-radius: 48px 0 0 48px;
@@ -22,6 +23,7 @@
     filter: brightness(105%);
     position: relative;
     width: 100%;
+    height: 100%;
     transition: filter .2s ease-in-out, border .2s ease-in-out;
     border: 2px dashed #0003;
     border-radius: 48px 0 0 48px;
@@ -125,4 +127,46 @@
     backdrop-filter: blur(6px) brightness(85%);
     font-size: 1.2rem;
     color: white;
+}
+
+@media screen and (max-width: 940px) {
+    .imageWrapper {
+        border-radius: 48px 48px 0 0;
+    }
+    
+    .imageWrapperOnDrag {
+
+        border-radius: 48px 48px 0 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .imageWrapper {
+        border-radius: 50%;
+        width: 70vw;
+        height: 70vw;
+        margin: 36px auto;
+    }
+    
+    .imageWrapperOnDrag {
+        border-radius: 50%;
+        width: 70vw;
+        height: 70vw;
+        margin: auto;
+    }
+
+    .labelImg p {
+        display: none;
+    }
+
+    .uploadButton {
+        border-radius: 50%;
+        width: 50vw;
+        height: 50vw;
+        background-color: transparent;
+        font-size: 1.2rem;
+    }
+
+
 }
