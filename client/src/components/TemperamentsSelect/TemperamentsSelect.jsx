@@ -47,7 +47,6 @@ const TemperamentsSelect = ({ filtering, input, setInput }) => {
   return (
     <>
       <div
-        style={filtering && { padding: "0 16px" }}
         className={styles.filterHeader}
       >
         <div className={styles.filterTitle}>

@@ -88,7 +88,9 @@ const OrderAndFilter = () => {
 
             <div className={filterIsOpen ? styles.filterDropdownOpen : styles.filterDropdownClosed}>
                 <div className={styles.filterDropdownBody}>
+                    <div className={styles.temperamentsWrapper}>
                         <TemperamentsSelect filtering={true}/>
+                    </div>
                     <div className={styles.filterByOriginWrapper}>
                         <div className={styles.filterTitle}>
                             Origin
