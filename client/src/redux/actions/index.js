@@ -11,7 +11,8 @@ import {
     FILTER_DOGS,
     SET_PAGE,
     SET_TOTAL_PAGE,
-    NEW_DOG
+    NEW_DOG,
+    SEARCH_DOGS
  } from "../constants";
 
 const fetchStart = (type) => {
@@ -71,11 +72,12 @@ export const setTotalPages = () => {
     }
 }
 
-export const filterDogs = (temperament, origin) => {
+export const filterDogs = (temperament, origin, search) => {
     return {
         type: FILTER_DOGS,
         temperament,
-        origin
+        origin,
+        search
     }
 }
 

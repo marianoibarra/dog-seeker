@@ -1,24 +1,27 @@
 import React, { useRef, useState } from 'react'
 import styles from './OrderAndFilter.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faArrowDown19, faArrowDownAZ, faArrowUp91, faArrowUpZA, faCircleCheck } from "@fortawesome/free-solid-svg-icons"
-import { faCircle} from '@fortawesome/free-regular-svg-icons'
+import { faAngleDown, faArrowDown19, faArrowDownAZ, faArrowUp91, faArrowUpZA, faCircleCheck, faFilter } from "@fortawesome/free-solid-svg-icons"
+import { faCircle } from '@fortawesome/free-regular-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { originOp } from '../../redux/constants/index'
 import { orderOp } from '../../redux/constants/index'
-import {orderDogs, filterDogs, setPage} from '../../redux/actions/index'
+import {orderDogs, filterDogs} from '../../redux/actions/index'
 import TemperamentsSelect from '../TemperamentsSelect/TemperamentsSelect'
 
 const OrderAndFilter = () => {
 
     const order = useSelector(state => state.order)
+    const filterByTemperament = useSelector(state => state.filterByTemperament)
+    const filterByOrigin = useSelector(state => state.filterByOrigin)
     const dispatch = useDispatch()
     const [filterIsOpen, setFilterIsOpen] = useState(false)
     const [orderIsOpen, setOrderIsOpen] = useState(false)
-    const [filterByOrigin, setfilterByOrigin] = useState(originOp[0])
     const orderWrapperRef = useRef()
     const filterWrapperRef = useRef()
+
+    const orderIcon = [faArrowDownAZ, faArrowUpZA, faArrowDown19, faArrowUp91]
 
     const orderHandler = (order) => {
         dispatch(orderDogs(order))
@@ -27,7 +30,6 @@ const OrderAndFilter = () => {
 
     const originToggleHandler = (origin) => {
         if(filterByOrigin.id !== origin.id) {
-            setfilterByOrigin(origin)
             dispatch(filterDogs(undefined, origin))
         }
     }
@@ -55,38 +57,33 @@ const OrderAndFilter = () => {
         <div ref={orderWrapperRef} className={styles.toggles}>
 
             <button onClick={() => setOrderIsOpen(!orderIsOpen)} className={`${orderIsOpen ? `${styles.button} ${styles.open}` : `${styles.button} ${styles.closed}`}`}>
+                <span className={styles.orderIcon}><FontAwesomeIcon icon={orderIcon[order.id]} size='lg' fixedWidth /></span>
                 <span>ORDER BY</span>
-                <FontAwesomeIcon icon={faAngleDown} size='sm' />
+                <FontAwesomeIcon icon={faAngleDown} size='1x' fixedWidth />
             </button>
             
             <div className={orderIsOpen ? styles.orderDropdownOpen : styles.orderDropdownClosed}>
                 <div className={styles.orderDropdownBody}>
-                    <button onClick={() => orderHandler(orderOp[0])} className={styles.option}>
-                        <FontAwesomeIcon icon={faArrowDownAZ} size='lg' fixedWidth />
-                        <span style={orderOp[0].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[0].name}</span>
-                    </button>
-                    <button onClick={() => orderHandler(orderOp[1])} className={styles.option}>
-                        <FontAwesomeIcon icon={faArrowUpZA} size='lg' fixedWidth />
-                        <span style={orderOp[1].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[1].name}</span>
-                    </button>
-                    <button onClick={() => orderHandler(orderOp[2])} className={styles.option}>
-                        <FontAwesomeIcon icon={faArrowDown19} size='lg' fixedWidth />
-                        <span style={orderOp[2].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[2].name}</span>
-                    </button>
-                    <button onClick={() => orderHandler(orderOp[3])} className={styles.option}>
-                        <FontAwesomeIcon icon={faArrowUp91} size='lg' fixedWidth />
-                        <span style={orderOp[3].id == order.id ? {fontWeight: '800'} : {}}>{orderOp[3].name}</span>
-                    </button>
+                    {orderOp.map((o, i) => (
+                        <button className={styles.option} key={i} onClick={() => orderHandler(o)}>
+                            <FontAwesomeIcon icon={orderIcon[i]} size='lg' fixedWidth />
+                            <span className={styles.orderName} style={o.id == order.id ? {fontWeight: '800'} : {}}>{o.name}</span>
+                        </button>
+                    ))}
                 </div>
             </div>
-
         </div>
 
         <div ref={filterWrapperRef} className={styles.toggles}>
 
             <button onClick={() => setFilterIsOpen(!filterIsOpen)} className={`${filterIsOpen ? `${styles.button} ${styles.open}` : `${styles.button} ${styles.closed}`}`}>                
+                {
+                    filterByTemperament.length > 0 || filterByOrigin.id !== 0
+                        ?   <div className={styles.filterCount}>{filterByTemperament.length + (filterByOrigin.id !== 0 && 1)}</div>
+                        :   <span className={styles.filterIcon}><FontAwesomeIcon icon={faFilter} size='lg' fixedWidth /></span>
+                }
                 <span>FILTER BY</span>
-                <FontAwesomeIcon icon={faAngleDown} size='sm' />
+                <FontAwesomeIcon icon={faAngleDown} size='1x' fixedWidth/>
             </button> 
 
             <div className={filterIsOpen ? styles.filterDropdownOpen : styles.filterDropdownClosed}>

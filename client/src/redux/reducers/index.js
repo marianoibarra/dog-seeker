@@ -12,7 +12,7 @@ import {
     SET_PAGE,
     SET_TOTAL_PAGE,
     dogsPerPage,
-    NEW_DOG
+    NEW_DOG,
  } from "../constants";
 
 const initialState = {
@@ -26,6 +26,7 @@ const initialState = {
     order: orderOp[0],
     filterByTemperament: [],
     filterByOrigin: originOp[0],
+    filterBySearch: '',
     page: 1,
     totalPages: 1    
 }
@@ -34,6 +35,7 @@ export default function reducer(state = initialState, action) {
 
     action.temperament === undefined && (action.temperament = state.filterByTemperament)
     action.origin === undefined && (action.origin = state.filterByOrigin)
+    action.search === undefined && (action.search = state.filterBySearch)
 
     switch(action.type) {
         case FETCH_DOGS_START: {
@@ -113,12 +115,12 @@ export default function reducer(state = initialState, action) {
             }
         }
         case FILTER_DOGS: {
-            
             return {
                 ...state,
                 filterByTemperament: action.temperament,
                 filterByOrigin: action.origin,
-                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id)) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
+                filterBySearch: action.search,
+                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id) && dog.name.toLowerCase().includes(action.search.toLowerCase())) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.name.toLowerCase().includes(action.search.toLowerCase()) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
                 page: action.temperament.length > 0 ? 1 : state.page
                 
             }
