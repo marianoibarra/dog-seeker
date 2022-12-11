@@ -120,7 +120,7 @@ export default function reducer(state = initialState, action) {
                 filterByTemperament: action.temperament,
                 filterByOrigin: action.origin,
                 filterBySearch: action.search,
-                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id) && dog.name.toLowerCase().includes(action.search.toLowerCase())) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.name.toLowerCase().includes(action.search.toLowerCase()) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
+                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id) && dog.name.toLowerCase().includes(action.search.toLowerCase())) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.name.includes(action.search) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
                 page: action.temperament.length > 0 ? 1 : state.page
                 
             }
