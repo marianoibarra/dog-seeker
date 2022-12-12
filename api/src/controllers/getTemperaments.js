@@ -16,7 +16,7 @@ const getTemperaments = async () => {
 
     const temperamentFromDB = await Temperament.findAll()
 
-    if(temperamentFromDB.length > 0) {
+    if(temperamentFromDB.length === 0) {
 
         const temperamentsFromAPI = await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
             .then(r => r.data)
