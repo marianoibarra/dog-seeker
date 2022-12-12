@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import styles from './RangeSlider.module.css'
 
-function RangeSlider({min, max, gap, label, um, setInput, input, name, option}) {
+function RangeSlider({min, max, gap, label, um, setInput, input, name, option, disable}) {
 
   const progressRef = useRef()
   const rangeMinRef = useRef()
@@ -78,6 +78,7 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option}) 
       </div>
       <div className={styles.inputRange}>
         <input
+          disabled={disable}
           id='rangeMin'
           className={styles.rangeMin}
           type="range"
@@ -88,6 +89,7 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option}) 
           ref={rangeMaxRef}
         />
         <input
+          disabled={disable}
           id='rangeMax'
           className={styles.rangeMax}
           type="range"

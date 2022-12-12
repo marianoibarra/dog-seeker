@@ -87,3 +87,12 @@ export const newDog = (payload) => {
         payload
     }
 }
+
+// export const getDogs = () => {
+//     return (dispatch) => {
+//         dispatch(fetchStart(FETCH_DOGS_START))
+//         fetchDogs()
+//             .then(dogs => dispatch(fetchSuccess(FETCH_DOGS_SUCCESS, dogs)))
+//             .catch(e => dispatch(fetchFailed(FETCH_DOGS_FAILED)))
+//     }
+// }
