@@ -40,6 +40,16 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option}) 
   })
 
   useEffect(() => {
+    if(input[name] === undefined) {
+      setRangeMin(Math.floor(max / 4))
+      setRangeMax(Math.floor(max / 4 * 3))
+      setLastHandle(undefined)
+      progressRef.current.style.left = `25%`
+      progressRef.current.style.right = `25%`
+    }
+  }, [input])
+
+  useEffect(() => {
     lastHandle &&
     setInput({
       ...input,

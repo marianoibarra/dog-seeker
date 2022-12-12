@@ -3,7 +3,7 @@
     height: var(--navbarHeight);
     position: fixed;
     top: 0;
-    z-index: 100;
+    z-index: -1;
     box-shadow: 2px 2px 20px #0000000d;
     background-color: var(--color-background);
 }

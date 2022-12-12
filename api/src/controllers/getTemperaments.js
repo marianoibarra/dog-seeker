@@ -23,8 +23,9 @@ const getTemperaments = async () => {
             .then(dogs => {
                 let temperaments = dogs
                     .filter(dog => dog.temperament !== undefined)
-                    .map(dog => dog.temperament
-                    .split(', '))
+                    .map(dog => 
+                        dog.temperament.split(', ')
+                    )
                     .flat()
                     .sort(sortFn) 
                 return [...new Set(temperaments)]

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import styles from './UploadImage.module.css'
 
 function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
@@ -46,6 +46,10 @@ function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
             }).catch(e => console.log(e))
         }
     }
+
+    useEffect(() => {
+        if(input.image === null) setPreview(undefined)
+      }, [input])
 
 
 
