@@ -7,6 +7,7 @@
     flex-direction: column;
     position: relative;
     padding-top: var(--navbarHeight);
+    
 }
 
 .filters {
@@ -23,7 +24,7 @@
 .cardsContainer {
     display: grid;
     width: 100%;
-    padding: 0 24px;
+    padding: 8px 24px;
     height: calc(100% - 130px);
     overflow-y: auto;
     max-width: 1280px;
@@ -87,7 +88,7 @@
     }
     .cardsContainer {
         height: calc(100% - 42px);
-        padding-bottom: 60px;
+        padding-bottom: 66px;
     }
 
     .filters {

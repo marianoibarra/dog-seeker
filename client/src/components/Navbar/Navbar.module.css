@@ -5,10 +5,27 @@
     top: 0;
     z-index: 100;
     box-shadow: 2px 2px 20px #0000000d;
+    background-color: var(--color-background);
 }
 
 .logo {
-    width: 134px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    opacity: .9;
+}
+
+.logo img {
+    height: 52px;
+    margin-right: 4px;
+}
+
+.logo span {
+    color: var(--color-primary-text);
+    font-family: 'Nunito';
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    font-weight: 700;
 }
 
 .nav {
@@ -23,16 +40,18 @@
     animation: navIn 0.8s ease-in-out;
 }
 
-.searchbarCont {
+.searchbarOpen, .searchbarClose {
     flex-basis: 40%;
     min-width: 360px;
 }
 
 .createBtn {
+    font-size: .95rem;
     height: 42px;
     width: 134px;
     transition: filter 0.3s ease-in-out;
     display: flex;
+    justify-content: center;
     align-items: center;
     border-radius: 12px;
     background-color: var(--color-green);
@@ -51,6 +70,22 @@
     filter: brightness(95%);
 }
 
+.searchButton {
+    display: none
+}
+
+.buttons {
+    display: none;
+}
+
+.visible {
+    display: inline;
+}
+
+.hidden {
+    display: none !important;
+}
+
 @keyframes navIn {
     from {
         transform: translateY(-100%);
@@ -60,11 +95,55 @@
     }
 }
 
-@media screen and (max-width: 600px) {
 
-    .navBox {
-        background-color: var(--color-background);
 
+@media screen and (max-width: 768px) {
+
+    .searchbarClose {
+        display: none;
     }
 
+    .createBtn {
+        display: none;
+    }
+
+    .searchButton {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        outline: none;
+        background: none;
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color .3s ease-in-out;
+        color: var(--color-secondary-text);
+    }
+
+    .searchButton:active {
+        background-color: var(--color-rose);
+        transform: scale(90%);
+        transition: background-color .3s ease-in-out;
+    }
+
+    .searchbarOpen {
+        flex-basis: 100%;
+        padding-right: 8px
+    }
+
+    .nav {
+        padding: 0 12px;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
 }
+

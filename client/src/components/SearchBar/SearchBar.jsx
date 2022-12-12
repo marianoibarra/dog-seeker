@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { useRef } from 'react'
 
 
-const SearchBar = () => {
+const SearchBar = ({searchOpen}) => {
 
     const [input, setInput] = useState('')
     const inputRef = useRef()
@@ -29,20 +29,39 @@ const SearchBar = () => {
     }
 
     useEffect(() => {
+        searchOpen && inputRef.current.focus()
+    })
+
+    useEffect(() => {
         console.log(showSearchClear)
     }, [showSearchClear])
 
     return (
         <form className={styles.searchBar} onSubmit={handleSearch}>
-            <input onFocus={() => setShowSearchClear(false)} ref={inputRef} placeholder='Search...' type="text" name="search" className={styles.searchInput} value={input} onChange={e => setInput(e.target.value)}/>
+            {   !showSearchClear
+                    &&  <>
+                        <button hidden type='submit'></button>
+                        <button className={styles.searchButton} type="submit">
+                            <FontAwesomeIcon className={styles.searchIcon} icon={faMagnifyingGlass} fixedWidth />
+                        </button></>
+            }
+            <input
+                className={styles.searchInput}
+                ref={inputRef}
+                type="text"
+                name="search" 
+                placeholder='Search...'
+                autoComplete='none'
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onFocus={() => setShowSearchClear(false)}
+            />
             {   showSearchClear
-                    ?   <><button className={styles.searchButton} type="reset" onClick={handleClear}>
+                    &&  <><button className={styles.searchButton} type="reset" onClick={handleClear}>
                             <FontAwesomeIcon className={styles.searchIcon} icon={faXmark} fixedWidth />
                         </button>
                         <button hidden type='submit'></button></>
-                    :   <button className={styles.searchButton} type="submit">
-                            <FontAwesomeIcon className={styles.searchIcon} icon={faMagnifyingGlass} fixedWidth />
-                        </button>
+
             }
         </form>
     )

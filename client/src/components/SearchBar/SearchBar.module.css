@@ -1,12 +1,12 @@
 .searchBar {
     background-color: var(--color-grey3);
-    height: 44px;
+    height: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 42px;
-    padding: 0 14px 0 18px;
+    padding: 0 14px 0 12px;
 }
 
 .searchInput {
@@ -18,10 +18,13 @@
     border: none;
     color: var(--color-primary-text);
     font-family: 'Nunito';
-    font-size: 1.1rem;
-    font-weight: 600;    
-    line-height: 42px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 8px;
 }
+
 
 .searchIcon {
     color: var(--color-secondary-text);
