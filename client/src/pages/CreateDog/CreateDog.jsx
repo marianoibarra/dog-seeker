@@ -29,7 +29,7 @@ const CreateDog = () => {
     const [imgIsFetching, setImgIsFetching] = useState(false)
     const [lifeSpanVisible, setLifeSpanVisible] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
-    const [isFetching, setIsFetching] = useState(true)
+    const [isFetching, setIsFetching] = useState(false)
 
     const refSelect = useRef()
 
