@@ -12,7 +12,7 @@ const getTemperaments = async () => {
         return 0
     }
     
-    const response = []
+    let response = []
 
     const temperamentFromDB = await Temperament.findAll()
 
