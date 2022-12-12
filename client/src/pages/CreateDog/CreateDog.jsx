@@ -37,7 +37,7 @@ const CreateDog = () => {
         temperaments.length === 0 && dispatch(getTemperaments())
     }, [])
 
-    function handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
         setIsFetching(true)
         axios({
