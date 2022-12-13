@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import RangeSlider from '../../components/RangeSlider/RangeSlider'
 import TemperamentsSelect from '../../components/TemperamentsSelect/TemperamentsSelect'
 import UploadImage from '../../components/UploadImage/UploadImage'
-import { getTemperaments, newDog, postDog } from '../../redux/actions'
+import { getTemperaments, postDog } from '../../redux/actions'
 
 
 import {BE_LINK} from '../../services/constants'
@@ -85,7 +85,6 @@ const CreateDog = () => {
                                     name="name"
                                     value={input.name}
                                     placeholder='Name...'
-                                    autoFocus={true}
                                     autoComplete='none'
                                     onChange={handleInputChange}
                                 />
