@@ -1,9 +1,10 @@
 import React, {useRef} from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styles from './RangeSlider.module.css'
 
-function RangeSlider({min, max, gap, label, um, setInput, input, name, option, disable}) {
+function RangeSlider({min, max, gap, label, um, setInput, input, name, close}) {
 
   const progressRef = useRef()
   const rangeMinRef = useRef()
@@ -12,6 +13,8 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option, d
   const [rangeMin, setRangeMin] = useState(Math.floor(max / 4))
   const [rangeMax, setRangeMax] = useState(Math.floor(max / 4 * 3))
   const [lastHandle, setLastHandle] = useState(undefined)
+
+  const postDogIsFetching = useSelector(state => state.postDogIsFetching)
 
   const handleRange = (e) => {
     if(e.target.id === 'rangeMin' || e.target.id === 'inputMin') {setRangeMin(Number(e.target.value)); setLastHandle('min')}
@@ -26,7 +29,7 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option, d
       ...input,
       [name]: undefined
     })
-    option(false)
+    close(false)
   }
 
   useEffect(() => {
@@ -63,7 +66,7 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option, d
         <label className={styles.labelWrapper}>
           <div className={styles.label}>
             <span>{label}</span>
-            {option && <div className={styles.closeBtn} onClick={handleCloseButton}>✖</div>}
+            {close && <div className={styles.closeBtn} onClick={handleCloseButton}>✖</div>}
           </div>
           
         </label>
@@ -78,7 +81,7 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option, d
       </div>
       <div className={styles.inputRange}>
         <input
-          disabled={disable}
+          disabled={postDogIsFetching}
           id='rangeMin'
           className={styles.rangeMin}
           type="range"
@@ -89,7 +92,7 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, option, d
           ref={rangeMaxRef}
         />
         <input
-          disabled={disable}
+          disabled={postDogIsFetching}
           id='rangeMax'
           className={styles.rangeMax}
           type="range"

@@ -1,9 +1,8 @@
-import React from 'react'
-import styles from './DogCard.module.css'
-import { Link } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import styles from './DogCard.module.css'
+
 
 const DogCard = ({dog}) => {
     
@@ -16,16 +15,23 @@ const DogCard = ({dog}) => {
     }
 
     const [refresh, setRefresh] = useState(false)
+    const location = useLocation()
+    const [backFromRoutes, setBackFromRoutes] = useState(location.state && location.state.backFromRoutes === true ? true : false)
 
-    useEffect(() => {   
-        setRefresh(true)
-        setTimeout(() => {
-            setRefresh(false)
-        }, 400);
+    useEffect(() => { 
+        if(!backFromRoutes) {
+            setRefresh(true)
+            setTimeout(() => {
+                setRefresh(false)
+
+            }, 400);
+        } else {
+            setBackFromRoutes(false)
+        }
     }, [dog])
 
     return (
-
+        
         dogsIsFetching || refresh
             ?   <div className={styles.card}>
                     <header className={styles.cardHeader}>
@@ -45,7 +51,8 @@ const DogCard = ({dog}) => {
                         </div>
                     </main>
                 </div>
-            :   <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
+            :   
+                <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
                     <header className={styles.cardHeader}>
                         <img className={styles.image} src={dog.image} alt={dog.name} />
                     </header>

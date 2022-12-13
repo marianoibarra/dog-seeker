@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import fetchDogs from "../../services/fetchDogs"
+import getDogs_API from "../../services/get-Dogs"
 import styles from './DetailsDog.module.css'
 
 const DetailsDog = () => {
@@ -12,14 +12,10 @@ const random = Math.floor(Math.random() * 5 + 3)
 const arrayRandom = new Array(random).fill('').map(e => e = Math.floor(Math.random() * 30))
 
 useEffect(() => {
-    fetchDogs(id)
+    getDogs_API(id)
         .then(data => setDetails(data))
         .catch(e => console.log(e))
 }, [])
-
-const imageFullSizeHandler = () => {
-
-}
 
     return (
         details 

@@ -8,7 +8,7 @@ import OrderAndFilter from "../../components/OrderAndFilter/OrderAndFilter"
 import { dogsPerPage } from '../../redux/constants/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartBroken } from "@fortawesome/free-solid-svg-icons"
-
+import { useLocation } from "react-router-dom"
 
 const Homepage = () => {
 
@@ -16,6 +16,8 @@ const Homepage = () => {
     const dogs = useSelector(state => state.dogsToDisplay)
     const dogsIsFetching = useSelector(state => state.dogsIsFetching)
     const page = useSelector(state => state.page)
+    const location = useLocation()
+    const backFromRoutes = location.state && location.state.backFromRoutes === true ? true : false
  
     useEffect(() => {
         if(dogs.length === 0) {
@@ -49,7 +51,7 @@ const Homepage = () => {
                     : new Array(8).fill('').map((e, key) => <DogCard key={key} />)
                 }
             </section>
-            <section className={styles.paginate}>
+            <section style={backFromRoutes ? {animation: 'none'} : {}} className={styles.paginate}>
                 <Paginate />
             </section>
         </main>

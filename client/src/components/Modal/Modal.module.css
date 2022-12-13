@@ -11,9 +11,10 @@
     z-index: 999;
     background-color: #0007;
     backdrop-filter: blur(4px);
+    animation: bgIn .2s ease-in-out;
 }
 
-.modalConfirm {
+.modalSuccess, .modalFailed {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -22,11 +23,12 @@
     max-height: 400px;
     border-radius: 24px;
     background-color: var(--color-grey2);
-    box-shadow: var(--shadow);
+    box-shadow: 0px 0px 20px 12px #0002;
     overflow: hidden;
+    animation: modalDelay .1s, modalIn .2s .1s ease-in-out;
 }
 
-.modalConfirm header {
+.modalSuccess header {
     width: 100%;
     height: 45%;
     background-color: var(--color-green);
@@ -35,8 +37,17 @@
     align-items: center;
 }
 
-.modalConfirm h2 {
-    margin-top: -12px;
+.modalFailed header {
+    width: 100%;
+    height: 45%;
+    background-color: var(--color-clay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalMain h2 {
+    margin-top: 6px;
     font-size: 2.2rem;
     color: var(--color-black);
     font-family: 'Nunito';
@@ -44,15 +55,21 @@
     line-height: 2.2rem;
 }
 
-.modalConfirm svg {
+.modalMain p {
+    margin-top: -8px;
+    font-size: 1rem;
+}
+
+.modalHeader svg {
     color: var(--color-background);
     opacity: .8;
 }
 
-.modalConfirm main {
+.modalMain {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: 55%;
     text-align: center;
@@ -61,7 +78,72 @@
 
 .modalButtons {
     display: flex;
-    width: 70%;
-    justify-content: space-between;
+    width: 60%;
+    justify-content: space-around;
     align-items: center;
+    margin-top: 8px;
+}
+
+.accentButton, .secondaryButton, .yellowButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    outline: none;
+    border: none;
+    width: 45%;
+    height: 42px;
+    font-size: 0.95rem;
+    line-height: 0.95rem;
+    cursor: pointer;
+    color: white;
+    border-radius: 21px;
+    font-weight: 500;
+}
+
+.accentButton {
+    background-color: var(--color-green);
+}
+
+.yellowButton {
+    gap: 8px;
+    background-color: var(--color-yellow);
+    color: var(--color-primary-text);
+}
+
+.secondaryButton {
+    color: var(--color-black);
+    font-size: 1;
+
+}
+
+@keyframes bgIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(85%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(100%);
+    }    
+}
+
+@keyframes modalDelay {
+    from {
+        opacity: 0;
+        transform: scale(85%);
+    }
+    to {
+        opacity: 0;
+        transform: scale(85%);
+    }    
 }

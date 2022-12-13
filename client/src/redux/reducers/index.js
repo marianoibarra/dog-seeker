@@ -5,6 +5,9 @@ import {
     FETCH_TEMPERAMENTS_START,
     FETCH_TEMPERAMENTS_SUCCESS,
     FETCH_TEMPERAMENTS_FAILED,
+    POST_DOG_START,
+    POST_DOG_SUCCESS,
+    POST_DOG_FAILED,
     orderOp,
     originOp,
     ORDER_DOGS,
@@ -12,7 +15,7 @@ import {
     SET_PAGE,
     SET_TOTAL_PAGE,
     dogsPerPage,
-    NEW_DOG,
+    CLEAR_MODAL
  } from "../constants";
 
 const initialState = {
@@ -21,8 +24,12 @@ const initialState = {
     temperaments: [],
     dogsIsFetching: false,
     temperamentsIsFetching: false,
+    modalDogCreatedSuccess: false,
+    modalDogCreatedFailed: false,
+    postDogIsFetching: false,
     dogsFetchError: false,
     temperamentsFetchError: false,
+    postDogError: false,
     order: orderOp[0],
     filterByTemperament: [],
     filterByOrigin: originOp[0],
@@ -82,14 +89,30 @@ export default function reducer(state = initialState, action) {
                 temperamentsIsFetching: false
             }
         }
-        case NEW_DOG: {
+        case POST_DOG_START: {
+            return {
+                ...state,
+                postDogError: false,
+                postDogIsFetching: true,
+            }
+        }
+        case POST_DOG_SUCCESS: {
             return {
                 ...state,
                 dogs: [...state.dogs, action.payload].sort(state.order.sort),
-                dogsToDisplay: [...state.dogsToDisplay, action.payload].sort(state.order.sort)
+                dogsToDisplay: [...state.dogsToDisplay, action.payload].sort(state.order.sort),
+                postDogIsFetching: false,
+                modalDogCreatedSuccess: true
             }
         }
-
+        case POST_DOG_FAILED: {
+            return {
+                ...state,
+                postDogError: true,
+                postDogIsFetching: false,
+                modalDogCreatedFailed: true
+            }
+        }
         case SET_PAGE: {
             return {
                 ...state,
@@ -123,6 +146,13 @@ export default function reducer(state = initialState, action) {
                 dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id) && dog.name.toLowerCase().includes(action.search.toLowerCase())) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.name.includes(action.search) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
                 page: action.temperament.length > 0 ? 1 : state.page
                 
+            }
+        }
+        case CLEAR_MODAL: {
+            return {
+                ...state,
+                modalDogCreatedFailed: false,
+                modalDogCreatedSuccess: false
             }
         }
         default: return state

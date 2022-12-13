@@ -1,5 +1,6 @@
-import fetchDogs from "../../services/fetchDogs";
-import fetchTemperaments from "../../services/fetchTemperaments";
+import getDogs_API from "../../services/get-Dogs";
+import getTemperaments_API from "../../services/get-Temperaments";
+import postDog_API from '../../services/post-Dogs'
 import {
     FETCH_DOGS_START,
     FETCH_DOGS_SUCCESS,
@@ -7,12 +8,14 @@ import {
     FETCH_TEMPERAMENTS_START,
     FETCH_TEMPERAMENTS_SUCCESS,
     FETCH_TEMPERAMENTS_FAILED,
+    POST_DOG_START,
+    POST_DOG_SUCCESS,
+    POST_DOG_FAILED,
     ORDER_DOGS,
     FILTER_DOGS,
     SET_PAGE,
     SET_TOTAL_PAGE,
-    NEW_DOG,
-    SEARCH_DOGS
+    CLEAR_MODAL,
  } from "../constants";
 
 const fetchStart = (type) => {
@@ -22,33 +25,35 @@ const fetchStart = (type) => {
 }
 
 const fetchSuccess = (type, payload) => {
+    console.log(type, payload)
     return {
         type,
         payload
     }
 }
 
-const fetchFailed = (type) => {
+const fetchFailed = (type, error) => {
     return {
-        type
+        type,
+        error
     }
 }
 
 export const getDogs = () => {
     return (dispatch) => {
         dispatch(fetchStart(FETCH_DOGS_START))
-        fetchDogs()
+        getDogs_API()
             .then(dogs => dispatch(fetchSuccess(FETCH_DOGS_SUCCESS, dogs)))
-            .catch(e => dispatch(fetchFailed(FETCH_DOGS_FAILED)))
+            .catch(e => dispatch(fetchFailed(FETCH_DOGS_FAILED, e)))
     }
 }
 
 export const getTemperaments = () => {
     return (dispatch) => {
         dispatch(fetchStart(FETCH_TEMPERAMENTS_START))
-        fetchTemperaments()
+        getTemperaments_API()
             .then(temperaments => dispatch(fetchSuccess(FETCH_TEMPERAMENTS_SUCCESS, temperaments)))
-            .catch(e => dispatch(fetchFailed(FETCH_TEMPERAMENTS_FAILED)))
+            .catch(e => dispatch(fetchFailed(FETCH_TEMPERAMENTS_FAILED, e)))
     }
 }
 
@@ -81,18 +86,17 @@ export const filterDogs = (temperament, origin, search) => {
     }
 }
 
-export const newDog = (payload) => {
+export const clearModal = () => {
     return {
-        type: NEW_DOG,
-        payload
+        type: CLEAR_MODAL,
     }
 }
 
-// export const getDogs = () => {
-//     return (dispatch) => {
-//         dispatch(fetchStart(FETCH_DOGS_START))
-//         fetchDogs()
-//             .then(dogs => dispatch(fetchSuccess(FETCH_DOGS_SUCCESS, dogs)))
-//             .catch(e => dispatch(fetchFailed(FETCH_DOGS_FAILED)))
-//     }
-// }
+export const postDog = (data) => {
+    return (dispatch) => {
+        dispatch(fetchStart(POST_DOG_START))
+        postDog_API(data)
+            .then(res => dispatch(fetchSuccess(POST_DOG_SUCCESS, res.data)))
+            .catch(e => dispatch(fetchFailed(POST_DOG_FAILED, e)))
+    }
+}

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import RangeSlider from '../../components/RangeSlider/RangeSlider'
 import TemperamentsSelect from '../../components/TemperamentsSelect/TemperamentsSelect'
 import UploadImage from '../../components/UploadImage/UploadImage'
-import { getTemperaments, newDog } from '../../redux/actions'
+import { getTemperaments, newDog, postDog } from '../../redux/actions'
 
 
 import {BE_LINK} from '../../services/constants'
@@ -14,6 +14,7 @@ import Modal from '../../components/Modal/Modal'
 const CreateDog = () => {
   
     const temperaments = useSelector(state => state.temperaments)
+    const postDogIsFetching = useSelector(state => state.postDogIsFetching)
     const dispatch = useDispatch()
 
     const initialValues = {
@@ -28,10 +29,9 @@ const CreateDog = () => {
     const [input, setInput] = useState(initialValues)
     const [imgIsFetching, setImgIsFetching] = useState(false)
     const [lifeSpanVisible, setLifeSpanVisible] = useState(false)
-    const [modalVisible, setModalVisible] = useState(false)
-    const [isFetching, setIsFetching] = useState(false)
 
     const refSelect = useRef()
+    const refSubmit = useRef()
 
     useEffect(() => {
         temperaments.length === 0 && dispatch(getTemperaments())
@@ -39,20 +39,7 @@ const CreateDog = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsFetching(true)
-        axios({
-            method: 'POST',
-            url: `${BE_LINK}/dogs`,
-            data: input
-        }).then(res => {
-            setIsFetching(false)
-            dispatch(newDog(res.data))
-            setModalVisible(true)
-        })
-        .catch(e => {
-            setIsFetching(false)
-            console.log(e)
-        })
+        dispatch(postDog(input))
     }
     
     const handleInputChange = (e) => {
@@ -63,11 +50,12 @@ const CreateDog = () => {
         })
     }
     
-    const handleModalButton = () => {
+    const resetForm = () => {
         setInput(initialValues)
-        setModalVisible(false)
         setLifeSpanVisible(false)
     }
+
+
 
     const Spinner = () => {
         return (
@@ -77,9 +65,9 @@ const CreateDog = () => {
 
     return (
         <main className={styles.main}>
-            <div className={`${styles.createWrapper} ${isFetching ? styles.fetching : ''}`}>
+            <div className={`${styles.createWrapper} ${postDogIsFetching ? styles.fetching : ''}`}>
                 <div className={styles.formContainer}>
-                    <Modal handle={handleModalButton} visible={modalVisible} />
+                    <Modal reset={resetForm} submit={refSubmit.current} />
                     <form onSubmit={handleSubmit} action={`${BE_LINK}/dogs`} method="post">
                         <div className={styles.uploadImgWrapper}>
                             <UploadImage 
@@ -92,7 +80,7 @@ const CreateDog = () => {
                         <div className={styles.dataWrapper}>
                                 <input
                                     id='name'
-                                    className={`${styles.name} ${isFetching ? styles.fetchingData : ''} `}
+                                    className={`${styles.name} ${postDogIsFetching ? styles.fetchingData : ''} `}
                                     type="text"
                                     name="name"
                                     value={input.name}
@@ -102,36 +90,34 @@ const CreateDog = () => {
                                     onChange={handleInputChange}
                                 />
                                 
-                                <div className={`${styles.statsWrapper} ${isFetching ? styles.fetchingData : ''} `}>
+                                <div className={`${styles.statsWrapper} ${postDogIsFetching ? styles.fetchingData : ''} `}>
                                     <div className={styles.rangeWrapper}>
                                         <RangeSlider 
-                                        disable={isFetching} 
-                                        key={'height'} 
-                                        input={input} 
-                                        setInput={setInput} 
-                                        name={'height'} 
-                                        label={'Height'} 
-                                        min={1} 
-                                        max={100} 
-                                        gap={1} 
-                                        um={'cm'} 
-                                    />
-                                        <RangeSlider 
-                                        disable={isFetching} 
-                                        key={'weight'} 
-                                        input={input} 
-                                        setInput={setInput} 
-                                        name={'weight'} 
-                                        label={'Weight'} 
-                                        min={1} 
-                                        max={100} 
-                                        gap={1} 
-                                        um={'kg'} 
-                                    />
+                                            key={'height'} 
+                                            input={input} 
+                                            setInput={setInput} 
+                                            name={'height'} 
+                                            label={'Height'} 
+                                            min={1} 
+                                            max={100} 
+                                            gap={1} 
+                                            um={'cm'} 
+                                        />
+                                            <RangeSlider  
+                                            key={'weight'} 
+                                            input={input} 
+                                            setInput={setInput} 
+                                            name={'weight'} 
+                                            label={'Weight'} 
+                                            min={1} 
+                                            max={100} 
+                                            gap={1} 
+                                            um={'kg'} 
+                                        />
                                         {lifeSpanVisible 
                                             ?   <RangeSlider
-                                                    disable={isFetching}
-                                                    option={setLifeSpanVisible} 
+                                                    disable={postDogIsFetching}
+                                                    close={setLifeSpanVisible} 
                                                     key={'life_span'} 
                                                     input={input} 
                                                     setInput={setInput} 
@@ -149,12 +135,12 @@ const CreateDog = () => {
                                                 >Add life span</button>
                                         }
                                     </div>
-                                    <div className={`${styles.temperamentsWrapper} ${isFetching ? styles.fetchingData : ''} `}>
+                                    <div className={`${styles.temperamentsWrapper} ${postDogIsFetching ? styles.fetchingData : ''} `}>
                                         <TemperamentsSelect refSelect={refSelect} input={input} setInput={setInput} />
                                     </div>
                                 </div>    
-                                <button disabled={imgIsFetching} className={styles.submit} type="submit">
-                                    {isFetching ? <Spinner/> : 'Create'}
+                                <button ref={refSubmit} disabled={imgIsFetching} className={styles.submit} type="submit">
+                                    {postDogIsFetching ? <Spinner/> : 'Create'}
                                 </button>
                         </div>                    
                     </form>

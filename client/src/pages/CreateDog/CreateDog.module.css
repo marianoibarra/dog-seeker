@@ -63,7 +63,8 @@
     top: 50vh;
     transform: translate(-50%, -50%);
     transform-origin: 0 0;
-    animation: moveIn 300ms ease-in;
+    animation: moveIn 200ms ease-in;
+    z-index: 300;
 }
 
 .formContainer {
@@ -73,7 +74,7 @@
     background-color: var(--color-grey2);
     transform-origin: center center;
     border-radius: 48px;
-    animation: scaleIn 300ms ease-in, colorIn 150ms linear;
+    animation: scaleIn 200ms ease-in, colorIn 150ms linear;
     overflow: hidden;
 }
 
@@ -81,7 +82,7 @@
     display: flex;
     width: 100%;
     height: 100%;
-    animation: formIn 300ms ease-in
+    animation: formIn 200ms ease-in
 }
 
 .name {
