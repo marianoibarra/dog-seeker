@@ -1,6 +1,6 @@
 .main {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -55,6 +55,7 @@
 .createWrapper {
     height: 75%;
     width: 90%;
+    min-height: 640px;
     margin: 0 auto;
     margin-top: calc(var(--navbarHeight) / 2);
     max-width: 1024px;
@@ -146,12 +147,12 @@
 
 .dataWrapper {
     width: 50%;
-    height: 100%;
-    margin: 0 auto;
+    height: 85%;
+    margin: auto;
     padding: 0 7.5%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 24px;
 }
@@ -161,9 +162,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 55%;
+    height: 80%;
     width: 100%;
     gap: 24px;
+    min-height: 380px;
+    overflow-y: auto;
 }
 
 .uploadImgWrapper {
@@ -291,10 +294,17 @@
 @media screen and (max-width: 940px) {
     .formContainer form {
         flex-direction: column;
+        justify-content: space-between; 
+        padding-bottom: 3%;
+    }
+
+    .createWrapper {
+        height: 88%;
+        width: 95%;
     }
 
     .uploadImgWrapper {
-        height: 35%;
+        height: 40%;
         width: 100%;
     }
     
