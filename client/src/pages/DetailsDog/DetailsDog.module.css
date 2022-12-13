@@ -1,6 +1,6 @@
 .main {
     width: 100vw;
-    height: calc(100vh - var(--navbarHeight));
+    height: 100dvh;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -231,13 +231,14 @@
     }
 
     .detailsWrapper {
-        margin-top: calc(var(--navbarHeight) / 2);
-        height: 90%;
+        /* margin-top: calc(var(--navbarHeight) / 2); */
+        height: 88%;
         width: 95%;
     }
 
     .detailsBody {
         flex-direction: column;
+        border-radius: 16px;
     }
 
     .dataWrapper {
