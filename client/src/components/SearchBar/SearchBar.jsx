@@ -29,7 +29,7 @@ const SearchBar = ({searchOpen}) => {
     }
 
     useEffect(() => {
-        searchOpen && inputRef.current.focus()
+        searchOpen && !showSearchClear && inputRef.current.focus()
     })
 
     useEffect(() => {
@@ -57,10 +57,12 @@ const SearchBar = ({searchOpen}) => {
                 onFocus={() => setShowSearchClear(false)}
             />
             {   showSearchClear
-                    &&  <><button className={styles.searchButton} type="reset" onClick={handleClear}>
-                            <FontAwesomeIcon className={styles.searchIcon} icon={faXmark} fixedWidth />
-                        </button>
-                        <button hidden type='submit'></button></>
+                    &&  <>
+                            <button id="clearButton" className={styles.searchButton} type="reset" onClick={handleClear}>
+                                <FontAwesomeIcon className={styles.searchIcon} icon={faXmark} fixedWidth />
+                            </button>
+                            <button hidden type='submit'></button>
+                        </>
 
             }
         </form>

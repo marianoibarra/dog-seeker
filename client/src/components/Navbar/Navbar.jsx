@@ -5,13 +5,14 @@ import logoImg from '../../img/prueba logo.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "../../redux/actions";
 
 const Navbar = () => {
   
   let { pathname } = useLocation();
   const dispatch = useDispatch()
+  const filterBySearch = useSelector(state => state.filterBySearch)
 
   const positionHandle = (e) => {
     console.log(e.target.id)
@@ -72,10 +73,12 @@ const Navbar = () => {
               <Link id="createOnMobile" to="/create" onClick={positionHandle} className={`${styles.searchButton} ${searchOpen ? styles.hidden : styles.visible}`}>
                   <FontAwesomeIcon icon={faPlus} size='lg' />
               </Link>
-              <button onClick={() => setSearchOpen(!searchOpen)} style={searchOpen ? {right:'6px'} : {}} className={styles.searchButton}>
+              {
+                <button onClick={() => {setSearchOpen(!searchOpen); document.getElementById('clearButton').click() }} style={searchOpen ? {right:'6px'} : {}} className={styles.searchButton}>
                   <FontAwesomeIcon className={searchOpen ? styles.visible : styles.hidden} icon={faArrowLeft} size='xl' />
                   <FontAwesomeIcon className={searchOpen ? styles.hidden : styles.visible} icon={faMagnifyingGlass} size='lg' fixedWidth />
-              </button>
+                </button>
+              }
             </div>
             <div className={searchOpen ? styles.searchbarOpen : styles.searchbarClose}>
               <SearchBar searchOpen={searchOpen} />

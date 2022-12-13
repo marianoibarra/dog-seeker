@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from './DogCard.module.css'
@@ -15,6 +15,7 @@ const DogCard = ({dog}) => {
         document.documentElement.style.setProperty('--pageY-details', `${e.pageY}px`)
     }
 
+    const imgRef = useRef()
     const [refresh, setRefresh] = useState(false)
     const location = useLocation()
     const [backFromRoutes, setBackFromRoutes] = useState(location.state && location.state.backFromRoutes === true ? true : false)
@@ -31,9 +32,10 @@ const DogCard = ({dog}) => {
         }
     }, [dog])
 
-    const hiddenImgOnError = (e) => {
-        e.target.onerror = null;
-        e.target.style.display = 'none';
+    const hiddenImgOnError = () => {
+        imgRef.current.onerror = null;
+        imgRef.current.style.display = 'none'
+        console.log(imgRef.current)
     }
 
     return (
@@ -60,7 +62,7 @@ const DogCard = ({dog}) => {
             :   
                 <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
                     <header className={styles.cardHeader}>
-                        <img onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />
+                        <img ref={imgRef} onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />
                         <img className={styles.imagePlaceholder} src={placeholderOnError} />
                     </header>
                     <main className={styles.cardMain}>

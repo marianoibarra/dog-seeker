@@ -27,6 +27,9 @@ useEffect(() => {
 
     if(dogs.length > 0 && totalPages > 1) {
 
+        numbersRef.current[1].innerHTML = 2
+        numbersRef.current[5].innerHTML = 6
+
         if(totalPages > 7) {
             
             numbersRef.current.forEach(ref => {

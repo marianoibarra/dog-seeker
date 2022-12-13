@@ -47,6 +47,7 @@
 
 .notFoundWrapper {
     grid-column: 1 / 5;
+    align-self: center;
     justify-self: center;
     text-align: center;
     color: var(--color-secondary-text);
