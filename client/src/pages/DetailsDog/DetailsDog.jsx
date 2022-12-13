@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import getDogs_API from "../../services/get-Dogs"
 import styles from './DetailsDog.module.css'
+import placeholderOnError from '../../img/dog-breed-placeholder-details.png'
 
 const DetailsDog = () => {
 
@@ -17,13 +18,21 @@ useEffect(() => {
         .catch(e => console.log(e))
 }, [])
 
+const hiddenImgOnError = (e) => {
+    e.target.onerror = null;
+    e.target.style.display = 'none';
+    console.log(document.getElementById('imagePlaceholder'))
+    document.getElementById('imagePlaceholder').style.display= 'inline'
+}
+
     return (
         details 
         ?   (
             <main className={styles.main}>
                 <div className={styles.detailsWrapper}>
                     <div className={styles.detailsBody}>
-                        <img onClick={() => setFullsize(!fullsize)} className={fullsize ? styles.imageFullsize : styles.image} src={details.image} alt={details.name} />
+                        <img onError={hiddenImgOnError} onClick={() => setFullsize(!fullsize)} className={fullsize ? styles.imageFullsize : styles.image} src={details.image} alt={details.name} />
+                        <img id='imagePlaceholder' className={styles.imagePlaceholder} src={placeholderOnError} />
                         <div className={styles.dataWrapper}>
                             <h2 className={`${styles.dogName} ${fullsize ? styles.fullsize : ''}`}>{details.name}</h2>
                             <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Height: ${details.height} cm`}</div>

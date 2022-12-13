@@ -60,6 +60,7 @@
     object-fit: cover;
     cursor: pointer;
     transition: width 300ms ease-in-out;
+    background-color: #e6ddcf88
 }
 
 .imageFullsize {
@@ -116,7 +117,16 @@
     font-size: 0.9rem;
     font-weight: 500;
     outline: 0px solid #FFFA;
-    transition: outline 300ms ease-in-out, background-color 300ms ease-in-out, color 300ms ease-in-out
+    transition: outline 300ms ease-in-out, background-color 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.imagePlaceholder {
+    width: 50%;
+    height: 100%;
+    margin: auto 0;
+    object-fit: contain;
+    display: none;
+    background-color: #e6ddcf88
 }
 
 .tfullsize {
@@ -136,8 +146,7 @@
 .imageLoading {
     position: relative;
     overflow: hidden;       
-    background-color: var(--color-grey4);
-    opacity: .5;
+    background-color: #e6ddcf88;
     width: 50%;
     height: 100%;
 }

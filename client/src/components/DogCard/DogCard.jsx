@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from './DogCard.module.css'
+import placeholderOnError from '../../img/dog-breed-placeholder.png'
 
 
 const DogCard = ({dog}) => {
@@ -30,6 +31,11 @@ const DogCard = ({dog}) => {
         }
     }, [dog])
 
+    const hiddenImgOnError = (e) => {
+        e.target.onerror = null;
+        e.target.style.display = 'none';
+    }
+
     return (
         
         dogsIsFetching || refresh
@@ -54,7 +60,8 @@ const DogCard = ({dog}) => {
             :   
                 <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
                     <header className={styles.cardHeader}>
-                        <img className={styles.image} src={dog.image} alt={dog.name} />
+                        <img onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />
+                        <img className={styles.imagePlaceholder} src={placeholderOnError} />
                     </header>
                     <main className={styles.cardMain}>
                         <div className={styles.nameCont}>
