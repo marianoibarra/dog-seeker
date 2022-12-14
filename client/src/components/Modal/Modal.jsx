@@ -60,7 +60,7 @@ const Modal = ({reset, submit}) => {
                         </header>
                         <main className={styles.modalMain}>
                             <h2>Ooops!</h2>
-                            <p>Something went wrong. Dog was not created</p>
+                            <p>{modalDogCreatedFailed}</p>
                             <div className={styles.modalButtons}>
                                 <button type='button' className={styles.yellowButton} onClick={(e) => {submit.click(); dispatch(clearModal())}}>
                                 <FontAwesomeIcon icon={faRotateRight} size='sm' />

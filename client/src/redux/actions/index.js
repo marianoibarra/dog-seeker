@@ -96,6 +96,6 @@ export const postDog = (data) => {
         dispatch(fetchStart(POST_DOG_START))
         postDog_API(data)
             .then(res => dispatch(fetchSuccess(POST_DOG_SUCCESS, res.data)))
-            .catch(e => dispatch(fetchFailed(POST_DOG_FAILED, e)))
+            .catch(e => dispatch(fetchFailed(POST_DOG_FAILED, e.response.data)))
     }
 }

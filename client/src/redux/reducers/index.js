@@ -106,12 +106,11 @@ export default function reducer(state = initialState, action) {
             }
         }
         case POST_DOG_FAILED: {
-            console.log(action.error)
             return {
                 ...state,
                 postDogError: true,
                 postDogIsFetching: false,
-                modalDogCreatedFailed: true
+                modalDogCreatedFailed: action.error
             }
         }
         case SET_PAGE: {

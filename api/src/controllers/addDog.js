@@ -51,11 +51,12 @@ const addDog = async (dog) => {
         return newDogFromDB
 
         } catch (error) {
-            throw new Error('Name already exist')
+            console.log(error)
+            throw new Error('Name already exist. Dog was not created')
         }
 
     } else {
-        throw new Error('Invalid values')
+        throw new Error('Invalid format values. Dog was not created')
     }
 }
 
