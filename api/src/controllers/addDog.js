@@ -24,14 +24,9 @@ const addDog = async (dog) => {
                 life_span,
                 image
             });
+
             await newDog.validate()
             await newDog.save()
-
-        } catch (error) {
-            throw new Error('Name already exist')
-        }
-
-        
 
         if(valTemperament) {
             for(let name of temperament) {
@@ -54,6 +49,11 @@ const addDog = async (dog) => {
         newDogFromDB.temperament = newDogFromDB.temperament.map(t => t.name)
 
         return newDogFromDB
+
+        } catch (error) {
+            throw new Error('Name already exist')
+        }
+
     } else {
         throw new Error('Invalid values')
     }
