@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react'
+import { useSelector } from 'react-redux';
 import styles from './UploadImage.module.css'
 
 function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
@@ -6,7 +7,7 @@ function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
     const [dragActive, setDragActive] = useState(false);
     const [preview, setPreview] = useState(undefined)
     const refInputImg = useRef()
-
+    const postDogIsFetching = useSelector(state => state.postDogIsFetching)
     
     const handleDrag = (e) => {
         e.preventDefault();
@@ -54,10 +55,10 @@ function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
 
 
   return (
-    <div onDragEnter={handleDrag} className={dragActive ? styles.imageWrapperOnDrag : styles.imageWrapper}>
+    <div onDragEnter={handleDrag} className={styles.imageWrapper}>
         {
             !preview
-                ?   <div className={styles.imgUpload}>
+                ?   <div className={`${styles.imgUpload} ${postDogIsFetching ? styles.fetching : ''}`}>
                         <input
                             hidden
                             id="imgInput"
@@ -66,32 +67,30 @@ function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
                             ref={refInputImg}
                             onChange={(e) => handleFiles(e.target.files[0])}
                         />
-                        <label htmlFor="imgInput">
-                            {
-                                !dragActive
-                                    ?   <div className={styles.labelImg}>
-                                            <p>Drag and drop a photo here</p>
-                                            <p>or</p>
-                                            <button
-                                                type='button'
-                                                className={styles.uploadButton}
-                                                onClick={() => refInputImg.current.click()}
-                                            >
-                                                Upload a photo
-                                            </button>
-                                        </div>
-                                    :   <div className={styles.dropHere}>
-                                            Drop your photo here
-                                        </div>
+                        <label className={styles.imgDropArea} htmlFor="imgInput">
+                            {!dragActive
+                                ?   <div className={styles.defaultDropArea}>
+                                        <p>Drag and drop a photo here</p>
+                                        <p>or</p>
+                                        <button
+                                            type='button'
+                                            className={styles.uploadButton}
+                                            onClick={() => refInputImg.current.click()}
+                                        >
+                                            Upload a photo
+                                        </button>
+                                    </div>
+                                :   <div className={styles.onDragDropArea}>
+                                        Drop your photo here
+                                    </div>
                             }
-                            
-                            </label>
+                        </label>
                     </div>
                 :   imgIsFetching 
                         ?   <div style={{backgroundImage: `url(${preview})`}} className={styles.imgFetchingWrapper}>
                                 <div className={styles.uploadMsg}>Uploading photo..</div>
                             </div>
-                        : <img className={styles.imgPreview} src={preview} />
+                        :   <img className={styles.imgPreview} src={preview} />
         }
         { dragActive && <div className={styles.dragImgElement} onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
     </div>

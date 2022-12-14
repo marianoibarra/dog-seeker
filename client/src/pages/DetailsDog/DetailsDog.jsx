@@ -39,7 +39,7 @@ const hiddenImgOnError = (e) => {
                             <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Weight: ${details.weight} kg`}</div>
                             <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Life span: ${details.life_span}`}</div>
                             <div className={styles.temperamentsWrapper}>
-                                {details.temperament.map(temperament => (<div className={`${styles.temperament} ${fullsize ? styles.tfullsize : ''}`}>{temperament}</div>))}
+                                {details.temperament && details.temperament.map(temperament => (<div className={`${styles.temperament} ${fullsize ? styles.tfullsize : ''}`}>{temperament}</div>))}
                             </div>
                         </div>
                     </div>

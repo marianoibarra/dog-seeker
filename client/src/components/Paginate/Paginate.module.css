@@ -1,5 +1,4 @@
 .list {
-    background-color: var(--color-grey3);
     width: fit-content;
     padding: 6px 14px;
     border-radius: 24px;
@@ -11,6 +10,8 @@
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+    background-color: #f3ece6aa;
+    backdrop-filter: blur(16px);
 }
 
 .list li {
@@ -80,6 +81,16 @@
     .list {
         transform: scale(85%);
         gap: 3px;
+    }
+
+    .number:hover, .navbtn:hover {
+        background-color: transparent;
+    }
+
+    .number:active, .navbtn:active {
+        background-color: var(--color-yellow-hover);
+        transform: scale(95%);
+        filter: brightness(95%);    
     }
     
 }

@@ -1,10 +1,9 @@
-.navBox {
+.navBox, .navBoxCreate {
     width: 100vw;
     height: var(--navbarHeight);
     position: fixed;
     top: 0;
     z-index: 200;
-    box-shadow: 2px 2px 20px #0000000d;
     background-color: var(--color-background);
 }
 
@@ -100,6 +99,10 @@
 
 @media screen and (max-width: 768px) {
 
+    .navBox {
+        box-shadow: 2px 2px 20px #0000000d;
+    }
+
     .searchbarClose {
         display: none;
     }
@@ -148,3 +151,9 @@
     
 }
 
+@media screen and (max-width:600px) {
+    .navBoxCreate {
+        background-color: transparent;
+        box-shadow: none;
+    }
+}

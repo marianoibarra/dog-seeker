@@ -1,34 +1,52 @@
 @keyframes colorIn {
     from {
-        background-color: var(--color-green);
+        background-color: transparent
     } to {
         background-color: var(--color-grey4);
     }
 }
 
 .imageWrapper {
-    background-color: var(--color-grey4);
     position: relative;
     width: 100%;
     height: 100%;
-    transition: filter .3s ease-in-out, border .3s ease-in-out;
-    border: 2px dashed transparent;
     border-radius: 48px 0 0 48px;
     overflow: hidden;
     animation: colorIn 150ms linear;
 }
 
-.imageWrapperOnDrag {
-    background-color: var(--color-grey4);
-    filter: brightness(105%);
-    position: relative;
+.imgDropArea {
     width: 100%;
     height: 100%;
+}
+
+.defaultDropArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 12px;
+    font-size: 0.95rem;
+    background-color: var(--color-grey4);
+    transition: filter .3s ease-in-out, border .3s ease-in-out;
+    border: 2px dashed transparent;
+    border-radius: 48px 0 0 48px;
+}
+
+.onDragDropArea {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-grey4);
+    filter: brightness(105%);
     transition: filter .2s ease-in-out, border .2s ease-in-out;
     border: 2px dashed #0003;
     border-radius: 48px 0 0 48px;
 }
-
 
 .imgUpload {
     display: flex;
@@ -64,14 +82,6 @@
     transition: filter .1s ease-in-out;
 }
 
-.labelImg {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.95rem;
-}
-
 .dragImgElement {
     position: absolute;
     width: 100%;
@@ -88,6 +98,12 @@
     height: 100%;
     object-fit: cover;
     animation: previewIn .3s ease-in-out;
+}
+
+.fetching {
+    pointer-events: none !important;
+    cursor: default !important;
+    opacity: .6;
 }
 
 @keyframes previewIn {
@@ -133,11 +149,6 @@
     .imageWrapper {
         border-radius: 48px 48px 0 0;
     }
-    
-    .imageWrapperOnDrag {
-
-        border-radius: 48px 48px 0 0;
-    }
 }
 
 @media screen and (max-width: 600px) {
@@ -149,15 +160,8 @@
         margin: 18px auto;
         flex-grow: 1;
     }
-    
-    .imageWrapperOnDrag {
-        border-radius: 50%;
-        width: 70vw;
-        height: 70vw;
-        margin: auto;
-    }
 
-    .labelImg p {
+    .defaultDropArea p {
         display: none;
     }
 

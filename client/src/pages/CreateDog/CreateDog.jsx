@@ -65,7 +65,7 @@ const CreateDog = () => {
 
     return (
         <main className={styles.main}>
-            <div className={`${styles.createWrapper} ${postDogIsFetching ? styles.fetching : ''}`}>
+            <div className={`${styles.createWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetching : ''}`}>
                 <div className={styles.formContainer}>
                     <Modal reset={resetForm} submit={refSubmit.current} />
                     <form onSubmit={handleSubmit} action={`${BE_LINK}/dogs`} method="post">
@@ -80,7 +80,7 @@ const CreateDog = () => {
                         <div className={styles.dataWrapper}>
                                 <input
                                     id='name'
-                                    className={`${styles.name} ${postDogIsFetching ? styles.fetchingData : ''} `}
+                                    className={`${styles.name} ${postDogIsFetching || imgIsFetching ? styles.fetchingData : ''} `}
                                     type="text"
                                     name="name"
                                     value={input.name}
@@ -89,7 +89,7 @@ const CreateDog = () => {
                                     onChange={handleInputChange}
                                 />
                                 
-                                <div className={`${styles.statsWrapper} ${postDogIsFetching ? styles.fetchingData : ''} `}>
+                                <div className={`${styles.statsWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetchingData : ''} `}>
                                     <div className={styles.rangeWrapper}>
                                         <RangeSlider 
                                             key={'height'} 
@@ -115,7 +115,7 @@ const CreateDog = () => {
                                         />
                                         {lifeSpanVisible 
                                             ?   <RangeSlider
-                                                    disable={postDogIsFetching}
+                                                    disable={postDogIsFetching || imgIsFetching}
                                                     close={setLifeSpanVisible} 
                                                     key={'life_span'} 
                                                     input={input} 
@@ -128,6 +128,7 @@ const CreateDog = () => {
                                                     um={'years'} 
                                                 />
                                             :   <button 
+                                                    disabled={postDogIsFetching || imgIsFetching}
                                                     className={styles.addLifespanBtn} 
                                                     type='button' 
                                                     onClick={() => setLifeSpanVisible(true)} 

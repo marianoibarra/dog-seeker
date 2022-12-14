@@ -9,6 +9,7 @@ import { dogsPerPage } from '../../redux/constants/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartBroken } from "@fortawesome/free-solid-svg-icons"
 import { useLocation } from "react-router-dom"
+import { useRef } from "react"
 
 const Homepage = () => {
 
@@ -18,6 +19,7 @@ const Homepage = () => {
     const page = useSelector(state => state.page)
     const location = useLocation()
     const backFromRoutes = location.state && location.state.backFromRoutes === true ? true : false
+    const refCardsContainer = useRef()
  
     useEffect(() => {
         if(dogs.length === 0) {
@@ -30,13 +32,20 @@ const Homepage = () => {
         dispatch(setTotalPages())
     }, [dogs])
 
+    useEffect(() => {
+        refCardsContainer.current.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+    }, [page])
+
 
     return (
         <main className={styles.main}>
             <section className={styles.filters}>
                 <OrderAndFilter />
             </section>
-            <section className={styles.cardsContainer}>
+            <section ref={refCardsContainer} className={styles.cardsContainer}>
                 {!dogsIsFetching
                     ?   dogs.length > 0
                             ?   dogs.slice(dogsPerPage * (page - 1), dogsPerPage * page)

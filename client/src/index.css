@@ -27,14 +27,6 @@
     }
   }
 
-input,
-textarea,
-button,
-select,
-a {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
 a {
     margin:0;
     padding:0;
@@ -52,6 +44,7 @@ a {
     scrollbar-width: thin;
     scrollbar-color: #01579b #f5f5f5;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {

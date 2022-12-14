@@ -31,7 +31,7 @@ const Navbar = () => {
     case "create": {
       return (
         <>
-          <div className={styles.navBox}>
+          <div className={styles.navBoxCreate}>
             <nav className={styles.nav}>
               <Link to={'/home'} state={{backFromRoutes: true}} style={{right:'6px'}} className={`${styles.searchButton} ${styles.visible}`}>
                   <FontAwesomeIcon icon={faArrowLeft} size='lg' />
