@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4
     },
     name: {
-      type: DataTypes.CITEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
