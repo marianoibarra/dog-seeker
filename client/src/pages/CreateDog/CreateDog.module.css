@@ -461,8 +461,9 @@
         flex-shrink: 20;
     }
 
-    .rangeWrapper {
-        flex-shrink: 20;
+    .uploadImgWrapper {
+        border-radius: 0;
+        margin-bottom: 16px;
     }
 
 }

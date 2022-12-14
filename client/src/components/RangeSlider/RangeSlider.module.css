@@ -108,3 +108,14 @@ input[type="range"]::-webkit-slider-thumb:active {
     font-weight: 500;
     border-radius: 6px;
 }
+
+.noSet {
+    font-size: .75rem;
+}
+
+.noSetRed {
+    font-size: .75rem;
+    background-color: var(--color-clay);
+    opacity: .9;
+    color: white;
+}

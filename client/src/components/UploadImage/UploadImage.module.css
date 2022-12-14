@@ -168,23 +168,34 @@
 }
 
 @media screen and (max-width: 940px) {
-    .imageWrapper {
+    .imageWrapper, .defaultDropArea {
         border-radius: 48px 48px 0 0;
     }
+
+    .statsWrapper {
+        min-height: auto;
+    }
+
 }
 
 @media screen and (max-width: 600px) {
 
     .imageWrapper {
-        border-radius: 50%;
-        width: 50vw;
+        width: 100vw;
         height: 50vw;
         margin: 18px auto;
         flex-grow: 1;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .defaultDropArea {
+        border-radius: 0;
     }
 
     .defaultDropArea p {
         display: none;
+       
     }
 
     .uploadButton {
@@ -194,6 +205,11 @@
         padding: 12px;
         background-color: transparent;
         font-size: 1.2rem;
+    }
+
+    .deleteImg {
+        bottom: 12px;
+        top: unset
     }
 
 

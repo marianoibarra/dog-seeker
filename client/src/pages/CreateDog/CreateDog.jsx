@@ -78,6 +78,7 @@ const CreateDog = () => {
     const resetForm = () => {
         setInput(initialValues)
         setLifeSpanVisible(false)
+        setShowNameErr(false)
     }
 
 
