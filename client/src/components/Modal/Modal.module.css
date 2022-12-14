@@ -99,6 +99,7 @@
     color: white;
     border-radius: 21px;
     font-weight: 500;
+    padding: 0 24px;
 }
 
 .accentButton {
@@ -109,6 +110,7 @@
     gap: 8px;
     background-color: var(--color-yellow);
     color: var(--color-primary-text);
+    width: auto;
 }
 
 .secondaryButton {

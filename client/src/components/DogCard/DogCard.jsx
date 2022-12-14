@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from './DogCard.module.css'
 import placeholderOnError from '../../img/dog-breed-placeholder.png'
+import DocumentTitle from 'react-document-title'
 
 
 const DogCard = ({dog}) => {
@@ -58,8 +59,7 @@ const DogCard = ({dog}) => {
                         </div>
                     </main>
                 </div>
-            :   
-                <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
+            :   <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
                     <header className={styles.cardHeader}>
                         <img ref={imgRef} onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />
                         <img className={styles.imagePlaceholder} src={placeholderOnError} />

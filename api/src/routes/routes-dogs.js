@@ -30,8 +30,6 @@ router.post('/', (req, res) => {
         addDog(dog)
             .then(r => res.json(r))
             .catch(e => res.status(501).send(e.message))
-
-
 })
 
 module.exports = router;
