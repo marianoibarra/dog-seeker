@@ -26,11 +26,13 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    const dog = req.body
-    addDog(dog)
-        .then(r => res.json(r))
-        .catch (error => res.status(501).send(error.message))
-
+    try {
+        const dog = req.body
+        addDog(dog).then(r => res.json(r))
+    } catch (e) {
+        res.status(501).send(e.message)
+    }
+    
 })
 
 module.exports = router;
