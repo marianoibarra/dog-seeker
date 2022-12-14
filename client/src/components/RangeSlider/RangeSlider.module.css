@@ -108,7 +108,3 @@ input[type="range"]::-webkit-slider-thumb:active {
     font-weight: 500;
     border-radius: 6px;
 }
-
-.noset {
-    font-size: 0.75rem !important;
-}

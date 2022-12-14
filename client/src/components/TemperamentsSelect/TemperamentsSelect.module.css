@@ -116,7 +116,6 @@
     outline: none;
     background: none;
     border: none;
-
 }
 
 .nothing {
@@ -128,6 +127,7 @@
 }
 
 .filterTitle div {
+    display: inline;
     font-family: sans-serif;
     background-color: var(--color-secondary-text);
     width: 16px;

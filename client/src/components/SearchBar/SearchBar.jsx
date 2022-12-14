@@ -1,7 +1,7 @@
 import styles from './SearchBar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMagnifyingGlass, faXmark} from "@fortawesome/free-solid-svg-icons"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { filterDogs } from '../../redux/actions'
 import { useEffect } from 'react'
@@ -10,10 +10,11 @@ import { useRef } from 'react'
 
 const SearchBar = ({searchOpen}) => {
 
-    const [input, setInput] = useState('')
+    const filterBySearch = useSelector(state => state.filterBySearch)
+    const [input, setInput] = useState(filterBySearch)
+    const [showSearchClear, setShowSearchClear] = useState(filterBySearch === '' ? false : true)
     const inputRef = useRef()
     const dispatch = useDispatch()
-    const [showSearchClear, setShowSearchClear] = useState(false)
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -31,10 +32,6 @@ const SearchBar = ({searchOpen}) => {
     useEffect(() => {
         searchOpen && !showSearchClear && inputRef.current.focus()
     })
-
-    useEffect(() => {
-        console.log(showSearchClear)
-    }, [showSearchClear])
 
     return (
         <form className={styles.searchBar} onSubmit={handleSearch}>

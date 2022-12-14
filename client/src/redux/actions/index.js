@@ -25,7 +25,6 @@ const fetchStart = (type) => {
 }
 
 const fetchSuccess = (type, payload) => {
-    console.log(type, payload)
     return {
         type,
         payload

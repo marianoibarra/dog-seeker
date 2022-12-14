@@ -12,10 +12,8 @@ const Navbar = () => {
   
   let { pathname } = useLocation();
   const dispatch = useDispatch()
-  const filterBySearch = useSelector(state => state.filterBySearch)
 
   const positionHandle = (e) => {
-    console.log(e.target.id)
     if(e.target.id === 'createOnMobile') {
       document.documentElement.style.setProperty('--pageX-details', `50vw`)
       document.documentElement.style.setProperty('--pageY-details', `50vh`)
@@ -65,7 +63,7 @@ const Navbar = () => {
       return (
         <><div className={styles.navBox}>
           <nav className={styles.nav}>
-            <div onClick={() => dispatch(setPage(1))} className={searchOpen ? styles.hidden : styles.logo}>
+            <div onClick={() => dispatch(setPage(1))} className={`${styles.logo} ${searchOpen ? styles.hidden : ''}`}>
               <img src={logoImg} />
               <span>PI-Dogs</span>
             </div>

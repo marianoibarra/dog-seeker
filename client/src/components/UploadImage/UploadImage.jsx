@@ -1,3 +1,5 @@
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, {useState, useRef, useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import styles from './UploadImage.module.css'
@@ -5,7 +7,7 @@ import styles from './UploadImage.module.css'
 function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
 
     const [dragActive, setDragActive] = useState(false);
-    const [preview, setPreview] = useState(undefined)
+    const [preview, setPreview] = useState(false)
     const refInputImg = useRef()
     const postDogIsFetching = useSelector(state => state.postDogIsFetching)
     
@@ -27,6 +29,14 @@ function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
             handleFiles(e.dataTransfer.files[0]);
         }
       };
+
+    const handleDelete = () => {
+        setInput({
+            ...input,
+            image: ''
+        })
+        setPreview(false)
+    }
 
     const handleFiles = (file) => {
         var reader = new FileReader()
@@ -90,7 +100,13 @@ function UploadImage({setImgIsFetching, imgIsFetching, input, setInput}) {
                         ?   <div style={{backgroundImage: `url(${preview})`}} className={styles.imgFetchingWrapper}>
                                 <div className={styles.uploadMsg}>Uploading photo..</div>
                             </div>
-                        :   <img className={styles.imgPreview} src={preview} />
+                        :   <div className={styles.imgPreviewWrappper}>
+                                <button type='button' className={styles.deleteImg} onClick={handleDelete} >
+                                    <FontAwesomeIcon icon={faXmark} size='xl' />
+                                </button>
+                                <img className={styles.imgPreview} src={preview} />
+                            </div>
+                        
         }
         { dragActive && <div className={styles.dragImgElement} onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
     </div>

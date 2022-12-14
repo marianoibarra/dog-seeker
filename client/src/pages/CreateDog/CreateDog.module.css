@@ -99,7 +99,6 @@
     font-weight: 700;
     font-size: 2.7rem;
     text-align: left;
-    margin-bottom: 10px;
 }
 
 .name::placeholder {
@@ -191,6 +190,15 @@
 .fetching {
     pointer-events: none !important;
     cursor: default !important;
+}
+
+.errMsg {
+    color: var(--color-clay);
+    width: 100%;
+    text-align: left;
+    font-size: .75rem;
+    font-weight: 600;
+    margin-top: 4px;
 }
 
 .submit {

@@ -27,11 +27,32 @@ const CreateDog = () => {
     }
     
     const [input, setInput] = useState(initialValues)
+    const [errors, setErrors] = useState({})
+    const [showNameErr, setShowNameErr] = useState(false)
     const [imgIsFetching, setImgIsFetching] = useState(false)
     const [lifeSpanVisible, setLifeSpanVisible] = useState(false)
 
     const refSelect = useRef()
     const refSubmit = useRef()
+
+    const validate = (input) => {
+        let errors = {}
+        const regex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gim
+
+        if(input.name.length === 0) {
+            errors.name = 'Name is required'
+        } else if(input.name.length < 3) {
+            errors.name = 'Name must have at least 3 characters'
+        } else if(!regex.test(input.name)) {
+            errors.name = 'That name is invalid'
+        }
+
+        if(input.height === undefined) errors.height = 'Height is required'
+
+        if(input.weight === undefined) errors.weight = 'Weight is required'
+        
+        return errors
+    }
 
     useEffect(() => {
         temperaments.length === 0 && dispatch(getTemperaments())
@@ -49,6 +70,10 @@ const CreateDog = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    useEffect(() => {
+        setErrors(validate(input))
+    }, [input])
     
     const resetForm = () => {
         setInput(initialValues)
@@ -78,6 +103,7 @@ const CreateDog = () => {
                         />
                         </div>
                         <div className={styles.dataWrapper}>
+                            <div>
                                 <input
                                     id='name'
                                     className={`${styles.name} ${postDogIsFetching || imgIsFetching ? styles.fetchingData : ''} `}
@@ -87,61 +113,63 @@ const CreateDog = () => {
                                     placeholder='Name...'
                                     autoComplete='none'
                                     onChange={handleInputChange}
+                                    onBlur={() => setShowNameErr(true)}
                                 />
-                                
-                                <div className={`${styles.statsWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetchingData : ''} `}>
-                                    <div className={styles.rangeWrapper}>
-                                        <RangeSlider 
-                                            key={'height'} 
-                                            input={input} 
-                                            setInput={setInput} 
-                                            name={'height'} 
-                                            label={'Height'} 
-                                            min={1} 
-                                            max={100} 
-                                            gap={1} 
-                                            um={'cm'} 
-                                        />
-                                            <RangeSlider  
-                                            key={'weight'} 
-                                            input={input} 
-                                            setInput={setInput} 
-                                            name={'weight'} 
-                                            label={'Weight'} 
-                                            min={1} 
-                                            max={100} 
-                                            gap={1} 
-                                            um={'kg'} 
-                                        />
-                                        {lifeSpanVisible 
-                                            ?   <RangeSlider
-                                                    disable={postDogIsFetching || imgIsFetching}
-                                                    close={setLifeSpanVisible} 
-                                                    key={'life_span'} 
-                                                    input={input} 
-                                                    setInput={setInput} 
-                                                    name={'life_span'} 
-                                                    label={'Life span'} 
-                                                    min={1} 
-                                                    max={30} 
-                                                    gap={1} 
-                                                    um={'years'} 
-                                                />
-                                            :   <button 
-                                                    disabled={postDogIsFetching || imgIsFetching}
-                                                    className={styles.addLifespanBtn} 
-                                                    type='button' 
-                                                    onClick={() => setLifeSpanVisible(true)} 
-                                                >Add life span</button>
-                                        }
-                                    </div>
-                                    <div className={`${styles.temperamentsWrapper} ${postDogIsFetching ? styles.fetchingData : ''} `}>
-                                        <TemperamentsSelect refSelect={refSelect} input={input} setInput={setInput} />
-                                    </div>
-                                </div>    
-                                <button ref={refSubmit} disabled={imgIsFetching} className={styles.submit} type="submit">
-                                    {postDogIsFetching ? <Spinner/> : 'Create'}
-                                </button>
+                                <p className={styles.errMsg}>{errors.name && showNameErr ? errors.name : '\u00A0'}</p>
+                            </div>
+                            <div className={`${styles.statsWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetchingData : ''} `}>
+                                <div className={styles.rangeWrapper}>
+                                    <RangeSlider 
+                                        key={'height'} 
+                                        input={input} 
+                                        setInput={setInput} 
+                                        name={'height'} 
+                                        label={'Height'} 
+                                        min={1} 
+                                        max={100} 
+                                        gap={1} 
+                                        um={'cm'} 
+                                    />
+                                        <RangeSlider  
+                                        key={'weight'} 
+                                        input={input} 
+                                        setInput={setInput} 
+                                        name={'weight'} 
+                                        label={'Weight'} 
+                                        min={1} 
+                                        max={100} 
+                                        gap={1} 
+                                        um={'kg'} 
+                                    />
+                                    {lifeSpanVisible 
+                                        ?   <RangeSlider
+                                                disable={postDogIsFetching || imgIsFetching}
+                                                close={setLifeSpanVisible} 
+                                                key={'life_span'} 
+                                                input={input} 
+                                                setInput={setInput} 
+                                                name={'life_span'} 
+                                                label={'Life span'} 
+                                                min={1} 
+                                                max={30} 
+                                                gap={1} 
+                                                um={'years'} 
+                                            />
+                                        :   <button 
+                                                disabled={postDogIsFetching || imgIsFetching}
+                                                className={styles.addLifespanBtn} 
+                                                type='button' 
+                                                onClick={() => setLifeSpanVisible(true)} 
+                                            >Add life span</button>
+                                    }
+                                </div>
+                                <div className={`${styles.temperamentsWrapper} ${postDogIsFetching ? styles.fetchingData : ''} `}>
+                                    <TemperamentsSelect refSelect={refSelect} input={input} setInput={setInput} />
+                                </div>
+                            </div>    
+                            <button ref={refSubmit} disabled={imgIsFetching || Object.keys(errors).length > 0} className={styles.submit} type="submit">
+                                {postDogIsFetching ? <Spinner/> : 'Create'}
+                            </button>
                         </div>                    
                     </form>
                 </div>

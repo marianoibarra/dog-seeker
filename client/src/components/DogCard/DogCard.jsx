@@ -35,7 +35,6 @@ const DogCard = ({dog}) => {
     const hiddenImgOnError = () => {
         imgRef.current.onerror = null;
         imgRef.current.style.display = 'none'
-        console.log(imgRef.current)
     }
 
     return (

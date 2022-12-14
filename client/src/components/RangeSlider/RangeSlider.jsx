@@ -72,7 +72,7 @@ function RangeSlider({min, max, gap, label, um, setInput, input, name, close}) {
         </label>
           {lastHandle
             ?   <div className={styles.values}>{`${rangeMin} - ${rangeMax} ${um}`}</div>
-            :   <div className={`${styles.values} ${styles.noset}` }>NO SET</div>
+            :   <div className={`${styles.values} ${close ? styles.noSet : styles.noSetRed}` }>NO SET</div>
           }
         
       </div>

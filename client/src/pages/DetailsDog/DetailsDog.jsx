@@ -21,7 +21,6 @@ useEffect(() => {
 const hiddenImgOnError = (e) => {
     e.target.onerror = null;
     e.target.style.display = 'none';
-    console.log(document.getElementById('imagePlaceholder'))
     document.getElementById('imagePlaceholder').style.display= 'inline'
 }
 

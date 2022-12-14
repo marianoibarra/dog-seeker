@@ -15,7 +15,7 @@ import {
     SET_PAGE,
     SET_TOTAL_PAGE,
     dogsPerPage,
-    CLEAR_MODAL
+    CLEAR_MODAL,
  } from "../constants";
 
 const initialState = {
@@ -99,8 +99,8 @@ export default function reducer(state = initialState, action) {
         case POST_DOG_SUCCESS: {
             return {
                 ...state,
-                dogs: [...state.dogs, action.payload].sort(state.order.sort),
-                dogsToDisplay: [...state.dogsToDisplay, action.payload].sort(state.order.sort),
+                dogs: state.dogs.length > 0 ? [...state.dogs, action.payload].sort(state.order.sort) : [...state.dogs],
+                dogsToDisplay: state.dogs.length > 0 ? [...state.dogsToDisplay, action.payload].sort(state.order.sort) : [...state.dogsToDisplay],
                 postDogIsFetching: false,
                 modalDogCreatedSuccess: true
             }
@@ -133,7 +133,7 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 dogsToDisplay: state.dogsToDisplay.slice().sort(action.payload.sort),
-                dogs: state.dogsToDisplay.slice().sort(action.payload.sort),
+                dogs: state.dogs.slice().sort(action.payload.sort),
                 order: orderOp[action.payload.id]
             }
         }

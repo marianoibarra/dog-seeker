@@ -44,6 +44,18 @@
     gap: 9px;
 }
 
+.clear {
+    position: absolute;
+    left: calc(50vw + 140px);
+    margin-left: 18px;
+    font-size: .75rem;
+    line-height: 100%;
+    font-weight: 700;
+    color: var(--color-secondary-text);
+    cursor: pointer;
+    padding: 6px;
+}
+
 .orderName {
     margin-left: 8px;
 }
