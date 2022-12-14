@@ -15,15 +15,23 @@ const addDog = async (dog) => {
 
         await getTemperaments()
 
-        const newDog = await Dog.build({ 
-            name,
-            height,
-            weight,
-            life_span,
-            image
-        });
-        await newDog.validate()
-        await newDog.save()
+        try {
+
+            const newDog = await Dog.build({ 
+                name,
+                height,
+                weight,
+                life_span,
+                image
+            });
+            await newDog.validate()
+            await newDog.save()
+
+        } catch (error) {
+            throw new Error('Name already exist')
+        }
+
+        
 
         if(valTemperament) {
             for(let name of temperament) {
