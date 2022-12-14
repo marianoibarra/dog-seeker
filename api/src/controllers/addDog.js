@@ -15,13 +15,15 @@ const addDog = async (dog) => {
 
         await getTemperaments()
 
-        const newDog = await Dog.create({ 
+        const newDog = await Dog.build({ 
             name,
             height,
             weight,
             life_span,
             image
-        })
+        });
+        await newDog.validate()
+        await newDog.save()
 
         if(valTemperament) {
             for(let name of temperament) {
