@@ -11,22 +11,39 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.CITEXT,
       allowNull: false,
+      unique: true,
+      validate: {
+        is: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gim,
+        len: [3, 40]
+      },
     },
     height: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: /([0-9]{1,2}) - ([0-9]{1,2})/
+      }
     },
     weight: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: /([0-9]{1,2}) - ([0-9]{1,2})/
+      }
     },
     life_span: {
       type: DataTypes.STRING,
+      validate: {
+        is: /([0-9]{1,2}) - ([0-9]{1,2})/
+      }
     },
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true
+      }
     }
   }, {
     timestamps: false
