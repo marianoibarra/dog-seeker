@@ -86,6 +86,10 @@
     position: relative;
 }
 
+.innerBtn svg {
+    margin-left: 10px;
+}
+
 .linkBtn::before {
     content: '';
     width: 100%;
@@ -183,6 +187,10 @@
     opacity: .8;
 }
 
+.copy {
+    font-family: 'Nunito';
+}
+
 @media screen and (max-width: 1024px) {
     .grid {
         gap: 24px;
@@ -271,22 +279,30 @@
         grid-template-rows: repeat(4, 1fr);
         height: 90dvh;
         margin: 5dvh auto;
+        gap: 16px;
+        padding: 0 16px;
     }
 
     .leftLink {
+        width: 100%;
         justify-content: center;
         text-align: center;
     }
 
     .rightLink {
+        width: 100%;
         justify-content: center;
     }
-
 
     .cardLink {
         flex-direction: column;
         justify-content: center;
         gap: 40px;
+    }
+
+    .footprint {
+        left: -40%;
+        transform: translateY(10%) scale(50%);
     }
 
     .linkBtn::after {
@@ -296,9 +312,6 @@
     .cardFooter {
         flex-direction: column-reverse;
         justify-content: center;
-        gap: 32px;
-    }
-
-    
-    
+        gap: 28px;
+    }        
 }

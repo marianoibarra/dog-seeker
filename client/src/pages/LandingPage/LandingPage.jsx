@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import styles from './LandingPage.module.css'
 import footprint from '../../img/footprint.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope, faMailBulk } from "@fortawesome/free-solid-svg-icons"
+import { faEnvelope, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons"
 
 const LandingPage = () => {
@@ -38,7 +38,10 @@ const LandingPage = () => {
                     </div>
                     <div className={styles.rightLink}>
                         <Link className={styles.linkBtn} to='/home' >
-                            <div className={styles.innerBtn}>{'Check it out  >'}</div>
+                            <div className={styles.innerBtn}>
+                                Check it out
+                                <FontAwesomeIcon icon={faAngleRight} />
+                            </div>
                         </Link>
                     </div>
                 </div>
