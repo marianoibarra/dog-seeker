@@ -1,0 +1,238 @@
+/* .navLanding {
+    width: 100vw;
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.navLanding ul {
+    display: flex;
+    gap: 24px;
+}
+
+.mainLanding {
+    display: flex;
+    width: 100vw;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-bottom: 64px;
+    height: calc(100dvh - 64px);
+}
+
+.boxOne, .boxTwo {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.boxOne {
+    padding-left: 48px;
+    gap: 2%;
+
+}
+
+.boxOne h1 {
+    font-family: 'Nunito';
+    color: var(--color-primary-text);
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 1%;
+}
+
+.boxOne p {
+    color: var(--color-primary-text);
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+}
+
+.boxOne a {
+    font-weight: 600;
+} */
+
+.grid {
+    width: 100vw;
+    max-width: 1280px;
+    margin: 25dvh auto;
+    height: 50dvh;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 3fr 1fr;
+}
+
+.grid > div {
+    border-radius: 16px;
+}
+
+.cardWelcome {
+    grid-row: 1;
+    grid-column: 1 / 3;
+    background-color: var(--color-grey3);
+    padding: 5% 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10%;
+}
+
+.cardWelcome h4 {
+    font-size: 1.6rem;
+    line-height: 1.5rem;
+    font-weight: 800;
+}
+
+.cardWelcome p {
+    font-size: 1.05rem;
+    line-height: 1.7rem;
+    font-weight: 400;
+    text-align: left;
+}
+
+.cardLink {
+    grid-row: 1;
+    grid-column: 3 / 7;
+    background-color: var(--color-yellow);
+    opacity: .8;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.footprint {
+    position: absolute;
+    left: 18%;
+    opacity: .3;
+}
+
+.cardLink h1 {
+    font-family: 'Nunito';
+    font-size: 3.8rem;
+    line-height: 3.8rem;
+    margin: 0;
+    margin-bottom: 16px;
+    z-index: 2;
+}
+
+.cardLink p {
+    font-weight: 500;
+    font-size: 1.15rem;
+    font-family: 'Nunito';
+    z-index: 2;
+}  
+
+.linkBtn {
+    position: relative;
+    font-size: 1.25rem;
+    font-weight: 700;
+    z-index: 2;
+    padding: 24px 28px;
+}
+
+.innerBtn {
+    font-size: 1.25rem;
+    font-weight: 700;
+    z-index: 30;
+    position: relative;
+}
+
+.linkBtn::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: transform .3s ease-in-out;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px 0px #00000025;
+    position: absolute;
+    z-index: 1;
+}
+
+.linkBtn::after {
+    background: url(https://static.wikia.nocookie.net/1db78597-1212-4df6-94f7-0da287dc103e/) 50% no-repeat;
+    content: '';
+    background-size: contain;
+    height: 123px;
+    left: 42px;
+    position: absolute;
+    top: -75px;
+    transform: translateY(30%) scale(.4) rotate(-30deg);
+    transform-origin: bottom left;
+    transition: all .3s ease-in-out;
+    width: 108px;
+    z-index: 0;
+}
+
+.linkBtn:hover::after {
+    transform: translateY(0) scale(1) rotate(-4deg);
+    transform-origin: bottom left;
+    transition: all .3s ease-in-out
+}
+
+.linkBtn:hover::before {
+    transform: scale(108%);
+    transition: transform .3s ease-in-out;
+}
+
+.leftLink, .rightLink {
+    width: 50%;
+}
+
+.leftLink {
+    padding-left: 12%;
+    font-family: 'Nunito';
+}
+
+.rightLink {
+    display: flex;
+    justify-content: center;
+}
+
+.cardFooter {
+    grid-row: 2;
+    grid-column: 1 / 7;
+    background-color: var(--color-rose);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4%;
+}
+
+.cardFooter ul {
+    display: flex;
+    gap: 16px;
+}
+
+.cardFooter li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    background-color: var(--color-grey3);
+    border-radius: 12px;
+    opacity: .6;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.cardFooter li:hover {
+    opacity: .9;
+    transform: scale(103%);
+    transition: all .3s ease-in-out;
+}
+
+.cardFooter svg {
+    color: var(--color-primary-text);
+    opacity: .8;
+}

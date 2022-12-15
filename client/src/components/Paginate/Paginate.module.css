@@ -17,7 +17,6 @@
 .list li {
     font-size: 0.9rem;
     font-weight: 500;
-    list-style: none;
     text-align: center;
     cursor: pointer;
     width: 36px;
