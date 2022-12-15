@@ -1,71 +1,13 @@
-/* .navLanding {
-    width: 100vw;
-    max-width: 1280px;
-    margin: 0 auto;
-    height: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px;
-}
-
-.navLanding ul {
-    display: flex;
-    gap: 24px;
-}
-
-.mainLanding {
-    display: flex;
-    width: 100vw;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-bottom: 64px;
-    height: calc(100dvh - 64px);
-}
-
-.boxOne, .boxTwo {
-    display: flex;
-    width: 50%;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.boxOne {
-    padding-left: 48px;
-    gap: 2%;
-
-}
-
-.boxOne h1 {
-    font-family: 'Nunito';
-    color: var(--color-primary-text);
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin-bottom: 1%;
-}
-
-.boxOne p {
-    color: var(--color-primary-text);
-    font-size: 1.1rem;
-    line-height: 1.6rem;
-    font-weight: 500;
-}
-
-.boxOne a {
-    font-weight: 600;
-} */
-
 .grid {
     width: 100vw;
     max-width: 1280px;
-    margin: 25dvh auto;
-    height: 50dvh;
+    margin: 20dvh auto;
+    height: 60dvh;
     display: grid;
-    gap: 36px;
+    gap: 42px;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 3fr 1fr;
+    padding: 0 42px;
 }
 
 .grid > div {
@@ -156,6 +98,7 @@
     box-shadow: 0px 0px 16px 0px #00000025;
     position: absolute;
     z-index: 1;
+    
 }
 
 .linkBtn::after {
@@ -171,15 +114,18 @@
     transition: all .3s ease-in-out;
     width: 108px;
     z-index: 0;
+    opacity: 0;
 }
 
 .linkBtn:hover::after {
     transform: translateY(0) scale(1) rotate(-4deg);
     transform-origin: bottom left;
-    transition: all .3s ease-in-out
+    transition: all .3s ease-in-out;
+    opacity: 1;
 }
 
 .linkBtn:hover::before {
+    opacity: 1;
     transform: scale(108%);
     transition: transform .3s ease-in-out;
 }
@@ -235,4 +181,124 @@
 .cardFooter svg {
     color: var(--color-primary-text);
     opacity: .8;
+}
+
+@media screen and (max-width: 1024px) {
+    .grid {
+        gap: 24px;
+        padding: 0 24px;
+        height: 50dvh;
+        margin: 25dvh auto;
+    }
+
+    .footprint {
+        left: 5%;
+        transform: scale(80%);
+    }
+
+    .cardWelcome h4 {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+    }
+    
+    .cardWelcome p {
+        font-size: .85rem;
+        line-height: 1.4rem;
+    }
+
+    .cardLink h1 {
+        font-size: 3.25rem;
+    }
+
+    .cardLink p {
+        font-size: 1rem;
+    }
+
+    .linkBtn {
+        padding: 16px 24px;
+    }
+
+    .linkBtn::after {
+        transform: translateY(30%) scale(.2) rotate(-30deg);
+    }
+
+    .copy {
+        font-size: .9rem;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        height: 80dvh;
+        margin: 10dvh auto;
+    }
+
+    .cardWelcome {
+        grid-row: 1;
+        grid-column: 1;
+        padding: 0 8%;
+    }
+
+    .leftLink {
+        padding: 0;
+    }
+
+    .rightLink {
+        justify-content: flex-end;
+    }
+
+
+    .cardLink {
+        grid-row: 2 / 4;
+        grid-column: 1;
+        padding: 0 8%;
+    }
+    
+    .cardFooter {
+        grid-row: 4;
+        grid-column: 1;
+        padding: 0 8%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        height: 90dvh;
+        margin: 5dvh auto;
+    }
+
+    .leftLink {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .rightLink {
+        justify-content: center;
+    }
+
+
+    .cardLink {
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .linkBtn::after {
+        background:none;
+    }
+    
+    .cardFooter {
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: 32px;
+    }
+
+    
+    
 }
