@@ -2,6 +2,8 @@
 
 # 🐶 Dogs App
 
+<div align="justify">
+
 Project carried out as an individual evaluative instance in Soy Henry's fullstack web developer bootcamp.
 
 This SPA application allows you to search for dog breeds by using an external API. You can sort the breeds by alphabetical order or by weight, search by name, filter them according to their temperament or their origin of creation, that is, those obtained from the API or created through a controlled form that allows creating new breeds, which are stored in a database
@@ -12,6 +14,7 @@ The controlled form for the creation of new breeds has the possibility of upload
 
 The entire app has a fully responsive design
 
+</div>
 
 ### 💻 Used Techonologies
 
