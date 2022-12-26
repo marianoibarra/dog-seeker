@@ -16,7 +16,8 @@ import {
     SET_TOTAL_PAGE,
     dogsPerPage,
     CLEAR_MODAL,
-    IMG_LOADED
+    IMG_LOADED,
+    IMG_TO_LOAD
  } from "../constants";
 
 const initialState = {
@@ -38,7 +39,7 @@ const initialState = {
     page: 1,
     prevPage: 1,
     totalPages: 1,
-    imgsLoaded: 0    
+    imgsStack: 0    
 }
 
 export default function reducer(state = initialState, action) {
@@ -119,7 +120,7 @@ export default function reducer(state = initialState, action) {
         case SET_PAGE: {
             return {
                 ...state,
-                imgsLoaded: 0,
+                imgsStack: 0,
                 prevPage: state.page,
                 page: action.payload                
             }
@@ -137,6 +138,8 @@ export default function reducer(state = initialState, action) {
         case ORDER_DOGS: {
             return {
                 ...state,
+                prevPage: state.page,
+                imgsStack: 0,
                 dogsToDisplay: state.dogsToDisplay.slice().sort(action.payload.sort),
                 dogs: state.dogs.slice().sort(action.payload.sort),
                 order: orderOp[action.payload.id]
@@ -145,6 +148,8 @@ export default function reducer(state = initialState, action) {
         case FILTER_DOGS: {
             return {
                 ...state,
+                prevPage: state.page,
+                imgsStack: 0,
                 filterByTemperament: action.temperament,
                 filterByOrigin: action.origin,
                 filterBySearch: action.search,
@@ -169,10 +174,16 @@ export default function reducer(state = initialState, action) {
                 modalDogCreatedSuccess: false
             }
         }
+        case IMG_TO_LOAD: {
+            return {
+                ...state,
+                imgsStack: state.imgsStack + 1
+            }
+        }
         case IMG_LOADED: {
             return {
                 ...state,
-                imgsLoaded: state.imgsLoaded + 1
+                imgsStack: state.imgsStack -1
             }
         }
         default: return state

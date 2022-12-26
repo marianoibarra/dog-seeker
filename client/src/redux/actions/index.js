@@ -16,7 +16,8 @@ import {
     SET_PAGE,
     SET_TOTAL_PAGE,
     CLEAR_MODAL,
-    IMG_LOADED
+    IMG_LOADED,
+    IMG_TO_LOAD
  } from "../constants";
 
 const fetchStart = (type) => {
@@ -89,6 +90,12 @@ export const filterDogs = (temperament, origin, search) => {
 export const clearModal = () => {
     return {
         type: CLEAR_MODAL,
+    }
+}
+
+export const imgToLoad = () => {
+    return {
+        type: IMG_TO_LOAD,
     }
 }
 

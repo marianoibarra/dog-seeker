@@ -4,10 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import RangeSlider from '../../components/RangeSlider/RangeSlider'
 import TemperamentsSelect from '../../components/TemperamentsSelect/TemperamentsSelect'
 import UploadImage from '../../components/UploadImage/UploadImage'
-import { getTemperaments, postDog } from '../../redux/actions'
+import { getTemperaments, postDog, setPage } from '../../redux/actions'
 import DocumentTitle from 'react-document-title'
-
-
 import {BE_LINK} from '../../services/constants'
 import styles from './CreateDog.module.css'
 import Modal from '../../components/Modal/Modal'
@@ -16,6 +14,7 @@ const CreateDog = () => {
   
     const temperaments = useSelector(state => state.temperaments)
     const postDogIsFetching = useSelector(state => state.postDogIsFetching)
+    const page = useSelector(state => state.page)
     const dispatch = useDispatch()
 
     const initialValues = {
@@ -56,6 +55,7 @@ const CreateDog = () => {
     }
 
     useEffect(() => {
+        dispatch(setPage(page))
         temperaments.length === 0 && dispatch(getTemperaments())
     }, [])
 

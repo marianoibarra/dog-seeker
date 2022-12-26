@@ -1,9 +1,9 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, {useEffect, useRef, useState} from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './DogCard.module.css'
 import placeholderOnError from '../../img/dog-breed-placeholder.png'
-import { imgLoaded } from '../../redux/actions'
+import { imgLoaded, imgToLoad } from '../../redux/actions'
 
 const Placeholder = ({seed}) => {
 
@@ -30,15 +30,13 @@ const Placeholder = ({seed}) => {
 }
 
 
-const DogCard = ({dog, amountCards}) => {
+const DogCard = ({dog}) => {
     
     const filterByTemperament = useSelector(state => state.filterByTemperament)
-    const dogsIsFetching = useSelector(state => state.dogsIsFetching)
-    const imgsLoaded = useSelector(state => state.imgsLoaded)
+    const imgsStack = useSelector(state => state.imgsStack)
     const page = useSelector(state => state.page)
     const prevPage = useSelector(state => state.prevPage)
     const [random, setRandom] = useState(Math.random())
-    
     
     const dispatch = useDispatch()
 
@@ -59,20 +57,17 @@ const DogCard = ({dog, amountCards}) => {
         dispatch(imgLoaded())
     }
 
-    // useEffect(() => {
-    //     if(direction === 'prev') imgRef.current.style.animation = "prevPage .5s forwards";
-    //     else if(direction === 'next') imgRef.current.style.animation = "nextPage .5s forwards";
-    // }, [])
+    useEffect(() => {
+        dispatch(imgToLoad())
+    }, [])
 
     return (
         
-        <div className={styles.cardWrapper}>
-            {/* {(imgsLoaded !== amountCards) && <Placeholder seed={random} />} */}
-            {dog === undefined && imgsLoaded!==amountCards && <Placeholder seed={random} />}
-
-            {dog && <Link onClick={positionHandle} to={`/details/${dog.id}`} style={{animation: `${page < prevPage ? 'prevPage' : page > prevPage ? 'nextPage' : ''} .5s forwards`}} className={styles.card}>
+        <div className={styles.cardWrapper} style={{animation: `${page < prevPage ? 'prevPage' : page > prevPage ? 'nextPage' : ''} .5s forwards`}}>
+            {(!dog || imgsStack > 0) && <Placeholder seed={random} />}
+            {dog && <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
                 <header className={styles.cardHeader}>
-                    <img onLoad={handleImgOnLoad} ref={imgRef} onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />
+                    <img onLoadStart={() => console.log('start')} onLoad={handleImgOnLoad} ref={imgRef} onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />
                     <img className={styles.imagePlaceholder} src={placeholderOnError} />
                 </header>
                 <main className={styles.cardMain}>

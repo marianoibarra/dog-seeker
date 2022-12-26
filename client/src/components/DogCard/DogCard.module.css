@@ -15,10 +15,11 @@
     background-color: var(--color-grey2);
     box-shadow: 0px 2px 10px 0 var(--shadow);
     transition: all .3s ease-in-out;
+    z-index: 1;
 }
 
 .front {
-    z-index: 100;
+    z-index: 2;
 }
 
 .cardWrapper {

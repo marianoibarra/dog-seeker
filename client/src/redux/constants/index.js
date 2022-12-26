@@ -13,6 +13,7 @@ export const SET_PAGE = 'SET_PAGE'
 export const SET_TOTAL_PAGE = 'SET_TOTAL_PAGE'
 export const CLEAR_MODAL = 'CLEAR_MODAL'
 export const IMG_LOADED = 'IMG_LOADED'
+export const IMG_TO_LOAD = 'IMG_TO_LOAD'
 
 
 export const dogsPerPage = 8

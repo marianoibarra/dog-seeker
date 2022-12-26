@@ -12,6 +12,7 @@
     user-select: none; /* Standard syntax */
     background-color: #f3ece6aa;
     backdrop-filter: blur(16px);
+    z-index: 10;
 }
 
 .list li {

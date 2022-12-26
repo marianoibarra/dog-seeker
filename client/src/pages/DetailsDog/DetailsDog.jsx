@@ -4,16 +4,21 @@ import getDogs_API from "../../services/get-Dogs"
 import styles from './DetailsDog.module.css'
 import placeholderOnError from '../../img/dog-breed-placeholder-details.png'
 import DocumentTitle from 'react-document-title'
+import { useDispatch, useSelector } from "react-redux"
+import { setPage } from "../../redux/actions"
 
 const DetailsDog = () => {
 
 const [details, setDetails] = useState()
 const [fullsize, setFullsize] = useState()
 const { id } = useParams()
+const page = useSelector(state => state.page)
 const random = Math.floor(Math.random() * 5 + 3)
 const arrayRandom = new Array(random).fill('').map(e => e = Math.floor(Math.random() * 30))
+const dispatch = useDispatch()
 
 useEffect(() => {
+    dispatch(setPage(page))
     getDogs_API(id)
         .then(data => setDetails(data))
         .catch(e => console.log(e))
