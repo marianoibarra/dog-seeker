@@ -18,7 +18,7 @@ const SearchBar = ({searchOpen}) => {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        dispatch(filterDogs(undefined, undefined, input))
+        dispatch(filterDogs(undefined, undefined, input.toLowerCase()))
         inputRef.current.blur()
         setShowSearchClear(true)
     }

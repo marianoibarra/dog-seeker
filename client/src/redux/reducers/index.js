@@ -16,6 +16,7 @@ import {
     SET_TOTAL_PAGE,
     dogsPerPage,
     CLEAR_MODAL,
+    END_LOADING
  } from "../constants";
 
 const initialState = {
@@ -35,7 +36,8 @@ const initialState = {
     filterByOrigin: originOp[0],
     filterBySearch: '',
     page: 1,
-    totalPages: 1    
+    totalPages: 1,
+    loadingCards: true    
 }
 
 export default function reducer(state = initialState, action) {
@@ -55,8 +57,8 @@ export default function reducer(state = initialState, action) {
         case FETCH_DOGS_SUCCESS: {
             return {
                 ...state,
-                dogs: action.payload,
                 dogsToDisplay: action.payload,
+                dogs: action.payload,
                 dogsIsFetching: false,
                 totalPages: Math.ceil(action.payload.length / dogsPerPage)
             }
@@ -116,7 +118,8 @@ export default function reducer(state = initialState, action) {
         case SET_PAGE: {
             return {
                 ...state,
-                page: action.payload
+                loadingCards: true,
+                page: action.payload                
             }
         }
 
@@ -143,9 +146,18 @@ export default function reducer(state = initialState, action) {
                 filterByTemperament: action.temperament,
                 filterByOrigin: action.origin,
                 filterBySearch: action.search,
-                dogsToDisplay: action.temperament.length === 0 ? state.dogs.filter(dog => action.origin.filter(dog.id) && dog.name.toLowerCase().includes(action.search.toLowerCase())) : state.dogs.filter(dog => {return action.origin.filter(dog.id) && dog.name.includes(action.search) && dog.temperament && dog.temperament.some(temp => action.temperament.includes(temp))}),
-                page: action.temperament.length > 0 ? 1 : state.page
-                
+                page: action.temperament.length > 0 ? 1 : state.page,
+                dogsToDisplay: action.temperament.length === 0 
+                                    ? state.dogs
+                                        .filter(dog => 
+                                            action.origin.filter(dog.id) 
+                                            && dog.name.toLowerCase().includes(action.search)) 
+                                    : state.dogs
+                                        .filter(dog => 
+                                            action.origin.filter(dog.id) 
+                                            && dog.name.toLowerCase().includes(action.search) 
+                                            && dog.temperament 
+                                            && dog.temperament.some(tempOfDog => action.temperament.includes(tempOfDog))),
             }
         }
         case CLEAR_MODAL: {
@@ -153,6 +165,12 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 modalDogCreatedFailed: false,
                 modalDogCreatedSuccess: false
+            }
+        }
+        case END_LOADING: {
+            return {
+                ...state,
+                loadingCards: false
             }
         }
         default: return state

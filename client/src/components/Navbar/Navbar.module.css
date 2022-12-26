@@ -136,7 +136,8 @@
 
     .searchbarOpen {
         flex-basis: 100%;
-        padding-right: 8px
+        padding-right: 8px;
+        min-width: unset;
     }
 
     .nav {

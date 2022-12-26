@@ -12,6 +12,7 @@ export const FILTER_DOGS = 'FILTER_DOGS'
 export const SET_PAGE = 'SET_PAGE'
 export const SET_TOTAL_PAGE = 'SET_TOTAL_PAGE'
 export const CLEAR_MODAL = 'CLEAR_MODAL'
+export const END_LOADING = 'END_LOADING'
 
 
 export const dogsPerPage = 8
@@ -78,7 +79,7 @@ export const orderOp = [
     },
     {
         id: 3,
-        name: 'Weight (High to lw)',
+        name: 'Weight (High to low)',
         sort: sortWeightDesc
     }
 ]

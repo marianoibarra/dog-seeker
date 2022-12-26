@@ -7,6 +7,12 @@
     align-items: center;
     border-radius: 42px;
     padding: 0 14px 0 12px;
+    transition: filter .3s ease-in-out;
+}
+
+.searchBar:hover {
+    filter: brightness(98.5%);
+    transition: filter 150ms ease-in-out;
 }
 
 .searchInput {

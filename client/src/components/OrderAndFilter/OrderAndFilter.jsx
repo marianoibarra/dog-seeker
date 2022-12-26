@@ -111,7 +111,7 @@ const OrderAndFilter = () => {
             </div>
         </div>
             {filterByTemperament.length + (filterByOrigin.id !== 0 && 1) > 0 &&
-                <div onClick={() => dispatch(filterDogs([], originOp[0]))} className={styles.clear}>CLEAR FILTERS</div>}        
+                <div onClick={() => dispatch(filterDogs([], originOp[0]))} className={styles.clear}>CLEAR</div>}        
     </>
           
     
