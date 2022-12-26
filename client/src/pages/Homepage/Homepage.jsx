@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {endLoading, getDogs, getTemperaments, setTotalPages} from '../../redux/actions'
+import {getDogs, getTemperaments, setTotalPages} from '../../redux/actions'
 import styles from './Homepage.module.css'
 import DogCard from "../../components/DogCard/DogCard"
 import Paginate from "../../components/Paginate/Paginate"
@@ -17,15 +17,10 @@ const Homepage = () => {
     const dispatch = useDispatch()
     const dogs = useSelector(state => state.dogs)
     const dogsToDisplay = useSelector(state => state.dogsToDisplay)
-    const dogsIsFetching = useSelector(state => state.dogsIsFetching)
     const page = useSelector(state => state.page)
     const location = useLocation()
     const backFromRoutes = location.state && location.state.backFromRoutes === true ? true : false
-    const refCardsContainer = useRef()
-    const [lastPage, setLastPage] = useState(1)
-    const [direction, setDirection] = useState('next')
-
-    
+    const refCardsContainer = useRef() 
  
     useEffect(() => {
         if(dogsToDisplay.length === 0) {

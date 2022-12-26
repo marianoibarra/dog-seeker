@@ -109,7 +109,10 @@ export const postDog = (data) => {
     return (dispatch) => {
         dispatch(fetchStart(POST_DOG_START))
         postDog_API(data)
-            .then(res => dispatch(fetchSuccess(POST_DOG_SUCCESS, res.data)))
+            .then(res => {
+                dispatch(fetchSuccess(POST_DOG_SUCCESS, res.data)); 
+                dispatch(filterDogs())
+            })
             .catch(e => dispatch(fetchFailed(POST_DOG_FAILED, e.response.data)))
     }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import getDogs_API from "../../services/get-Dogs"
 import styles from './DetailsDog.module.css'
@@ -9,26 +9,31 @@ import { setPage } from "../../redux/actions"
 
 const DetailsDog = () => {
 
-const [details, setDetails] = useState()
-const [fullsize, setFullsize] = useState()
-const { id } = useParams()
-const page = useSelector(state => state.page)
-const random = Math.floor(Math.random() * 5 + 3)
-const arrayRandom = new Array(random).fill('').map(e => e = Math.floor(Math.random() * 30))
-const dispatch = useDispatch()
+    const [details, setDetails] = useState()
+    const [fullsize, setFullsize] = useState()
+    const { id } = useParams()
+    const page = useSelector(state => state.page)
+    const random = Math.floor(Math.random() * 5 + 3)
+    const arrayRandom = new Array(random).fill('').map(e => e = Math.floor(Math.random() * 30))
+    const dispatch = useDispatch()
+    const [imgError, setImgError] = useState(false)
 
-useEffect(() => {
-    dispatch(setPage(page))
-    getDogs_API(id)
-        .then(data => setDetails(data))
-        .catch(e => console.log(e))
-}, [])
+    useEffect(() => {
+        dispatch(setPage(page))
+        getDogs_API(id)
+            .then(data => setDetails(data))
+            .catch(e => console.log(e))
+    }, [])
 
-const hiddenImgOnError = (e) => {
-    e.target.onerror = null;
-    e.target.style.display = 'none';
-    document.getElementById('imagePlaceholder').style.display= 'inline'
-}
+    useLayoutEffect(() => {
+        if(details && details.image === null) setImgError(true)
+    }, [details])
+
+    const handleImgError = (e) => {
+        e.target.onerror = null;
+        setImgError(true)
+    }
+
 
     return (
         details 
@@ -36,9 +41,11 @@ const hiddenImgOnError = (e) => {
                 <main className={styles.main}>
                     <div className={styles.detailsWrapper}>
                         <div className={styles.detailsBody}>
-                            <img onError={hiddenImgOnError} onClick={() => setFullsize(!fullsize)} className={fullsize ? styles.imageFullsize : styles.image} src={details.image} alt={details.name} />
-                            <img id='imagePlaceholder' className={styles.imagePlaceholder} src={placeholderOnError} />
-                            <div className={styles.dataWrapper}>
+                            {imgError 
+                                ?   <img id='imagePlaceholder' className={styles.imagePlaceholder} src={placeholderOnError} />
+                                :   <img onError={handleImgError} onClick={() => setFullsize(!fullsize)} className={fullsize ? styles.imageFullsize : styles.image} src={details.image} alt={details.name} />
+                            }
+                        <div className={styles.dataWrapper}>
                                 <h2 className={`${styles.dogName} ${fullsize ? styles.fullsize : ''}`}>{details.name}</h2>
                                 <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Height: ${details.height} cm`}</div>
                                 <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Weight: ${details.weight} kg`}</div>

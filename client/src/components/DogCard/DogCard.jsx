@@ -58,7 +58,8 @@ const DogCard = ({dog}) => {
     }
 
     useEffect(() => {
-        dispatch(imgToLoad())
+        if(dog && dog.image !== null) dispatch(imgToLoad())
+        
     }, [])
 
     return (
@@ -67,7 +68,7 @@ const DogCard = ({dog}) => {
             {(!dog || imgsStack > 0) && <Placeholder seed={random} />}
             {dog && <Link onClick={positionHandle} to={`/details/${dog.id}`} className={styles.card}>
                 <header className={styles.cardHeader}>
-                    <img onLoadStart={() => console.log('start')} onLoad={handleImgOnLoad} ref={imgRef} onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />
+                    {dog.image !== null && <img onLoad={handleImgOnLoad} ref={imgRef} onError={hiddenImgOnError} className={styles.image} src={dog.image} alt={dog.name} />}
                     <img className={styles.imagePlaceholder} src={placeholderOnError} />
                 </header>
                 <main className={styles.cardMain}>
@@ -77,7 +78,7 @@ const DogCard = ({dog}) => {
                     <div className={styles.temperamentsCont}>
                         <div className={styles.weight}>{`Weight: \n${dog.weight} kg`}</div>
                         {dog.temperament && dog.temperament.map(t => (
-                            <div style={filterByTemperament.includes(t) ? {fontWeight:'900'} : {}} className={styles.temperament}>{t}</div>
+                            <div style={filterByTemperament.includes(t) ? {fontWeight:'900', filter: 'brightness(90%)'} : {}} className={styles.temperament}>{t}</div>
                         ))}
                     </div>
                 </main>

@@ -82,8 +82,6 @@ const CreateDog = () => {
         setShowNameErr(false)
     }
 
-
-
     const Spinner = () => {
         return (
             <div className={styles.spinner}><div></div><div></div><div></div><div></div></div>
@@ -120,7 +118,7 @@ const CreateDog = () => {
                                     />
                                     <p className={styles.errMsg}>{errors.name && showNameErr ? errors.name : '\u00A0'}</p>
                                 </div>
-                                <div className={`${styles.statsWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetchingData : ''} `}>
+                                <div onClick={() => setShowNameErr(true)} className={`${styles.statsWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetchingData : ''} `}>
                                     <div className={styles.rangeWrapper}>
                                         <RangeSlider 
                                             key={'height'} 

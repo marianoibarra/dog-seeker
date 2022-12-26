@@ -103,8 +103,8 @@ export default function reducer(state = initialState, action) {
         case POST_DOG_SUCCESS: {
             return {
                 ...state,
-                dogs: state.dogs.length > 0 ? [...state.dogs, action.payload].sort(state.order.sort) : [...state.dogs],
-                dogsToDisplay: state.dogs.length > 0 ? [...state.dogsToDisplay, action.payload].sort(state.order.sort) : [...state.dogsToDisplay],
+                dogs: [...state.dogs, action.payload].sort(state.order.sort),
+                dogsToDisplay: [...state.dogsToDisplay, action.payload].sort(state.order.sort),
                 postDogIsFetching: false,
                 modalDogCreatedSuccess: true
             }
