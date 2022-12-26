@@ -16,7 +16,7 @@ import {
     SET_PAGE,
     SET_TOTAL_PAGE,
     CLEAR_MODAL,
-    END_LOADING
+    IMG_LOADED
  } from "../constants";
 
 const fetchStart = (type) => {
@@ -92,9 +92,9 @@ export const clearModal = () => {
     }
 }
 
-export const endLoading = () => {
+export const imgLoaded = () => {
     return {
-        type: END_LOADING,
+        type: IMG_LOADED,
     }
 }
 

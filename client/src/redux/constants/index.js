@@ -12,7 +12,7 @@ export const FILTER_DOGS = 'FILTER_DOGS'
 export const SET_PAGE = 'SET_PAGE'
 export const SET_TOTAL_PAGE = 'SET_TOTAL_PAGE'
 export const CLEAR_MODAL = 'CLEAR_MODAL'
-export const END_LOADING = 'END_LOADING'
+export const IMG_LOADED = 'IMG_LOADED'
 
 
 export const dogsPerPage = 8

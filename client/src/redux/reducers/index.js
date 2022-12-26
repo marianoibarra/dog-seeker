@@ -16,7 +16,7 @@ import {
     SET_TOTAL_PAGE,
     dogsPerPage,
     CLEAR_MODAL,
-    END_LOADING
+    IMG_LOADED
  } from "../constants";
 
 const initialState = {
@@ -36,8 +36,9 @@ const initialState = {
     filterByOrigin: originOp[0],
     filterBySearch: '',
     page: 1,
+    prevPage: 1,
     totalPages: 1,
-    loadingCards: true    
+    imgsLoaded: 0    
 }
 
 export default function reducer(state = initialState, action) {
@@ -118,7 +119,8 @@ export default function reducer(state = initialState, action) {
         case SET_PAGE: {
             return {
                 ...state,
-                loadingCards: true,
+                imgsLoaded: 0,
+                prevPage: state.page,
                 page: action.payload                
             }
         }
@@ -167,10 +169,10 @@ export default function reducer(state = initialState, action) {
                 modalDogCreatedSuccess: false
             }
         }
-        case END_LOADING: {
+        case IMG_LOADED: {
             return {
                 ...state,
-                loadingCards: false
+                imgsLoaded: state.imgsLoaded + 1
             }
         }
         default: return state
