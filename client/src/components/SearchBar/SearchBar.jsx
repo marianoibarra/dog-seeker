@@ -11,6 +11,7 @@ import { useRef } from 'react'
 const SearchBar = ({searchOpen}) => {
 
     const filterBySearch = useSelector(state => state.filterBySearch)
+    const dogs = useSelector(state => state.dogs)
     const [input, setInput] = useState(filterBySearch)
     const [showSearchClear, setShowSearchClear] = useState(filterBySearch === '' ? false : true)
     const inputRef = useRef()
@@ -18,7 +19,7 @@ const SearchBar = ({searchOpen}) => {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        dispatch(filterDogs(undefined, undefined, input.toLowerCase()))
+        dogs.length > 0 && dispatch(filterDogs(undefined, undefined, input.toLowerCase()))
         inputRef.current.blur()
         setShowSearchClear(true)
     }
@@ -50,6 +51,7 @@ const SearchBar = ({searchOpen}) => {
                 placeholder='Search...'
                 autoComplete='none'
                 value={input}
+                disabled={dogs.length === 0}
                 onChange={e => setInput(e.target.value)}
                 onFocus={() => setShowSearchClear(false)}
             />

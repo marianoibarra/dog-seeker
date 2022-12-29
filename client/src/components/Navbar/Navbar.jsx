@@ -11,6 +11,7 @@ import { setPage } from "../../redux/actions";
 const Navbar = () => {
   
   let { pathname } = useLocation();
+  const dogs = useSelector(state => state.dogs)
   const dispatch = useDispatch()
 
   const positionHandle = (e) => {
@@ -82,7 +83,7 @@ const Navbar = () => {
               <div className={searchOpen ? styles.searchbarOpen : styles.searchbarClose}>
                 <SearchBar searchOpen={searchOpen} />
               </div>
-              <Link onClick={positionHandle} className={styles.createBtn} to="/create">
+              <Link onClick={positionHandle} className={dogs.length > 0 ? styles.createBtn : `${styles.createBtn} ${styles.disabled}`} to="/create">
                 Create breed
               </Link>
             </nav>
