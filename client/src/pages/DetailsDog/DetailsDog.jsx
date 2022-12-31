@@ -39,20 +39,18 @@ const DetailsDog = () => {
         details 
         ?   <DocumentTitle title={`PI-Dogs | ${details.name}`} >
                 <main className={styles.main}>
-                    <div className={styles.detailsWrapper}>
-                        <div className={styles.detailsBody}>
-                            {imgError 
-                                ?   <img id='imagePlaceholder' className={styles.imagePlaceholder} src={placeholderOnError} />
-                                :   <img onError={handleImgError} onClick={() => setFullsize(!fullsize)} className={fullsize ? styles.imageFullsize : styles.image} src={details.image} alt={details.name} />
-                            }
-                        <div className={styles.dataWrapper}>
-                                <h2 className={`${styles.dogName} ${fullsize ? styles.fullsize : ''}`}>{details.name}</h2>
-                                <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Height: ${details.height} cm`}</div>
-                                <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Weight: ${details.weight} kg`}</div>
-                                <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Life span: ${details.life_span}`}</div>
-                                <div className={styles.temperamentsWrapper}>
-                                    {details.temperament && details.temperament.map(temperament => (<div className={`${styles.temperament} ${fullsize ? styles.tfullsize : ''}`}>{temperament}</div>))}
-                                </div>
+                    <div className={styles.detailsBody}>
+                        {imgError 
+                            ?   <img id='imagePlaceholder' className={styles.imagePlaceholder} src={placeholderOnError} />
+                            :   <img onError={handleImgError} onClick={() => setFullsize(!fullsize)} className={fullsize ? styles.imageFullsize : styles.image} src={details.image} alt={details.name} />
+                        }
+                    <div className={styles.dataWrapper}>
+                            <h2 className={`${styles.dogName} ${fullsize ? styles.fullsize : ''}`}>{details.name}</h2>
+                            <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Height: ${details.height} cm`}</div>
+                            <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Weight: ${details.weight} kg`}</div>
+                            <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Life span: ${details.life_span}`}</div>
+                            <div className={styles.temperamentsWrapper}>
+                                {details.temperament && details.temperament.map(temperament => (<div key={temperament.name} className={`${styles.temperament} ${fullsize ? styles.tfullsize : ''}`}>{temperament}</div>))}
                             </div>
                         </div>
                     </div>
@@ -60,19 +58,17 @@ const DetailsDog = () => {
             </DocumentTitle>
         :   <DocumentTitle title={`PI-Dogs | Loading..`} >
                 <main className={styles.main}>
-                    <div className={styles.detailsWrapper}>
-                        <div className={styles.detailsBody}>
-                            <div className={styles.imageLoading}><div className={styles.activity}></div></div>
-                            <div className={styles.dataWrapper}>
-                                <h2  style={{width: `${285 + arrayRandom[0]}px`}} className={styles.dogNameLoading}><div className={styles.activity}></div></h2>
-                                <div style={{width: `${175 + arrayRandom[1]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
-                                <div style={{width: `${175 + arrayRandom[2]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
-                                <div style={{width: `${175 + arrayRandom[3]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
-                                <div className={styles.temperamentsWrapper}>
-                                    {
-                                        arrayRandom.map(e => (<div className={styles.temperamentLoading}><div className={styles.activity}></div></div>))
-                                    }
-                                </div>
+                    <div className={styles.detailsBody}>
+                        <div className={styles.imageLoading}><div className={styles.activity}></div></div>
+                        <div className={styles.dataWrapperLoading}>
+                            <h2  style={{width: `${285 + arrayRandom[0]}px`}} className={styles.dogNameLoading}><div className={styles.activity}></div></h2>
+                            <div style={{width: `${175 + arrayRandom[1]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
+                            <div style={{width: `${175 + arrayRandom[2]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
+                            <div style={{width: `${175 + arrayRandom[3]}px`}} className={styles.dogStatsLoading}><div className={styles.activity}></div></div>
+                            <div className={styles.temperamentsWrapper}>
+                                {
+                                    arrayRandom.map((e, i) => (<div key={i} className={styles.temperamentLoading}><div className={styles.activity}></div></div>))
+                                }
                             </div>
                         </div>
                     </div>

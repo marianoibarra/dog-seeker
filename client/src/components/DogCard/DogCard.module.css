@@ -18,6 +18,10 @@
     z-index: 1;
 }
 
+.card header, .card main {
+    pointer-events: none;
+}
+
 .front {
     z-index: 2;
 }

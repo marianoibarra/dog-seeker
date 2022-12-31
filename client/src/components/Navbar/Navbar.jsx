@@ -16,11 +16,17 @@ const Navbar = () => {
 
   const positionHandle = (e) => {
     if(e.target.id === 'createOnMobile') {
-      document.documentElement.style.setProperty('--pageX-details', `50vw`)
-      document.documentElement.style.setProperty('--pageY-details', `50vh`)
+      document.documentElement.style.setProperty('--X-details', `50vw`)
+      document.documentElement.style.setProperty('--Y-details', `50vh`)
     } else {
-      document.documentElement.style.setProperty('--pageX-details', `${e.pageX}px`)
-      document.documentElement.style.setProperty('--pageY-details', `${e.pageY}px`)
+      const coords = e.target.getBoundingClientRect()
+      const x = Math.floor(coords.left + coords.width / 2)
+      const y = Math.floor(coords.top + coords.height / 2)
+      console.log(coords)
+      document.documentElement.style.setProperty('--X-details', `${x}px`)
+      document.documentElement.style.setProperty('--Y-details', `${y}px`)
+      document.documentElement.style.setProperty('--width-details', `${coords.width}px`)
+      document.documentElement.style.setProperty('--height-details', `${coords.height}px`)
     }   
   }
 

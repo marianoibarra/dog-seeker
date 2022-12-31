@@ -9,10 +9,8 @@ import { filterDogs } from "../../redux/actions";
 
 const TemperamentsSelect = ({ filtering, input, setInput }) => {
   const dispatch = useDispatch();
-  const temperaments = useSelector((state) => state.temperaments);
-  const temperamentsIsFetching = useSelector(
-    (state) => state.temperamentsIsFetching
-  );
+  const temperaments = useSelector(state => state.temperaments);
+  const temperamentsIsFetching = useSelector(state => state.temperamentsIsFetching);
   const [tempToSearch, setTempToSearch] = useState("");
 
   const filterByTemperament = useSelector((state) => state.filterByTemperament);
@@ -59,7 +57,7 @@ const TemperamentsSelect = ({ filtering, input, setInput }) => {
                 <div>{input.temperament.length}</div>
               )}
         </div>
-        <div className={filtering ? styles.searchFilter : styles.searchFilter2}>
+        {temperaments.length > 0 && <div className={filtering ? styles.searchFilter : styles.searchFilter2}>
           <input
             className={styles.searchFilterInput}
             placeholder="Search..."
@@ -69,11 +67,11 @@ const TemperamentsSelect = ({ filtering, input, setInput }) => {
             onChange={(e) => setTempToSearch(e.target.value.toLowerCase())}
             value={tempToSearch}
           />
-        </div>
+        </div>}
       </div>
       <div className={styles.tempCont}>
         {temperamentsIsFetching ? (
-          <span className={styles.nothing}>Loading...</span>
+          <span className={styles.nothing}>Loading temperaments...</span>
         ) : temperaments &&
           temperaments.filter((t) =>
             t.name.toLowerCase().startsWith(tempToSearch)

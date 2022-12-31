@@ -16,10 +16,12 @@
     --navbarHeight: 64px;
     --shadow: rgba(35, 31, 32, .02);
     --shadow-hover: rgba(35, 31, 32, .1);
-    --pageX-details: 50vw;
-    --pageY-details: 50vh;
+    --X-details: 50vw;
+    --Y-details: 50vh;
+    --width-details: 90%;
+    --height-details: 75%;
   }
-
+  
   @media screen and (max-width: 600px) {
 
     :root {
