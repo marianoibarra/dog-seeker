@@ -19,7 +19,7 @@ const getDogs = async (name = null, onlyAPI) => {
     
     const dogsFromDB = await Dog.findAll({
         where: 
-            name && {name: {[Op.substring]: name}},
+            name && {name: {[Op.iLike]: `%${name}%`}},
         include: [{
             model: Temperament,
             as: 'temperament',

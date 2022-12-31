@@ -15,7 +15,6 @@ export const CLEAR_MODAL = 'CLEAR_MODAL'
 export const IMG_LOADED = 'IMG_LOADED'
 export const IMG_TO_LOAD = 'IMG_TO_LOAD'
 
-
 export const dogsPerPage = 8
 
 const regex = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
@@ -35,8 +34,8 @@ const sortNameDesc = function(a, b) {
         return 0
     }
 const sortWeightAsc = function(a, b) {
-        let weightA = a.weight.split(' - ')
-        let weightB = b.weight.split(' - ')
+        let weightA = a.weight.split(' - ').map(n => Number(n))
+        let weightB = b.weight.split(' - ').map(n => Number(n))
         if(weightA[0] > weightB[0]) return 1
         if(weightA[0] < weightB[0]) return -1
         if(weightA[1] > weightB[1]) return 1
@@ -44,8 +43,8 @@ const sortWeightAsc = function(a, b) {
         return 0
     }
 const sortWeightDesc = function(a, b) {
-        let weightA = a.weight.split(' - ').map(w => Number(w))
-        let weightB = b.weight.split(' - ').map(w => Number(w))
+        let weightA = a.weight.split(' - ').map(n => Number(n))
+        let weightB = b.weight.split(' - ').map(n => Number(n))
         if(weightA[0] < weightB[0]) return 1
         if(weightA[0] > weightB[0]) return -1
         if(weightA[1] < weightB[1]) return 1

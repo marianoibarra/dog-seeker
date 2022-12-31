@@ -1,63 +1,39 @@
 const { Dog, Temperament } = require('../db')
 const getTemperaments = require('./getTemperaments')
 
-const addDog = async (dog) => {
+const addDog = async ({name, height, weight, life_span, temperament, image}) => {
 
-    const {name, height, weight, life_span, temperament, image} = dog
+  await getTemperaments()
 
-    const valName = name && typeof name === 'string'
-    const valHeight = height && typeof height === 'string'
-    const valWeight = weight && typeof weight === 'string'
-    const valLifeSpan = !life_span || life_span && typeof life_span === 'string'
-    const valTemperament = Array.isArray(temperament) && temperament.length > 0
+  const newDog = await Dog.create({ 
+      name,
+      height,
+      weight,
+      life_span,
+      image
+  });
 
-    if(valName && valHeight && valWeight && valLifeSpan) {
-
-        await getTemperaments()
-
-        try {
-
-            const newDog = await Dog.build({ 
-                name,
-                height,
-                weight,
-                life_span,
-                image
-            });
-
-            await newDog.validate()
-            await newDog.save()
-
-        if(valTemperament) {
-            for(let name of temperament) {
-                const temperamentFromDB = await Temperament.findOne({where: { name }})
-                await newDog.addTemperament(temperamentFromDB)
-            }
-        }
-        
-        const newDogFromDB = await Dog.findOne({
-        where: { id: newDog.id }, 
-        include: [{
-            model: Temperament,
-            as: 'temperament',
-            attributes:['name'],
-            through: {
-              attributes: []
-            }
-        }]}).then(results => results.toJSON())
-
-        newDogFromDB.temperament = newDogFromDB.temperament.map(t => t.name)
-
-        return newDogFromDB
-
-        } catch (error) {
-            console.log(error)
-            throw new Error('Name already exist. Dog was not created')
-        }
-
-    } else {
-        throw new Error('Invalid format values. Dog was not created')
+  if(Array.isArray(temperament) && temperament.length > 0){
+    for(let name of temperament) {
+      const temperamentFromDB = await Temperament.findOne({where: { name }})
+      await newDog.addTemperament(temperamentFromDB)
     }
+  }
+  
+  const newDogFromDB = await Dog.findOne({
+    where: { id: newDog.id }, 
+    include: [{
+      model: Temperament,
+      as: 'temperament',
+      attributes:['name'],
+      through: {
+          attributes: []
+      }
+  }]}).then(results => results.toJSON())
+
+  newDogFromDB.temperament = newDogFromDB.temperament.map(t => t.name)
+
+  return newDogFromDB
 }
 
 module.exports = addDog

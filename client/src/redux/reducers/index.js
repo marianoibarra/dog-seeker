@@ -22,7 +22,7 @@ import {
 
 const initialState = {
     dogs: [],
-    dogsToDisplay: [],
+    dogsToDisplay: new Array(8).fill(''),
     temperaments: [],
     dogsIsFetching: false,
     temperamentsIsFetching: false,
@@ -39,7 +39,7 @@ const initialState = {
     page: 1,
     prevPage: 1,
     totalPages: 1,
-    imgsStack: 0    
+    imgsStack: false    
 }
 
 export default function reducer(state = initialState, action) {
@@ -120,7 +120,7 @@ export default function reducer(state = initialState, action) {
         case SET_PAGE: {
             return {
                 ...state,
-                imgsStack: 0,
+                imgsStack: false,
                 prevPage: state.page,
                 page: action.payload                
             }
@@ -153,7 +153,7 @@ export default function reducer(state = initialState, action) {
                 filterByTemperament: action.temperament,
                 filterByOrigin: action.origin,
                 filterBySearch: action.search,
-                page: action.temperament.length > 0 ? 1 : state.page,
+                page: action.temperament.length > 0 ? 1 : state.page, 
                 dogsToDisplay: action.temperament.length === 0 
                                     ? state.dogs
                                         .filter(dog => 
