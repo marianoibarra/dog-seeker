@@ -91,8 +91,8 @@ const DogCard = ({dog, seed}) => {
             </div>
             <div className={styles.temperamentsCont}>
               <div className={styles.weight}>{`Weight: \n${dog.weight} kg`}</div>
-              {dog.temperament && dog.temperament.map(t => 
-                <div style={filterByTemperament.includes(t) ? {fontWeight:'900', filter: 'brightness(90%)'} : {}} className={styles.temperament}>{t}</div>
+              {dog.temperament && dog.temperament.map((t,k) => 
+                <div key={k} style={filterByTemperament.includes(t) ? {fontWeight:'900', filter: 'brightness(90%)'} : {}} className={styles.temperament}>{t}</div>
               )}
             </div>
           </main>

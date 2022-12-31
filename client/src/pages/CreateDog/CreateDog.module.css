@@ -307,6 +307,7 @@
     .createWrapper {
         height: 88%;
         width: 95%;
+        max-width: none;
     }
 
     .uploadImgWrapper {

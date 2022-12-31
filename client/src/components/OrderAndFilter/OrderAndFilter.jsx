@@ -96,8 +96,8 @@ const OrderAndFilter = () => {
                             Origin
                         </div>
                         <div className={styles.filterByOriginBody}>
-                            {originOp.map(origin => (
-                                <button className={styles.originToggle} onClick={() => originToggleHandler(origin)}>
+                            {originOp.map((origin, k) => (
+                                <button key={k} className={styles.originToggle} onClick={() => originToggleHandler(origin)}>
                                     <div className={styles.checkbox}>
                                         <FontAwesomeIcon icon={filterByOrigin.id === origin.id ? faCircleCheck : faCircle} size='lg' fixedWidth />
                                     </div>

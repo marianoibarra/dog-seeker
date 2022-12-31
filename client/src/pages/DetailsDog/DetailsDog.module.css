@@ -18,7 +18,7 @@
     }
     to {
         left: 50vw;
-        top: 50vh;
+        top: 50dvh;
         border-radius: 48px
     }
 }
@@ -36,7 +36,7 @@
 .detailsBody {
     position: absolute;
     left: 50vw;
-    top: 50vh;
+    top: 50dvh;
     transform: translate(-50%, -50%);
     height: 75%;
     margin: 0 auto;
@@ -230,7 +230,7 @@
         }
         to {
             left: 50vw;
-            top: 50vh;
+            top: 50dvh;
         }
     }
 

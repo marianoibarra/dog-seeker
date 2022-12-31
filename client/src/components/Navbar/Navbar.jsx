@@ -17,7 +17,9 @@ const Navbar = () => {
   const positionHandle = (e) => {
     if(e.target.id === 'createOnMobile') {
       document.documentElement.style.setProperty('--X-details', `50vw`)
-      document.documentElement.style.setProperty('--Y-details', `50vh`)
+      document.documentElement.style.setProperty('--Y-details', `50dvh`)
+      document.documentElement.style.setProperty('--width-details', `100vw`)
+      document.documentElement.style.setProperty('--height-details', `100dvh`)
     } else {
       const coords = e.target.getBoundingClientRect()
       const x = Math.floor(coords.left + coords.width / 2)
