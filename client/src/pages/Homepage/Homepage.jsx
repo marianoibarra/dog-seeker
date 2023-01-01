@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getDogs, getTemperaments, setTotalPages } from "../../redux/actions";
-import DocumentTitle from "react-document-title";
 import styles from "./Homepage.module.css";
 import DogCard from "../../components/DogCard/DogCard";
 import Paginate from "../../components/Paginate/Paginate";
@@ -10,6 +9,7 @@ import OrderAndFilter from "../../components/OrderAndFilter/OrderAndFilter";
 import { dogsPerPage } from "../../redux/constants/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartBroken } from "@fortawesome/free-solid-svg-icons";
+import { Helmet } from "react-helmet";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -42,8 +42,10 @@ const Homepage = () => {
   }, [page]);
 
   return (
-    <DocumentTitle title={`PI-Dogs`}>
       <main className={styles.main}>
+        <Helmet>
+          <title>PI-Dogs | Home</title>
+        </Helmet>
         <section className={styles.filters}>
           <OrderAndFilter />
         </section>
@@ -69,7 +71,6 @@ const Homepage = () => {
           <Paginate />
         </section>
       </main>
-    </DocumentTitle>
   );
 };
 

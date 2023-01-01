@@ -5,10 +5,10 @@ import RangeSlider from '../../components/RangeSlider/RangeSlider'
 import TemperamentsSelect from '../../components/TemperamentsSelect/TemperamentsSelect'
 import UploadImage from '../../components/UploadImage/UploadImage'
 import { getTemperaments, postDog, setPage } from '../../redux/actions'
-import DocumentTitle from 'react-document-title'
 import {BE_LINK} from '../../services/constants'
 import styles from './CreateDog.module.css'
 import Modal from '../../components/Modal/Modal'
+import { Helmet } from 'react-helmet'
 
 const CreateDog = () => {
   
@@ -89,8 +89,10 @@ const CreateDog = () => {
     }
 
     return (
-        <DocumentTitle title={`PI-Dogs | Create dog's breed`} >
             <main className={styles.main}>
+                <Helmet>
+                    <title>PI-Dogs | Create dog's breed</title>
+                </Helmet>
                 <div className={`${styles.createWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetching : ''}`}>
                     <div className={styles.formContainer}>
                         <Modal reset={resetForm} submit={refSubmit.current} />
@@ -176,7 +178,6 @@ const CreateDog = () => {
                     </div>
                 </div>
             </main>
-        </DocumentTitle>
     )
 }
 

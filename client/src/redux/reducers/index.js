@@ -120,7 +120,7 @@ export default function reducer(state = initialState, action) {
         case SET_PAGE: {
             return {
                 ...state,
-                imgsStack: false,
+                imgsStack: action.payload !== state.page ? false : state.imgsStack,
                 prevPage: state.page,
                 page: action.payload                
             }
@@ -158,13 +158,13 @@ export default function reducer(state = initialState, action) {
                                     ? state.dogs
                                         .filter(dog => 
                                             action.origin.filter(dog.id) 
-                                            && dog.name.toLowerCase().includes(action.search)) 
+                                            && dog.name.toLowerCase().split(' ').some(word => word.startsWith(action.search)))
                                     : state.dogs
                                         .filter(dog => 
                                             action.origin.filter(dog.id) 
-                                            && dog.name.toLowerCase().includes(action.search) 
+                                            && dog.name.toLowerCase().split(' ').some(word => word.startsWith(action.search))
                                             && dog.temperament 
-                                            && dog.temperament.some(tempOfDog => action.temperament.includes(tempOfDog))),
+                                            && dog.temperament.some(tempOfDog => action.temperament.includes(tempOfDog)))
             }
         }
         case CLEAR_MODAL: {
