@@ -113,6 +113,6 @@ export const postDog = (data) => {
                 dispatch(fetchSuccess(POST_DOG_SUCCESS, res.data)); 
                 dispatch(filterDogs())
             })
-            .catch(e => dispatch(fetchFailed(POST_DOG_FAILED, e.response.data)))
+            .catch(e => {console.log(e);dispatch(fetchFailed(POST_DOG_FAILED, e.response.data.error))})
     }
 }

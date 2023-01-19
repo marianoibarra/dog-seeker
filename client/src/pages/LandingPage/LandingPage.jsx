@@ -27,14 +27,14 @@ const LandingPage = () => {
             </main>            */}
             <main className={styles.grid}>
                 <div className={styles.cardWelcome}>
-                    <h4>Welcome, doglover 👋</h4>
+                    <h4>Welcome, doglover! 🐶</h4>
                     <p>Here you will discover and create dog breeds. You can search, filter and sort them</p>
                 </div>
                 <div className={styles.cardLink}>
                     <img className={styles.footprint} src={footprint} alt="" />
                     <div className={styles.leftLink}>
                         <h1>PI-Dogs</h1>
-                        <p>An individual project for Henry</p>
+                        <p>An individual project for Henry 💛</p>
                     </div>
                     <div className={styles.rightLink}>
                         <Link className={styles.linkBtn} to='/home' >
@@ -63,7 +63,7 @@ const LandingPage = () => {
                             </a>
                         </li>
                     </ul>
-                    <div className={styles.copy}>Designed and built by Mariano Ibarra</div>
+                    <div className={styles.copy}>Designed and built by <span>Mariano Ibarra</span></div>
                 </div>
             </main>
         </div>

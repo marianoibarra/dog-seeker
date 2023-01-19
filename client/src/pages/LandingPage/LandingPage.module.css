@@ -26,8 +26,8 @@
 }
 
 .cardWelcome h4 {
-    font-size: 1.6rem;
-    line-height: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
     font-weight: 800;
 }
 
@@ -189,6 +189,11 @@
 
 .copy {
     font-family: 'Nunito';
+    font-size: 1.05rem;
+}
+
+.copy span {
+    font-weight: 500;
 }
 
 @media screen and (max-width: 1024px) {

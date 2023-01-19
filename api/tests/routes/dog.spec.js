@@ -37,7 +37,7 @@ describe('Routes', () => {
     });
     it('should get one or many results', async () => {
       const response = await agent
-        .get('/dogs?name=dogo')
+        .get('/dogs?name=dog')
         .expect(200)
       expect(response.body).to.be.an('array').and.not.empty
     });
@@ -76,9 +76,14 @@ describe('Routes', () => {
             })
         })
     });
+    it('should get no results for a non-existent name', async () => {
+      agent
+        .get('/dogs/9999')
+        .expect(400)
+    });
   });
   describe('POST /dogs', () => {
-    it('should respond with the new object when the POST was successful', () => {
+    it('should respond with a new object when POST was successful', () => {
       agent
         .post('/dogs')
         .send(correct)

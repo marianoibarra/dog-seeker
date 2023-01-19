@@ -78,7 +78,7 @@
 
 .modalButtons {
     display: flex;
-    width: 60%;
+    width: 75%;
     justify-content: space-around;
     align-items: center;
     margin-top: 8px;
@@ -93,8 +93,8 @@
     border: none;
     width: 45%;
     height: 42px;
-    font-size: 0.95rem;
-    line-height: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 0.9rem;
     cursor: pointer;
     color: white;
     border-radius: 21px;
@@ -117,6 +117,22 @@
     color: var(--color-black);
     font-size: 1;
 
+}
+
+@media screen and (max-width: 768px) {
+    .modalButtons {
+        width: 85%;
+    }
+
+    .modalMain p {
+        flex-grow: 2;
+        vertical-align: center;
+    }
+
+    .accentButton, .secondaryButton, .yellowButton {
+        font-size: .8rem !important;
+        padding: 0 !important;
+    }
 }
 
 @keyframes bgIn {
