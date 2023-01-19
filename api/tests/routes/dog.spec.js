@@ -43,7 +43,7 @@ describe('Routes', () => {
     });
     it('should get no results for a non-existent name', async () => {
       const response = await agent
-        .get('/dogs?name=asd')
+        .get('/dogs?name=ab')
         .expect(200)
       expect(response.body).to.be.an('array').and.empty
     });
