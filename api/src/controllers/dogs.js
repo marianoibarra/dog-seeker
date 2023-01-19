@@ -106,7 +106,7 @@ const createDog = async (req, res) => {
     res.json(newDogFromDB)
 
   } catch (error) {
-    res.status(400).send({error: e.errors[0].message})
+    res.status(400).send({error: error.errors[0].message})
   }
 }
 
