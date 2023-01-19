@@ -50,7 +50,7 @@ const DetailsDog = () => {
             <h2 className={`${styles.dogName} ${fullsize ? styles.fullsize : ''}`}>{details.name}</h2>
             <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Height: ${details.height} cm`}</div>
             <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Weight: ${details.weight} kg`}</div>
-            <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Life span: ${details.life_span}`}</div>
+            {details.life_span && <div className={`${styles.dogStats} ${fullsize ? styles.fullsize : ''}`}>{`Life span: ${details.life_span}`}</div>}
             <div className={styles.temperamentsWrapper}>
               {details.temperament && details.temperament.map(temperament => (<div key={temperament} className={`${styles.temperament} ${fullsize ? styles.tfullsize : ''}`}>{temperament}</div>))}
             </div>
