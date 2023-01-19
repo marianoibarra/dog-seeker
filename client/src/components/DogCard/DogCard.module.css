@@ -18,7 +18,7 @@
     z-index: 1;
 }
 
-.card header, .card main {
+.card header {
     pointer-events: none;
 }
 

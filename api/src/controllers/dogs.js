@@ -2,6 +2,7 @@ const { Dog, Temperament } = require('../db')
 const dogsFromDB = require('../utils/dogsFromDB');
 const dogsFromAPI = require('../utils/dogsFromAPI');
 const storeTemperaments = require('../utils/storeTemperaments');
+const sortFn = require('../utils/sort');
 
 const getDogs = async (req, res) => {
 
@@ -22,21 +23,14 @@ const getDogs = async (req, res) => {
             temperament: dog.temperament,
             image: dog.image,
             weight: dog.weight
-        }}
-        ).sort(function(a, b) {
-          let nameA = a.name.toLowerCase()
-          let nameB = b.name.toLowerCase()
-          if(nameA > nameB) return 1
-          if(nameA < nameB) return -1
-          return 0
-        })
+        }})
+        .sort(sortFn)
 
     res.json(response)
 
   } catch (error) {
     res.status(401).send(error.message)
   }
-
 }
 
 const getDogDetails = async (req, res) => {
@@ -108,6 +102,8 @@ const createDog = async (req, res) => {
     }]}).then(results => results.toJSON())
 
     newDogFromDB.temperament = newDogFromDB.temperament.map(t => t.name)
+
+    res.json(newDogFromDB)
 
   } catch (error) {
     res.status(400).send({error: e.errors[0].message})

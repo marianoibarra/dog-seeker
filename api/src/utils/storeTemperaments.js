@@ -8,7 +8,8 @@ const storeTemperaments = async () => {
   const temperamentsFromAPI = await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
     .then(r => r.data)
     .then(dogs => {
-      let temperaments = dogs
+      let temperaments = 
+      dogs
         .filter(dog => dog.temperament !== undefined)
         .map(dog => dog.temperament.split(', '))
         .flat()
@@ -18,13 +19,13 @@ const storeTemperaments = async () => {
 
   const response = []
 
-  for(let name of temperamentsFromAPI) {
-    let [temp] = await Temperament.findOrCreate({
+  for(let temperament of temperamentsFromAPI) {
+    let [tempFromDB] = await Temperament.findOrCreate({
       where: {
-        name: name
+        name: temperament
       }
     })
-    response.push(temp)
+    response.push(tempFromDB)
   }
 
   return response
