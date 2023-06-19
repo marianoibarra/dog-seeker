@@ -91,7 +91,7 @@ const CreateDog = () => {
     return (
             <main className={styles.main}>
                 <Helmet>
-                    <title>PI-Dogs | Create dog's breed</title>
+                    <title>Dogs Seeker | Create dog's breed</title>
                 </Helmet>
                 <div className={`${styles.createWrapper} ${postDogIsFetching || imgIsFetching ? styles.fetching : ''}`}>
                     <div className={styles.formContainer}>

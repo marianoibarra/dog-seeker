@@ -74,7 +74,7 @@ const Navbar = () => {
             <nav className={styles.nav}>
               <div onClick={() => dispatch(setPage(1))} className={`${styles.logo} ${searchOpen ? styles.hidden : ''}`}>
                 <img src={logoImg} />
-                <span>PI-Dogs</span>
+                <span>Dogs Seeker</span>
               </div>
               <div className={styles.buttons}>
                 <Link id="createOnMobile" to="/create" onClick={positionHandle} className={`${styles.searchButton} ${searchOpen ? styles.hidden : styles.visible}`}>

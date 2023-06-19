@@ -39,7 +39,7 @@ const DetailsDog = () => {
   details 
     ? <main className={styles.main}>
         <Helmet>
-          <title>{`PI-Dogs | ${details.name}`}</title>
+          <title>{`Dogs Seeker | ${details.name}`}</title>
         </Helmet>
         <div className={styles.detailsBody}>
           {imgError 
@@ -59,7 +59,7 @@ const DetailsDog = () => {
       </main> 
     : <main className={styles.main}>
         <Helmet>
-          <title>PI-Dogs | Loading..</title>
+          <title>Dogs Seeker | Loading..</title>
         </Helmet>
         <div className={styles.detailsBody}>
           <div className={styles.imageLoading}><div className={styles.activity}></div></div>
