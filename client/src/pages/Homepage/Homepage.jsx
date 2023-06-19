@@ -44,7 +44,7 @@ const Homepage = () => {
   return (
       <main className={styles.main}>
         <Helmet>
-          <title>Dogs Seeker | Home</title>
+          <title>Dog Seeker | Home</title>
         </Helmet>
         <section className={styles.filters}>
           <OrderAndFilter />

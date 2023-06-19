@@ -17,7 +17,7 @@ const LandingPage = () => {
             </nav>
              <main className={styles.mainLanding}>
                 <section className={styles.boxOne}>
-                    <h1>Dogs Seeker</h1>
+                    <h1>Dog Seeker</h1>
                     <p>Discover and create breeds of dogs, know their main characteristics such as weight, height and temperament. Search, sort and filter results.</p>
                     <p>An individual project made by <a target={'_blank'} href="http://www.marianoibarra.com/">Mariano Ibarra</a></p>
                 </section>
@@ -33,7 +33,7 @@ const LandingPage = () => {
                 <div className={styles.cardLink}>
                     <img className={styles.footprint} src={footprint} alt="" />
                     <div className={styles.leftLink}>
-                        <h1>Dogs Seeker</h1>
+                        <h1>Dog Seeker</h1>
                         <p>An individual project for Henry 💛</p>
                     </div>
                     <div className={styles.rightLink}>
